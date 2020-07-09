@@ -1,0 +1,2 @@
+#!/bin/bash
+wget  --server-response -P ./zips https://echo.epa.gov/files/echodownloads/$1

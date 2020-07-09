@@ -1,0 +1,2 @@
+#!/bin/bash
+cat ./CSV/$1.csv | parallel --header : --pipe -N999 'cat > ./CSV/'"$1"'_{#}.csv'

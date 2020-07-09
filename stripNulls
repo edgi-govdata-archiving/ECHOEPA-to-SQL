@@ -1,0 +1,4 @@
+#!/bin/bash
+mv ./CSV/$1.csv ./CSV/null_$1.csv
+tr <  ./CSV/null_$1.csv -d '\000' > ./CSV/$1.csv
+rm ./CSV/null_$1.csv

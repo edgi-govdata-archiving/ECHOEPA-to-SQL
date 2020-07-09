@@ -1,0 +1,4 @@
+#!/bin/bash
+tail -n +2 db_$2_private.csv | sed -n 1'p' | tr ',' ' ' |while read host db user password;do 
+csvsql --db mysql+mysqlconnector://$user:$password@$host/$db  ./CSV/$1.csv --tables $1;
+done
