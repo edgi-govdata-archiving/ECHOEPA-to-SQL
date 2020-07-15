@@ -1,0 +1,4 @@
+#!/bin/bash
+tail -n +2 db_${2}_private.csv | sed -n 1'p' | tr ',' ' ' |while read host db user password;do 
+mysql --local-infile -u $user -p$password -h $host $db -e "LOAD DATA LOCAL INFILE  './CSV/$1.csv' INTO TABLE \`$1\` FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 ROWS"
+done

@@ -1,4 +1,4 @@
-# ECHOEPA-to-SQL 
+# ECHO_EPA_SCRAPE_TO_MYSQL
 This is a python script "scrapeECHOEPA" which makes serveral calls to the following bash scripts:
 * wgetEPA
 * unzipEPA

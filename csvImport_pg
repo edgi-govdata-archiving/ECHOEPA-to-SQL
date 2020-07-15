@@ -1,0 +1,6 @@
+#!/bin/bash
+dir=$(pwd)
+tail -n +2 db_b_private.postgres.csv | sed -n 1'p' | tr ',' ' ' |while read host db user password;do 
+psql -U $user -h $host -d $db -c "\copy \"$1\" from '$dir/CSV/$1.csv' with CSV HEADER"
+done
+

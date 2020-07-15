@@ -5,20 +5,19 @@ import sys
 import pandas as pd
 import glob
 import db_connect
+import EXP_PGM
 from sqlalchemy import create_engine
 os.chdir(os.path.dirname(sys.argv[0]))
-LARGE_TABLES=True
-SMALL_TABLES=True
-engine= db_connect.connect()
+engine,whichDb= db_connect.connect()
 filesWithNulls=['CASE_ENFORCEMENTS','ICIS_PERMITS','FRS_PROGRAM_LINKS']
-largeTables=['POLL_RPT_COMBINED_EMISSIONS','NPDES_DMRS_FY2020','ECHO_EXPORTER','NPDES_EFF_VIOLATIONS','FRS_PROGRAM_LINKS','NPDES_INSPECTIONS','NPDES_QNCR_HISTORY','SDWA_VIOLATIONS','SDWA_PUB_WATER_SYSTEMS','SDWA_ENFORCEMENTS','ICIS_PERMITS','ICIS-AIR_FCES_PCES']
 def truncate(table):
 	print(table)
 	try:
 		engine.execute('truncate "%s"' %(table))
 	except Exception as e:
+		print (sys.exc_info()[0])
 		print (e.__class__.__name__)
-		print("new table %s" %(table))
+		sys.exit("Exit") 
 with open('files.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
 	uniqueZips=[]
@@ -28,39 +27,38 @@ with open('files.csv', newline='') as csvfile:
 		if row['Location'] not in uniqueZips:
 			uniqueZips.append(row['Location'])
 
-	for location in uniqueZips:
-		if not os.path.isfile('zips/%s' %(location)):
-			print("Getting %s" %(location))
-			os.system("./wgetEPA %s" %(location))
-			os.system("./unzipEPA %s" %(location))
-		else:
-			print("File %s  already exists" %(location))
-			os.system("./unzipEPA %s" %(location))
+	# for location in uniqueZips:
+	# 	if not os.path.isfile('zips/%s' %(location)):
+	# 		print("Getting %s" %(location))
+	# 		os.system("./wgetEPA %s" %(location))
+	# 		os.system("./unzipEPA %s" %(location))
+	# 	else:
+	# 		print("File %s  already exists" %(location))
+	# 		os.system("./unzipEPA %s" %(location))
 			
-	for nulledFile in filesWithNulls:	
-		os.system("./stripNulls %s" %(nulledFile))
+	# for nulledFile in filesWithNulls:	
+	# 	#os.system("./stripNulls %s" %(nulledFile))
 
 	for table in tables:
-		if table not in largeTables and SMALL_TABLES:
-			truncate(table)
-			df=pd.read_csv('./CSV/%s.csv' %(table),low_memory=False, dtype=str)
-			df.to_sql(table,engine,if_exists='append',index=False)	
-			os.remove('./CSV/%s.csv' %(table))
+		truncate(table)
+		print ("truncated %s"%(table))
+		os.system("./csvImport_pg %s %s" %(table,whichDb))
+	
+	EXP_PGM.build(engine)
 
-	for table in largeTables:
-		if table in tables and LARGE_TABLES:
-			truncate(table)
-			os.system("./chunkFile %s" %(table))
-			chunks=glob.glob('./CSV/%s_[0-9]*.csv' %(table)) 
-			for path in chunks:
-				fileStem=path.split("/")[2].split(".")[0]
-				df=pd.read_csv('./CSV/%s.csv' %(fileStem), dtype=str)
-				df.to_sql(table,engine,if_exists='append', index=False)	
-				os.remove('./CSV/%s.csv' %(fileStem))
-			os.remove('./CSV/%s.csv' %(table))
-for zip in glob.glob(".zips/*.zip"):
-	os.remove(zip)
-with open('currentDBIndex', 'w') as writer: 
-	writer.write(str(currentDBIndex))
+		
+
+		# os.system("./chunkFile %s" %(table))
+		# chunks=glob.glob('./CSV/%s_[0-9]*.csv' %(table)) 
+		# for path in chunks:
+		# 	fileStem=path.split("/")[2].split(".")[0]
+		# 	df=pd.read_csv('./CSV/%s.csv' %(fileStem), dtype=str)
+		# 	df.to_sql(table,engine,if_exists='append', index=False)	
+		# 	os.remove('./CSV/%s.csv' %(fileStem))
+		# os.remove('./CSV/%s.csv' %(table))
+
+# for zip in glob.glob(".zips/*.zip"):
+# 	os.remove(zip)
+# #db_connect.change_db()
 
 

@@ -6,7 +6,7 @@ if (key_exists("query", $_GET))
     $sql = $_GET['query'];
     header("Content-disposition: attachment;filename=\"${sql}.csv\"");
 }
-$scrapePath = "/home1/tltsecure/echoepaUpdater/";
+$scrapePath = "/home/tltsecure/work/ECHOEPA_SQL/";
 $out = fopen('php://output', 'w');
 $dbPostixes = array(
     'a',
@@ -28,7 +28,9 @@ if (key_exists("pg", $_GET))
     $host = "data.gss.stonybrook.edu";
     $conn = pg_connect("host=$host port=5432 dbname=$currentDB user=$user password=$pass");
     $result = pg_query($conn, $sql);
-
+ 	if(!$result){
+echo pg_last_error($result);
+}
    
 	while ( $row = pg_fetch_array($result, NULL, PGSQL_ASSOC))
     {
