@@ -1,9 +1,10 @@
 
+
 def process_pgm( conn, pgm ):
-    sql = "select REGISTRY_ID, {} from ECHO_EXPORTER where {} = 'Y' and REGISTRY_ID is NOT NULL".format( pgm[1], pgm[0], pgm[0])
+    sql = "select \"REGISTRY_ID\", \"{}\" from \"ECHO_EXPORTER\" where \"{}\" = 'Y' and \"REGISTRY_ID\" is NOT NULL".format( pgm[1], pgm[0], pgm[0])
     cursor = conn.execute( sql )
 
-    base_sql = "insert into EXP_PGM ( PGM, REGISTRY_ID, PGM_ID ) values {} )"
+    base_sql = "insert into \"EXP_PGM\" ( \"PGM\", \"REGISTRY_ID\", \"PGM_ID\" ) values {} )"
 
     sql = ""
     insert_list = []
@@ -45,5 +46,8 @@ def build(conn):
         num = process_pgm( conn, pgm )
         print( "Program {} found {} ids".format( pgm[0], str(num)))
 
-
+if __name__ == '__main__':
+    import db_connect
+    engine,whichDb= db_connect.connect()
+    build(engine)
   

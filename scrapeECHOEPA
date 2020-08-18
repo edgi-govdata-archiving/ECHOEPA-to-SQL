@@ -5,7 +5,8 @@ import sys
 import pandas as pd
 import glob
 import db_connect
-import EXP_PGM
+import EXP_PGM_pg as pgm 
+import viewsToTable as mview
 from sqlalchemy import create_engine
 os.chdir(os.path.dirname(sys.argv[0]))
 engine,whichDb= db_connect.connect()
@@ -27,38 +28,46 @@ with open('files.csv', newline='') as csvfile:
 		if row['Location'] not in uniqueZips:
 			uniqueZips.append(row['Location'])
 
-	# for location in uniqueZips:
-	# 	if not os.path.isfile('zips/%s' %(location)):
-	# 		print("Getting %s" %(location))
-	# 		os.system("./wgetEPA %s" %(location))
-	# 		os.system("./unzipEPA %s" %(location))
-	# 	else:
-	# 		print("File %s  already exists" %(location))
-	# 		os.system("./unzipEPA %s" %(location))
+	for location in uniqueZips:
+		if not os.path.isfile('zips/%s' %(location)):
+			print("Getting %s" %(location))
+			os.system("./wgetEPA %s" %(location))
+			os.system("./unzipEPA %s" %(location))
+		else:
+			print("File %s  already exists" %(location))
+			os.system("./unzipEPA %s" %(location))
 			
-	# for nulledFile in filesWithNulls:	
-	# 	#os.system("./stripNulls %s" %(nulledFile))
+	for nulledFile in filesWithNulls:	
+		os.system("./stripNulls %s" %(nulledFile))
+
+	#for table in tables:
+	#	truncate(table)
+	#	df=pd.read_csv('./CSV/%s.csv' %(table),low_memory=False)
+	#	df.to_sql(table,engine,if_exists='append',index=False,chunksize=100)	
+	#	os.remove('./CSV/%s.csv' %(table))
 
 	for table in tables:
 		truncate(table)
 		print ("truncated %s"%(table))
 		os.system("./csvImport_pg %s %s" %(table,whichDb))
-	
-	EXP_PGM.build(engine)
+
+	# 	os.system("./chunkFile %s" %(table))
+	# 	chunks=glob.glob('./CSV/%s_[0-9]*.csv' %(table)) 
+	#	for path in chunks:
+	# 		print("processing %s" %(path))
+	# 		fileStem=path.split("/")[2].split(".")[0]
+	# 		df=pd.read_csv('./CSV/%s.csv' %(fileStem), engine= 'c',dtype=str)
+	# 		df.to_sql(table,engine,if_exists='append', index=False)	
+	# 		os.remove('./CSV/%s.csv' %(fileStem))
+		os.remove('./CSV/%s.csv' %(table))
+	pgm.build(engine)
+	mview.build(engine)
+		
 
 		
 
-		# os.system("./chunkFile %s" %(table))
-		# chunks=glob.glob('./CSV/%s_[0-9]*.csv' %(table)) 
-		# for path in chunks:
-		# 	fileStem=path.split("/")[2].split(".")[0]
-		# 	df=pd.read_csv('./CSV/%s.csv' %(fileStem), dtype=str)
-		# 	df.to_sql(table,engine,if_exists='append', index=False)	
-		# 	os.remove('./CSV/%s.csv' %(fileStem))
-		# os.remove('./CSV/%s.csv' %(table))
-
-# for zip in glob.glob(".zips/*.zip"):
-# 	os.remove(zip)
-# #db_connect.change_db()
+for zip in glob.glob(".zips/*.zip"):
+	os.remove(zip)
+db_connect.change_db()
 
 
