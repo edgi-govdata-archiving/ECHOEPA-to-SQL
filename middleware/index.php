@@ -25,8 +25,7 @@ $firstRow = true;
 
 if (key_exists("pg", $_GET))
 {
-// $host="app2.gss.stonybrook.edu";
-// $currentDB="slim_echoepa";
+
 $conn = pg_connect("host=$host port=5432 dbname=$currentDB user=$user password=$pass");
 $result = pg_query($conn, $sql);
 if(!$result){
