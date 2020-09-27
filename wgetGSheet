@@ -1,2 +1,2 @@
 #!/bin/bash
-wget -O files.csv https://docs.google.com/spreadsheets/u/1/d/1bt3fqWYqaU_7OOBtyfL8lR93MLS2fmYaXagtOnzs48k/export?format=csv&id=1bt3fqWYqaU_7OOBtyfL8lR93MLS2fmYaXagtOnzs48k&gid=0 
+wget -O files.csv "https://docs.google.com/spreadsheets/d/1Z2rBoGqb_SXW6oAu12A6TCWEJGV1pk0YxL13P_Z5Wlw/export?format=csv&gid=2049992364"

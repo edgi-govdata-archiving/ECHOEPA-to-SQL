@@ -1,9 +1,5 @@
 import db_connect
-
-
 def build(conn):
-
-    
     views=[
     "AIR_COMPLIANCE",
     "AIR_ENFORCEMENTS",
@@ -44,7 +40,7 @@ def build(conn):
         conn.execute('DROP MATERIALIZED VIEW IF EXISTS "%s_MVIEW"'% view)
         conn.execute('create MATERIALIZED VIEW "%s_MVIEW" as select * from  "%s_VIEW"' % (view,view))
         for index in indexes:
-            print ("creating index %s for table %s" %(index,view))
+            # print ("creating index %s for table %s" %(index,view))
             conn.execute('create index "%s_%s" on "%s_MVIEW"("%s")' %(index,view,view,index))
         conn.execute('REFRESH MATERIALIZED VIEW  "%s_MVIEW"' % view)
 if __name__ == '__main__':

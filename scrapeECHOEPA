@@ -2,6 +2,8 @@
 import csv
 import os 
 import sys
+import subprocess
+import datetime
 import pandas as pd
 import glob
 import db_connect
@@ -10,7 +12,7 @@ import viewsToTable as mview
 from sqlalchemy import create_engine
 os.chdir(os.path.dirname(sys.argv[0]))
 engine,whichDb= db_connect.connect()
-filesWithNulls=['CASE_ENFORCEMENTS','ICIS_PERMITS','FRS_PROGRAM_LINKS']
+filesWithNulls=['CASE_ENFORCEMENTS','ICIS_PERMITS','FRS_PROGRAM_LINKS','CASE_ENFORCEMENT_CONCLUSIONS','EPA_INFORMAL_ENFORCEMENT_ACTIONS','NPDES_CS_VIOLATIONS']
 def truncate(table):
 	print(table)
 	try:
@@ -31,12 +33,14 @@ with open('files.csv', newline='') as csvfile:
 	for location in uniqueZips:
 		if not os.path.isfile('zips/%s' %(location)):
 			print("Getting %s" %(location))
-			os.system("./wgetEPA %s" %(location))
+			modified = subprocess.check_output("./wgetEPA %s" %(location), shell=True).decode("utf-8").strip().splitlines()[0]
+			print(modified)
+			engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
 			os.system("./unzipEPA %s" %(location))
 		else:
 			print("File %s  already exists" %(location))
 			os.system("./unzipEPA %s" %(location))
-			
+	quit()			
 	for nulledFile in filesWithNulls:	
 		os.system("./stripNulls %s" %(nulledFile))
 
@@ -59,14 +63,15 @@ with open('files.csv', newline='') as csvfile:
 	# 		df=pd.read_csv('./CSV/%s.csv' %(fileStem), engine= 'c',dtype=str)
 	# 		df.to_sql(table,engine,if_exists='append', index=False)	
 	# 		os.remove('./CSV/%s.csv' %(fileStem))
-		os.remove('./CSV/%s.csv' %(table))
+#		os.remove('./CSV/%s.csv' %(table))
 	pgm.build(engine)
 	mview.build(engine)
-		
+	engine.execute("analyze");		
 
-		
+for csv in glob.glob("./CSV/*.csv"):
+	os.remove(csv)		
 
-for zip in glob.glob(".zips/*.zip"):
+for zip in glob.glob("./zips/*.zip"):
 	os.remove(zip)
 db_connect.change_db()
 

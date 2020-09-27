@@ -25,7 +25,7 @@ with open('indexes.csv', newline='') as csvfile:
 		#with engine.connect() as con:
 		try:
 			rs = con.execute('create index %s on "%s" ("%s")' %(row["name"],row["table"],row["column"]))
-			print('created index %s on "%s" ("%s")' %(row["name"],row["table"],row["column"])) 
+			#print('created index %s on "%s" ("%s")' %(row["name"],row["table"],row["column"])) 
 		except Exception as e:
 			print (e.__class__.__name__)
 			print('cannot create index %s on "%s" ("%s")' %(row["name"],row["table"],row["column"])) 

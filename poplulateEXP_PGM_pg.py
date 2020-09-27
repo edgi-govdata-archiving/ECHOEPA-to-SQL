@@ -31,16 +31,16 @@ def process_pgm( conn, pgm ):
                 sql = sql[:-3]
                 # print( sql )
                 conn.execute( sql )
-                print( "Inserted {} records".format( max_insert ))
+                # print( "Inserted {} records".format( max_insert ))
                 sql = ""
                 insert_list = []
 
     if ( pos % max_insert > 0 ):
         sql = base_sql.format( ''.join( item for item in insert_list ))
         sql = sql[:-3]
-        print( sql )
+        # print( sql )
         conn.execute( sql )
-        print( "Inserted {} records".format( pos % max_insert ))
+        print( "Inserted {} records".format( pos))
     return pos
         
 

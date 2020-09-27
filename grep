@@ -1,0 +1,31 @@
+--2020-08-20 13:31:06--  https://echo.epa.gov/files/echodownloads/DMR_HTF_Downloads.zip
+Resolving echo.epa.gov... 134.67.21.61
+Connecting to echo.epa.gov|134.67.21.61|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://wamssoprd.epa.gov:443/oam/server/obrareq.cgi?encquery%3DHBKCj7aQoy6LUJ0E%2BP4G02WrfnmtgHghrFZy0QxL%2FWFMmV%2Fu%2FSoey1b2VXCnF51HYagVmBIQint4qZmrXykl%2FZtPYxMXM99mmfy7I9YFt4sLhErY0ycBbdPPbAcXTa9NyloxC5lHu1prFD7NBbBPbvgrrfyHtyTtcjudi%2F%2BVRA9kNCVj5lo6wQVqV5GbvIZUD30wYxU77Ij6Jf%2Fws1MBE94pKahpMfvr1nD2Po2zQ3KEfL7XKE5sleV%2Bj1fAX6EuqssNn2GbTwuR6HFux49ACloXuHLByqHrjVAr9LAB%2FNS6v51tPFvBJnoctmAzmoPg%2Bygzfz%2FaUd%2B3NBaEwRdhUon2AM2fRG%2F7XQe1uGGNFVHeO57q1wBOGMACJTyiUITb%20agentid%3DWebgateEPADomain%20ver%3D1%20crmethod%3D2%26cksum%3Dc25e9d61607896a11cdd2ec226e05c1ab7748e8e [following]
+--2020-08-20 13:31:06--  https://wamssoprd.epa.gov/oam/server/obrareq.cgi?encquery%3DHBKCj7aQoy6LUJ0E%2BP4G02WrfnmtgHghrFZy0QxL%2FWFMmV%2Fu%2FSoey1b2VXCnF51HYagVmBIQint4qZmrXykl%2FZtPYxMXM99mmfy7I9YFt4sLhErY0ycBbdPPbAcXTa9NyloxC5lHu1prFD7NBbBPbvgrrfyHtyTtcjudi%2F%2BVRA9kNCVj5lo6wQVqV5GbvIZUD30wYxU77Ij6Jf%2Fws1MBE94pKahpMfvr1nD2Po2zQ3KEfL7XKE5sleV%2Bj1fAX6EuqssNn2GbTwuR6HFux49ACloXuHLByqHrjVAr9LAB%2FNS6v51tPFvBJnoctmAzmoPg%2Bygzfz%2FaUd%2B3NBaEwRdhUon2AM2fRG%2F7XQe1uGGNFVHeO57q1wBOGMACJTyiUITb%20agentid%3DWebgateEPADomain%20ver%3D1%20crmethod%3D2%26cksum%3Dc25e9d61607896a11cdd2ec226e05c1ab7748e8e
+Resolving wamssoprd.epa.gov... 134.67.21.61
+Connecting to wamssoprd.epa.gov|134.67.21.61|:443... connected.
+HTTP request sent, awaiting response... 302 Moved Temporarily
+Location: https://echo.epa.gov/obrar.cgi?encreply=HOTuJu+E16E1lJf/pMkGkhdEf87x2sniH/TD3/7G7snAJdyx/EZYDPdVcf4iqSOI6thg/6OjmjnSEB56ekZkQTsklEiMIOrCvDfQMiAFc72GBBk2NMBuFd052t6233Xg2mecGMv5eMXmPbBoKmSqANZ73nid4W1/R9f4gf/qgXpa8pwZyyyTMyDD47CkXF71UUYKVhOKXZ+gWX0flTtsP3IachUVuiyuWOXnV37oQC6pqxeoM+7fZeyP626HTmFauENS/4l9gJW7OH11TNWyzBJyI1wa1wpfW11xRMINSXIB/frYhEeP23tyVMPyuK2Eh75npMNWNbFrOCG350+flI04GhaQjSN6Z20+jRnnxKgEXX7dGChtEpzWFvekLKv2oDWcGDd/zktyxN8S5Zhai32LsFMrHHzv8T5B78vs0B+X4MUtTLBS/TL1rJwT9MJmiBzfRAvOLc8PUuG27TSfr2MODxe4IguxQbxO/WqEVokaxqhGd7Drt8dq+SY9pI7aeqDQyAzoOMvPHpbYAgy9E1bq+upLzX2FJdKJz+CbTey795fsasumTA/z2efdaUBelXmEoqpjEn1DrtSQotrZSj/+uOdKpcylv5e6Vgvii4H3SWrhLuCdZDAQ4EdiO98W3OnRbVHe+uranMOQtl4z4AOG/PhNx/NcFu/u/TFOo92wHey4jKzAk8ZuVt7D+HxHplg/wDVtdazG8UiNeJshI8OERdQvOe0tUTkuNTMxo4kdbFcfrNus3rzy+MXcbz/MX+vfNAmsASGLkeCuF2/giuyOoIEHwOA1A0y5ncFla+Tw7nVpWw+J33DJ4OOb6rJYKsLxSU98JoR35AEop+kzj/kUU1Ev0jhpGZr00VT+oHZ3/0CagB/TLUNv12diDJMu2uIU20u/GODEloQpmurrG22u96rs4XkX0gAIZlOx1eE=&cksum=70b646b225564565337e13b219bdd42672ae0da1 [following]
+--2020-08-20 13:31:06--  https://echo.epa.gov/obrar.cgi?encreply=HOTuJu+E16E1lJf/pMkGkhdEf87x2sniH/TD3/7G7snAJdyx/EZYDPdVcf4iqSOI6thg/6OjmjnSEB56ekZkQTsklEiMIOrCvDfQMiAFc72GBBk2NMBuFd052t6233Xg2mecGMv5eMXmPbBoKmSqANZ73nid4W1/R9f4gf/qgXpa8pwZyyyTMyDD47CkXF71UUYKVhOKXZ+gWX0flTtsP3IachUVuiyuWOXnV37oQC6pqxeoM+7fZeyP626HTmFauENS/4l9gJW7OH11TNWyzBJyI1wa1wpfW11xRMINSXIB/frYhEeP23tyVMPyuK2Eh75npMNWNbFrOCG350+flI04GhaQjSN6Z20+jRnnxKgEXX7dGChtEpzWFvekLKv2oDWcGDd/zktyxN8S5Zhai32LsFMrHHzv8T5B78vs0B+X4MUtTLBS/TL1rJwT9MJmiBzfRAvOLc8PUuG27TSfr2MODxe4IguxQbxO/WqEVokaxqhGd7Drt8dq+SY9pI7aeqDQyAzoOMvPHpbYAgy9E1bq+upLzX2FJdKJz+CbTey795fsasumTA/z2efdaUBelXmEoqpjEn1DrtSQotrZSj/+uOdKpcylv5e6Vgvii4H3SWrhLuCdZDAQ4EdiO98W3OnRbVHe+uranMOQtl4z4AOG/PhNx/NcFu/u/TFOo92wHey4jKzAk8ZuVt7D+HxHplg/wDVtdazG8UiNeJshI8OERdQvOe0tUTkuNTMxo4kdbFcfrNus3rzy+MXcbz/MX+vfNAmsASGLkeCuF2/giuyOoIEHwOA1A0y5ncFla+Tw7nVpWw+J33DJ4OOb6rJYKsLxSU98JoR35AEop+kzj/kUU1Ev0jhpGZr00VT+oHZ3/0CagB/TLUNv12diDJMu2uIU20u/GODEloQpmurrG22u96rs4XkX0gAIZlOx1eE=&cksum=70b646b225564565337e13b219bdd42672ae0da1
+Connecting to echo.epa.gov|134.67.21.61|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: /files/echodownloads/DMR_HTF_Downloads.zip [following]
+--2020-08-20 13:31:07--  https://echo.epa.gov/files/echodownloads/DMR_HTF_Downloads.zip
+Reusing existing connection to echo.epa.gov:443.
+HTTP request sent, awaiting response... 200 OK
+Length: 153249 (150K) [application/zip]
+Saving to: “DMR_HTF_Downloads.zip.5”
+
+     0K .......... .......... .......... .......... .......... 33%  246K 0s
+    50K .......... .......... .......... .......... .......... 66%  730K 0s
+   100K .......... .......... .......... .......... ......... 100%  725K=0.3s
+
+2020-08-20 13:31:07 (440 KB/s) - “DMR_HTF_Downloads.zip.5” saved [153249/153249]
+
+--2020-08-20 13:31:07--  http://http/
+Resolving http... failed: Name or service not known.
+wget: unable to resolve host address “http”
+FINISHED --2020-08-20 13:31:07--
+Downloaded: 1 files, 150K in 0.3s (440 KB/s)
