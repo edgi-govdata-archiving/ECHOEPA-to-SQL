@@ -39,8 +39,7 @@ with open('files.csv', newline='') as csvfile:
 			os.system("./unzipEPA %s" %(location))
 		else:
 			print("File %s  already exists" %(location))
-			os.system("./unzipEPA %s" %(location))
-	quit()			
+			#os.system("./unzipEPA %s" %(location))
 	for nulledFile in filesWithNulls:	
 		os.system("./stripNulls %s" %(nulledFile))
 
@@ -54,7 +53,12 @@ with open('files.csv', newline='') as csvfile:
 		truncate(table)
 		print ("truncated %s"%(table))
 		os.system("./csvImport_pg %s %s" %(table,whichDb))
-
+		file=open("CSV/%s.csv" %table)
+		reader=csv.reader(file)
+		csv_count=len(list(reader))-1
+		sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
+		engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));		
+		
 	# 	os.system("./chunkFile %s" %(table))
 	# 	chunks=glob.glob('./CSV/%s_[0-9]*.csv' %(table)) 
 	#	for path in chunks:
