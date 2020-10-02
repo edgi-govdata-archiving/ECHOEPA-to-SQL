@@ -13,7 +13,7 @@ def connect():
     with open('db_%s_private.postgres.csv' %(dbPostfixes[currentDBIndex]), newline='') as csvfile:
 	    reader = csv.DictReader(csvfile)
 	    for row in reader:	
-		    engine = create_engine('%s://%s:%s@%s/%s' %(dbTypes[currentDBIndex],row['user'],row['password'],row['host'],row['db']),connect_args={'connect_timeout': 600000}  , echo=False)
+		    engine = create_engine('%s://%s:%s@%s/%s' %(dbTypes[currentDBIndex],row['user'],row['password'],row['host'],row['db']),pool_recycle=3600,connect_args={'connect_timeout': 600000}  , echo=False)
     return engine,dbPostfixes[currentDBIndex]
 def change_db():
     with open('currentDBIndex', 'w') as writer: 

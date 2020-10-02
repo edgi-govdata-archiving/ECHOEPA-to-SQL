@@ -21,6 +21,12 @@ def truncate(table):
 		print (sys.exc_info()[0])
 		print (e.__class__.__name__)
 		sys.exit("Exit") 
+def checkSanity(table):
+	file=open("CSV/%s.csv" %table)
+	reader=csv.reader(file)
+	csv_count=len(list(reader))-1
+	sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
+	engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
 with open('files.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
 	uniqueZips=[]
@@ -40,25 +46,23 @@ with open('files.csv', newline='') as csvfile:
 		else:
 			print("File %s  already exists" %(location))
 			#os.system("./unzipEPA %s" %(location))
-	for nulledFile in filesWithNulls:	
-		os.system("./stripNulls %s" %(nulledFile))
+	#for nulledFile in filesWithNulls:	
+	#	os.system("./stripNulls %s" %(nulledFile))
 
 	#for table in tables:
 	#	truncate(table)
 	#	df=pd.read_csv('./CSV/%s.csv' %(table),low_memory=False)
 	#	df.to_sql(table,engine,if_exists='append',index=False,chunksize=100)	
 	#	os.remove('./CSV/%s.csv' %(table))
+	#	checkSanity(table)
 
 	for table in tables:
+		os.system("./stripNulls %s" %(table))
 		truncate(table)
 		print ("truncated %s"%(table))
 		os.system("./csvImport_pg %s %s" %(table,whichDb))
-		file=open("CSV/%s.csv" %table)
-		reader=csv.reader(file)
-		csv_count=len(list(reader))-1
-		sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
-		engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));		
-		
+		checkSanity(table)
+	
 	# 	os.system("./chunkFile %s" %(table))
 	# 	chunks=glob.glob('./CSV/%s_[0-9]*.csv' %(table)) 
 	#	for path in chunks:
