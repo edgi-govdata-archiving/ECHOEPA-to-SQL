@@ -1,2 +1,2 @@
 #!/bin/bash
-wget  --server-response -P ./zips https://echo.epa.gov/files/echodownloads/$1   2> >(grep Modified) |sed 's/Last-Modified://'
+wget -T 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 30 --server-response -P ./zips https://echo.epa.gov/files/echodownloads/$1   2> >(grep Modified) |sed 's/Last-Modified://'
