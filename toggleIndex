@@ -1,0 +1,3 @@
+#!/bin/bash
+wget http://portal.gss.stonybrook.edu/echoepa/config/toggleIndex.php
+

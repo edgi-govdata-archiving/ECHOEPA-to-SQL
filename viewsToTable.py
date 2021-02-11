@@ -19,7 +19,8 @@ def build(conn):
     "SDWA_SITE_VISITS",
     "SDWA_VIOLATIONS",
     "TOXIC_RELEASES",
-    "WATER_QUARTERLY_VIOLATIONS"
+    "WATER_QUARTERLY_VIOLATIONS",
+    "DMRS_FY2020"
     ]
     indexes=["FAC_NAME",
     "FAC_STREET",
@@ -33,7 +34,11 @@ def build(conn):
     "FAC_DERIVED_WBD",
     "FAC_DERIVED_CD113",
     "FAC_PERCENT_MINORITY",
-    "FAC_POP_DEN"]
+    "FAC_POP_DEN",
+#    "FAC_DERIVED_HUC",
+    "FAC_SIC_CODES",
+    "FAC_NAICS_CODES"
+    ]
     
     for view in views:
         print("creating table %s" %(view))

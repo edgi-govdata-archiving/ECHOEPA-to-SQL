@@ -4,7 +4,7 @@ import os
 import sys
 import subprocess
 from datetime import datetime
-import pandas as pd
+#import pandas as pd
 import glob
 import db_connect
 #script for creating views based on raw ECHOEPA data
@@ -70,5 +70,6 @@ for csv in glob.glob("./CSV/*.csv"):
 for zip in glob.glob("./zips/*.zip"):
 	os.remove(zip)
 db_connect.change_db()
-
+#Stony Brook Specific way to update remote currentDBIndex
+os.system("./toggleIndex")
 
