@@ -20,8 +20,9 @@ def build(conn):
     "SDWA_VIOLATIONS",
     "TOXIC_RELEASES",
     "WATER_QUARTERLY_VIOLATIONS",
-    "DMRS_FY2020"
+    "DMR_FY2020"
     ]
+#    views=["NPDES_DMRS_FY2020"]
     indexes=["FAC_NAME",
     "FAC_STREET",
     "FAC_CITY",
@@ -36,8 +37,8 @@ def build(conn):
     "FAC_PERCENT_MINORITY",
     "FAC_POP_DEN",
 #    "FAC_DERIVED_HUC",
-    "FAC_SIC_CODES",
-    "FAC_NAICS_CODES"
+#    "FAC_SIC_CODES",
+#    "FAC_NAICS_CODES"
     ]
     
     for view in views:

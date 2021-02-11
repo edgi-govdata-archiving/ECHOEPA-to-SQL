@@ -1,12 +1,8 @@
-create table "EXP_PGM" (
-     "PGM" text,
-     "REGISTRY_ID" varchar(20),
-     "PGM_ID" text
- );
+drop view if exists "DMR_FY2020_VIEW","RCRA_VIOLATIONS_VIEW","SDWA_PUBLIC_WATER_SYSTEMS_VIEW","AIR_COMPLIANCE_VIEW","AIR_ENFORCEMENTS_VIEW","AIR_FORMAL_ACTIONS_VIEW","AIR_INSPECTIONS_VIEW","AIR_VIOLATIONS_VIEW","CLEAN_WATER_INSPECTIONS_VIEW","GREENHOUSE_GASES_VIEW","COMBINED_AIR_EMISSIONS_VIEW","CLEAN_WATER_ENFORCEMENT_ACTIONS_VIEW","RCRA_ENFORCEMENTS_VIEW","RCRA_EVALUATIONS_VIEW","SDWA_ENFORCEMENTS_VIEW","SDWA_SERIOUS_VIOLATORS_VIEW","SDWA_SITE_VISITS_VIEW","SDWA_VIOLATIONS_VIEW","TOXIC_RELEASES_VIEW","AIR_VIOLATIONS_VIEW","AIR_FORMAL_ACTIONS_VIEW","WATER_QUARTERLY_VIOLATIONS_VIEW" cascade;
 
 
 create view "RCRA_VIOLATIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -21,14 +17,14 @@ create view "RCRA_VIOLATIONS_VIEW" as
         ee."FAC_DERIVED_CD113",
         ee."FAC_PERCENT_MINORITY",
         ee."FAC_POP_DEN"
-    from "RCRA_VIOLATIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "RCRA_VIOLATIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'RCRA_IDS' and ep."REGISTRY_ID" =  ee."REGISTRY_ID"
 
         and  ep."PGM_ID" =  re."ID_NUMBER";
 
 
 create view "RCRA_EVALUATIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -43,12 +39,12 @@ create view "RCRA_EVALUATIONS_VIEW" as
         ee."FAC_DERIVED_CD113",
         ee."FAC_PERCENT_MINORITY",
         ee."FAC_POP_DEN"
-    from "RCRA_EVALUATIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "RCRA_EVALUATIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'RCRA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."ID_NUMBER";
 
 create view "RCRA_ENFORCEMENTS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -63,13 +59,13 @@ create view "RCRA_ENFORCEMENTS_VIEW" as
         ee."FAC_DERIVED_CD113",
         ee."FAC_PERCENT_MINORITY",
         ee."FAC_POP_DEN"
-    from "RCRA_ENFORCEMENTS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "RCRA_ENFORCEMENTS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'RCRA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."ID_NUMBER";
 
 create view "AIR_INSPECTIONS_VIEW" as
-    select re.*, 
-     
+    select re.*,
+
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -93,7 +89,7 @@ cf."CITY",
 cf."ZIP",
 cf."PRIMARY_SIC_CODE",
 cf."PRIMARY_NAICS_CODE",
-    ce.*, 
+    ce.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -112,27 +108,8 @@ cf."PRIMARY_NAICS_CODE",
         and  ce."CASE_NUMBER" =  cf."CASE_NUMBER";
 
 create view "AIR_VIOLATIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
-        ee."FAC_NAME",
-        ee."FAC_STREET",
-        ee."FAC_CITY",
-        ee."FAC_STATE",
-        ee."FAC_ZIP",
-        ee."FAC_COUNTY",
-        ee."FAC_EPA_REGION",
-        ee."FAC_LAT",
-        ee."FAC_LONG",
-        ee."FAC_DERIVED_WBD",
-        ee."FAC_DERIVED_CD113",
-        ee."FAC_PERCENT_MINORITY",
-        ee."FAC_POP_DEN"
-    from "ICIS-AIR_VIOLATION_HISTORY" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
-    where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
-        and  ep."PGM_ID" = re."PGM_SYS_ID";
-
-create view "AIR_FORMAL_ACTIONS_VIEW" as
-    select re.*, 
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -150,62 +127,37 @@ create view "AIR_FORMAL_ACTIONS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "ICIS-AIR_FORMAL_ACTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "ICIS-AIR_VIOLATION_HISTORY" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
+    where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
+        and  ep."PGM_ID" = re."PGM_SYS_ID";
+
+
+create view "AIR_FORMAL_ACTIONS_VIEW" as
+    select re.*,
+        ee."REGISTRY_ID",
+        ee."FAC_NAME",
+        ee."FAC_STREET",
+        ee."FAC_CITY",
+        ee."FAC_STATE",
+        ee."FAC_ZIP",
+        ee."FAC_COUNTY",
+        ee."FAC_EPA_REGION",
+        ee."FAC_LAT",
+        ee."FAC_LONG",
+        ee."FAC_DERIVED_WBD",
+        ee."FAC_DERIVED_CD113",
+        ee."FAC_PERCENT_MINORITY",
+        ee."FAC_POP_DEN",
+        ee."FAC_DERIVED_HUC",
+        ee."FAC_SIC_CODES",
+        ee."FAC_NAICS_CODES",
+        ee."DFR_URL"
+    from "ICIS-AIR_FORMAL_ACTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" = re."PGM_SYS_ID";
 
 create view "AIR_COMPLIANCE_VIEW" as
-    select re.*, 
-        ee."FAC_NAME",
-        ee."FAC_STREET",
-        ee."FAC_CITY",
-        ee."FAC_STATE",
-        ee."FAC_ZIP",
-        ee."FAC_COUNTY",
-        ee."FAC_EPA_REGION",
-        ee."FAC_LAT",
-        ee."FAC_LONG",
-        ee."FAC_DERIVED_WBD",
-        ee."FAC_DERIVED_CD113",
-        ee."FAC_PERCENT_MINORITY",
-        ee."FAC_POP_DEN",
-        ee."FAC_DERIVED_HUC",
-        ee."FAC_SIC_CODES",
-        ee."FAC_NAICS_CODES",
-        ee."FAC_POP_DEN",
-        ee."FAC_DERIVED_HUC",
-        ee."FAC_SIC_CODES",
-        ee."FAC_NAICS_CODES",
-        ee."DFR_URL"
-    from "ICIS-AIR_FCES_PCES" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
-    where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
-        and  ep."PGM_ID" =  re."PGM_SYS_ID";
-
-create view "AIR_VIOLATIONS_VIEW" as
-    select re.*, 
-        ee."FAC_NAME",
-        ee."FAC_STREET",
-        ee."FAC_CITY",
-        ee."FAC_STATE",
-        ee."FAC_ZIP",
-        ee."FAC_COUNTY",
-        ee."FAC_EPA_REGION",
-        ee."FAC_LAT",
-        ee."FAC_LONG",
-        ee."FAC_DERIVED_WBD",
-        ee."FAC_DERIVED_CD113",
-        ee."FAC_PERCENT_MINORITY",
-        ee."FAC_POP_DEN",
-        ee."FAC_DERIVED_HUC",
-        ee."FAC_SIC_CODES",
-        ee."FAC_NAICS_CODES",
-        ee."DFR_URL"
-    from "ICIS-AIR_VIOLATION_HISTORY" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
-    where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
-        and  ep."PGM_ID" = re."PGM_SYS_ID";
-
-create view "AIR_FORMAL_ACTIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -224,36 +176,12 @@ create view "AIR_FORMAL_ACTIONS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "ICIS-AIR_FORMAL_ACTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
-    where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
-        and  ep."PGM_ID" = re."PGM_SYS_ID";
-
-create view "AIR_COMPLIANCE_VIEW" as
-    select re.*, 
-        ee."REGISTRY_ID",
-        ee."FAC_NAME",
-        ee."FAC_STREET",
-        ee."FAC_CITY",
-        ee."FAC_STATE",
-        ee."FAC_ZIP",
-        ee."FAC_COUNTY",
-        ee."FAC_EPA_REGION",
-        ee."FAC_LAT",
-        ee."FAC_LONG",
-        ee."FAC_DERIVED_WBD",
-        ee."FAC_DERIVED_CD113",
-        ee."FAC_PERCENT_MINORITY",
-        ee."FAC_POP_DEN",
-        ee."FAC_DERIVED_HUC",
-        ee."FAC_SIC_CODES",
-        ee."FAC_NAICS_CODES",
-        ee."DFR_URL"
-    from "ICIS-AIR_FCES_PCES" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "ICIS-AIR_FCES_PCES" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'AIR_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."PGM_SYS_ID";
 
 create view "COMBINED_AIR_EMISSIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -275,7 +203,7 @@ create view "COMBINED_AIR_EMISSIONS_VIEW" as
     where  re."REGISTRY_ID" = ee."REGISTRY_ID";
 
 create view "GREENHOUSE_GASES_VIEW" as
-    select re.*, 
+    select re.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -297,7 +225,7 @@ create view "GREENHOUSE_GASES_VIEW" as
     where  re."REGISTRY_ID" = ee."REGISTRY_ID" and  re."PGM_SYS_ACRNM" = 'E-GGRT';
 
 create view "TOXIC_RELEASES_VIEW" as
-    select re.*, 
+    select re.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -319,7 +247,7 @@ create view "TOXIC_RELEASES_VIEW" as
     where  re."REGISTRY_ID" = ee."REGISTRY_ID" and  re."PGM_SYS_ACRNM" = 'TRIS';
 
 create view "WATER_QUARTERLY_VIOLATIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -337,12 +265,12 @@ create view "WATER_QUARTERLY_VIOLATIONS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "NPDES_QNCR_HISTORY" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "NPDES_QNCR_HISTORY" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'NPDES_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."NPDES_ID";
 
 create view "CLEAN_WATER_INSPECTIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -360,12 +288,12 @@ create view "CLEAN_WATER_INSPECTIONS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "NPDES_INSPECTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "NPDES_INSPECTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'NPDES_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."NPDES_ID";
 
 create view "CLEAN_WATER_ENFORCEMENT_ACTIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."FAC_NAME",
         ee."FAC_STREET",
         ee."FAC_CITY",
@@ -383,12 +311,12 @@ create view "CLEAN_WATER_ENFORCEMENT_ACTIONS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "NPDES_FORMAL_ENFORCEMENT_ACTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "NPDES_FORMAL_ENFORCEMENT_ACTIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'NPDES_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."NPDES_ID";
 
 create view "SDWA_SITE_VISITS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -407,12 +335,12 @@ create view "SDWA_SITE_VISITS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "SDWA_SITE_VISITS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "SDWA_SITE_VISITS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'SDWA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."PWSID";
 
 create view "SDWA_ENFORCEMENTS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -431,12 +359,12 @@ create view "SDWA_ENFORCEMENTS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "SDWA_ENFORCEMENTS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "SDWA_ENFORCEMENTS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'SDWA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."PWSID";
 
 create view "SDWA_PUBLIC_WATER_SYSTEMS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -455,12 +383,12 @@ create view "SDWA_PUBLIC_WATER_SYSTEMS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "SDWA_PUB_WATER_SYSTEMS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "SDWA_PUB_WATER_SYSTEMS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'SDWA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."PWSID";
 
 create view "SDWA_VIOLATIONS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -479,12 +407,12 @@ create view "SDWA_VIOLATIONS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "SDWA_VIOLATIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "SDWA_VIOLATIONS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'SDWA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."PWSID";
 
 create view "SDWA_SERIOUS_VIOLATORS_VIEW" as
-    select re.*, 
+    select re.*,
         ee."REGISTRY_ID",
         ee."FAC_NAME",
         ee."FAC_STREET",
@@ -503,13 +431,12 @@ create view "SDWA_SERIOUS_VIOLATORS_VIEW" as
         ee."FAC_SIC_CODES",
         ee."FAC_NAICS_CODES",
         ee."DFR_URL"
-    from "SDWA_SERIOUS_VIOLATORS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep 
+    from "SDWA_SERIOUS_VIOLATORS" re, "ECHO_EXPORTER" ee, "EXP_PGM" ep
     where  ep."PGM" = 'SDWA_IDS' and  ep."REGISTRY_ID" = ee."REGISTRY_ID"
         and  ep."PGM_ID" =  re."PWSID";
 
-CREATE VIEW "DMR_FY2020_VIEW" AS
- SELECT 
-    re."PGM_SYS_ID",
+CREATE VIEW "DMR_FY2020_VIEW" as
+ SELECT
     re."ACTIVITY_ID",
     re."DMR_EVENT_ID",
     re."DMR_SAMPLE_TYPE_CODE",
@@ -535,7 +462,7 @@ CREATE VIEW "DMR_FY2020_VIEW" AS
     re."PARAMETER_DESC",
     re."STANDARD_UNIT_CODE",
     re."STANDARD_UNIT_DESC",
-    re."VIOLATION_"CODE",
+    re."VIOLATION_CODE",
     ee."FAC_NAME",
     ee."FAC_STREET",
     ee."FAC_CITY",
@@ -556,4 +483,5 @@ CREATE VIEW "DMR_FY2020_VIEW" AS
    FROM "NPDES_DMRS_FY2020" re,
     "ECHO_EXPORTER" ee,
     "EXP_PGM" ep
-  WHERE ((ep."PGM" = 'NPDES_IDS') AND ((ep."REGISTRY_ID") = (ee."REGISTRY_ID")) AND (ep."PGM_ID" = (re."EXTERNAL_PERMIT_NMBR")));
+  WHERE ep."PGM" = 'NPDES_IDS' AND ep."REGISTRY_ID" = ee."REGISTRY_ID" AND ep."PGM_ID" = re."EXTERNAL_PERMIT_NMBR";
+

@@ -52,7 +52,8 @@ with open('files.csv', newline='') as csvfile:
 			os.system("./unzipEPA %s" %(location))
 		else:
 			print("File %s  already exists" %(location))
-			os.system("./unzipEPA %s" %(location))
+		#	os.system("./unzipEPA %s" %(location))
+
 	for table in tables:
 		#some csvs failed to import with nulls
 		os.system("./stripNulls %s" %(table))
