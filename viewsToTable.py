@@ -36,9 +36,9 @@ def build(conn):
     "FAC_DERIVED_CD113",
     "FAC_PERCENT_MINORITY",
     "FAC_POP_DEN",
-#    "FAC_DERIVED_HUC",
-#    "FAC_SIC_CODES",
-#    "FAC_NAICS_CODES"
+    "FAC_DERIVED_HUC",
+    "FAC_SIC_CODES",
+    "FAC_NAICS_CODES"
     ]
     
     for view in views:
