@@ -20,9 +20,11 @@ def build(conn):
     "SDWA_VIOLATIONS",
     "TOXIC_RELEASES",
     "WATER_QUARTERLY_VIOLATIONS",
-    "DMR_FY2020"
+    "DMR_FY2020",
+    "EFF_VIOLATIONS",
+    "CASE_ENFORCEMENTS"
     ]
-#    views=["NPDES_DMRS_FY2020"]
+
     indexes=["FAC_NAME",
     "FAC_STREET",
     "FAC_CITY",
