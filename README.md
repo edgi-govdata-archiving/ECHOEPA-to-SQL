@@ -1,5 +1,5 @@
 # ECHO_EPA_SCRAPE_TO_MYSQL
-This is a python script "scrapeECHOEPA" which makes serveral calls to the following bash scripts:
+This is a Python script "scrapeECHOEPA" which makes several calls to the following bash scripts:
 * wgetGSheet
 * wgetEPA
 * unzipEPA
@@ -29,7 +29,7 @@ the script gets the connection info for the currently unused database from eithe
 the directory "middleware" contains a short php script that relies on both currentDBIndex, and either db_a_public.csv or db_b_public.csv
 the user should have select permission only. "middleware" should be moved to somewhere inside the web root of the server, the rest of the project should reside outside of web root.   
 ###  
-dependancies that I recall are python3 php>=5.3 and wget 
+dependencies that I recall are python3 php>=5.3 and wget 
 ###
  "schema.psql"  contains the schema for the tables listed in "files.csv" we've mostly changed the type of the columns containing indexes, I'm sure the schema could be improved. 
 "schema.psql" should be loaded into your databases before "scrapeECHOEPA" is run.
