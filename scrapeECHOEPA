@@ -50,7 +50,10 @@ with open('files.csv', newline='') as csvfile:
 				print("Getting %s" %(location))
 				modified = subprocess.check_output("./wgetEPA %s" %(location), shell=True).decode("utf-8").strip().splitlines()[0]
 			print(modified)
-			engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
+			results = engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
+			if results.rowcount is 0:
+
+				results = engine.execute("insert into \"Last-Modified\" (\"modified\", \"zip\") values ('%s', '%s')" %(modified,location))
 			os.system("./unzipEPA %s" %(location))
 		else:
 			

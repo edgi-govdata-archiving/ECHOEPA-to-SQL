@@ -1,0 +1,22 @@
+name: landoechoepa
+recipe: lamp
+config:
+  webroot: middleware
+  database: postgres:13
+  xdebug: true
+services:
+  appserver:
+    build_as_root:
+     - "apt-get update -y"
+     - "apt-get -y install python3-pip"
+
+    run_as_root: 
+      - psql -U postgres  -h database -c "CREATE DATABASE slim_echoepa;"
+      - psql -U postgres  -h database -c "CREATE USER echoepa WITH ENCRYPTED PASSWORD 'echoepa';"
+      - psql -U postgres  -h database -c "GRANT ALL PRIVILEGES ON DATABASE slim_echoepa TO echoepa;"
+      - psql -U postgres  -h database -c "CREATE USER echoepa_public WITH ENCRYPTED PASSWORD 'echoepa_public';"
+      - psql -U postgres  -h database -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO echoepa_public;"
+      - psql -U postgres  -h database -c "GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO echoepa_public;"
+      - psql -U postgres  -h database -d slim_echoepa -f schema.psql
+      - python3 -m pip install sqlalchemy
+      - python3 -m pip install psycopg2

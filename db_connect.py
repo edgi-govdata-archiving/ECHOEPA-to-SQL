@@ -4,7 +4,7 @@ currentDBIndex=5
 def connect():
     global currentDBIndex
     dbPostfixes=['a','b']
-    dbTypes=['postgres','postgres']
+    dbTypes=['postgresql','postgresql']
     #dbTypes=['mysql+mysqlconnector','mysql+mysqlconnector']
     with open('currentDBIndex') as x: currentDBIndex = x.read()
     currentDBIndex=1-int(currentDBIndex)
