@@ -1,12 +1,13 @@
 <?php
 header('Content-type: text/csv');
-$sql = "show tables";
+$sql = "select * from ECHO_EXPORTER";
 if (key_exists("query", $_GET))
 {
 	$sql = $_GET['query'];
 	header("Content-disposition: attachment;filename=\"${sql}.csv\"");
 }
-$scrapePath = "/home/tltsecure/work/ECHOEPA_SQL/";
+# $scrapePath = "/home/karen/workspace/EDGI/ECHOEPA_SQL/";
+$scrapePath = "../";
 $out = fopen('php://output', 'w');
 $dbPostixes = array(
 		'a',

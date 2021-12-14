@@ -5,7 +5,7 @@ if (key_exists("query", $_GET))
 	header("Content-disposition: attachment;filename=\"${sql}.json\"");
 }
 $sql = "SELECT jsonb_build_object('type', 'FeatureCollection', 'features', jsonb_agg(features.feature)) FROM (SELECT jsonb_build_object('type','Feature','id', gid, 'geometry', ST_AsGeoJSON(geom)::jsonb,'properties', to_jsonb(inputs) - 'gid' - 'geom') AS feature FROM (SELECT * FROM \"epa_regions\") inputs) features;;";
-$scrapePath = "/home/tltsecure/work/ECHOEPA_SQL/";
+$scrapePath = "/home/karen/workspace/EDGI/ECHOEPA_SQL/";
 $dbPostixes = array(
 		'a',
 		'b'
