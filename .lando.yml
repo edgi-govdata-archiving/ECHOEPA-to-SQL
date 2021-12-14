@@ -6,14 +6,6 @@ config:
   xdebug: true
 services:
   appserver:
-    type: php:custom
-    overrides:
-      image: lando/php:7.3-custom
-      build:
-        context: ./
-        dockerfile: Dockerfile.custom
-      ports:
-        - "80"
     build_as_root:
      - "apt-get update -y"
      - "apt-get -y install python3-pip"
@@ -27,3 +19,5 @@ services:
       - psql -U postgres  -h database -c "GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO echoepa_public;"
       - python3 -m pip install sqlalchemy
       - python3 -m pip install psycopg2
+      - wget https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -O /usr/local/bin/install-php-extensions && chmod +x /usr/local/bin/install-php-extensions && sync && install-php-extensions pgsql 
+      - apachectl restart

@@ -1,14 +1,31 @@
 <?php
-header('Content-type: text/csv');
+$isJSON=true;
+
+
 $sql = "select * from ECHO_EXPORTER";
 if (key_exists("query", $_GET))
 {
 	$sql = $_GET['query'];
-	header("Content-disposition: attachment;filename=\"${sql}.csv\"");
+
 }
-# $scrapePath = "/home/karen/workspace/EDGI/ECHOEPA_SQL/";
-$scrapePath = "../";
+else{
+	$sql = 'select * from "ECHO_EXPORTER" limit 100';
+}
+if(stristr($sql, 'json') === FALSE) {
+	$isJSON=false;
+}
+if(!$isJSON){
+header('Content-type: text/csv');
+header("Content-disposition: attachment;filename=\"${sql}.csv\"");
 $out = fopen('php://output', 'w');
+}
+else{
+	header('Content-Type: application/json; charset=utf-8');
+	$out="";
+}
+
+$scrapePath = "../";
+
 $dbPostixes = array(
 		'a',
 		'b'
@@ -24,8 +41,6 @@ $firstRow = true;
 
 
 
-if (key_exists("pg", $_GET))
-{
 
 $conn = pg_connect("host=$host port=5432 dbname=$currentDB user=$user password=$pass");
 $result = pg_query($conn, $sql);
@@ -36,6 +51,10 @@ if(!$result){
 while ( $row = pg_fetch_array($result, NULL, PGSQL_ASSOC))
 {
 
+	if($isJSON)
+	{
+		$out+=$row;
+	}
 	if ($firstRow)
 	{
 		fputcsv($out, array_keys($row));
@@ -45,38 +64,7 @@ while ( $row = pg_fetch_array($result, NULL, PGSQL_ASSOC))
 
 }
 
-}
-// else
-// {
-// 	$mysqli = new mysqli($host, $user, $pass, $currentDB);
 
-// 	if ($mysqli->connect_errno)
-// 	{
-// 		fputcsv($out, "Error: Failed to make a MySQL connection, here is why: \n");
-// 		fputcsv($out, "Errno: " . $mysqli->connect_errno . "\n");
-// 		fputcsv($out, "Error: " . $mysqli->connect_error . "\n");
 
-// 		exit;
-// 	}
-// 	$services = $mysqli->query($sql);
-// 	if(!$services){
-// 		$row= array($mysqli->error);
-// 		fputcsv($out, $row);
-
-// 	}
-// 	else{
-// 		while ($row = $services->fetch_array(MYSQLI_ASSOC))
-// 		{
-
-// 			if ($firstRow)
-// 			{
-// 				fputcsv($out, array_keys($row));
-// 				$firstRow = false;
-// 			}
-// 			fputcsv($out, $row);
-
-// 		}
-// 	}
-// }
 
 ?>
