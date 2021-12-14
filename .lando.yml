@@ -6,17 +6,24 @@ config:
   xdebug: true
 services:
   appserver:
+    type: php:custom
+    overrides:
+      image: lando/php:7.3-custom
+      build:
+        context: ./
+        dockerfile: Dockerfile.custom
+      ports:
+        - "80"
     build_as_root:
      - "apt-get update -y"
      - "apt-get -y install python3-pip"
 
     run_as_root: 
-      - psql -U postgres  -h database -c "CREATE DATABASE slim_echoepa;"
-      - psql -U postgres  -h database -c "CREATE USER echoepa WITH ENCRYPTED PASSWORD 'echoepa';"
+      - psql -U postgres  -h database -d slim_echoepa -f schema.psql
+      - psql -U postgres  -h database -c "ALTER USER echoepa WITH ENCRYPTED PASSWORD 'echoepa';"
       - psql -U postgres  -h database -c "GRANT ALL PRIVILEGES ON DATABASE slim_echoepa TO echoepa;"
-      - psql -U postgres  -h database -c "CREATE USER echoepa_public WITH ENCRYPTED PASSWORD 'echoepa_public';"
+      - psql -U postgres  -h database -c "ALTER USER echoepa_public WITH ENCRYPTED PASSWORD 'echoepa_public';"
       - psql -U postgres  -h database -c "GRANT SELECT ON ALL TABLES IN SCHEMA public TO echoepa_public;"
       - psql -U postgres  -h database -c "GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO echoepa_public;"
-      - psql -U postgres  -h database -d slim_echoepa -f schema.psql
       - python3 -m pip install sqlalchemy
       - python3 -m pip install psycopg2
