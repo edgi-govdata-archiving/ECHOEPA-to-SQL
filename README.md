@@ -33,6 +33,41 @@ dependencies that I recall are python3 php>=5.3 and wget
 ###
  "schema.psql"  contains the schema for the tables listed in "files.csv" we've mostly changed the type of the columns containing indexes, I'm sure the schema could be improved. 
 "schema.psql" should be loaded into your databases before "scrapeECHOEPA" is run.
- 
 
+## Containerization
+-   Install Docker/Lando (in some cases, as with Mac, Lando installation includes Docker...)
+-   Clone the GH repo  `git clone` `[https://github.com/edgi-govdata-archiving/ECHOEPA-to-SQL](https://github.com/edgi-govdata-archiving/ECHOEPA-to-SQL)`
+-   `cd ECHOEPA-to-SQL`
+-   `lando start`
+	-   Errors:
+		-  `psql: connection to server at "database" (172.22.0.3), port 5432 failed: FATAL: database "slim_echoepa" does not exist`
+		-   `ERROR ==> psql: connection to server at "database" (172.22.0.3), port 5432 failed: FATAL: database "slim_echoepa" does not exist`
+	-   Fixed with
+		-   `- psql -U postgres -h database -c "CREATE DATABASE slim_echoepa;"`
+		-   `- psql -U postgres -h database -c "CREATE USER echoepa WITH ENCRYPTED PASSWORD 'echoepa';"`
+		-   `- psql -U postgres -h database -c "CREATE USER echoepa_public WITH ENCRYPTED PASSWORD 'echoepa_public';"`
+		-   (probably could just remove the "ALTER" commands too)
+	-   `:q`  to quit vim in the middle of installation
+	-   May get a warning at the end but this is an expected Apache warning
+
+-   get EPA data!
+	-   `lando ssh --user root`
+	-   get the most current list of files for scraping (optional, but you may want to edit this list especially for testing to avoid downloading too much data)
+		-   `./wgetGSheet` (may need permissions here)
+	-   Scrape EPA and get the data
+		-   set permissions (may be my ignorance here - again)
+			-   `chmod +x scrapeECHOEPA`
+			-   `chmod +x wgetEPA`
+			-   `chmod +x stripNulls`
+			-   `chmod +x unzipEPA`
+			-   etc.
+		-   `./scrapeECHOEPA`
+-   duplicate and rename db parameter files
+	-   db_a_private.postgres.csv
+	-   db_b_private.postgres.csv
+-   test query
+	-   go to the lando local host in your browser  `landoechoepa.lndo.site`
+-   analyze!
+	-   clone EDGI Notebook repos, especially  [ECHO_modules](https://github.com/edgi-govdata-archiving/ECHO_modules)
+	-   be sure to replace  `url= '``[http://portal.gss.stonybrook.edu/echoepa/?query=](http://portal.gss.stonybrook.edu/echoepa/?query=)``'`  with  `url = '``[https://landoechoepa.lndo.site/?query=](https://landoechoepa.lndo.site/?query=)``'`
 
