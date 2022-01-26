@@ -52,22 +52,24 @@ dependencies that I recall are python3 php>=5.3 and wget
 
 -   get EPA data!
 	-   `lando ssh --user root`
+	-   `pip install csvkit`
 	-   get the most current list of files for scraping (optional, but you may want to edit this list especially for testing to avoid downloading too much data)
 		-   `./wgetGSheet` (may need permissions here)
 	-   Scrape EPA and get the data
-		-   set permissions (may be my ignorance here - again)
+		-   set permissions
 			-   `chmod +x scrapeECHOEPA`
 			-   `chmod +x wgetEPA`
 			-   `chmod +x stripNulls`
 			-   `chmod +x unzipEPA`
+			-   `chmod +x createTable`
 			-   etc.
-		-   `./scrapeECHOEPA`
+		-   run `./scrapeECHOEPA`
 -   duplicate and rename db parameter files
 	-   db_a_private.postgres.csv
 	-   db_b_private.postgres.csv
 -   test query
 	-   go to the lando local host in your browser  `landoechoepa.lndo.site`
 -   analyze!
-	-   clone EDGI Notebook repos, especially  [ECHO_modules](https://github.com/edgi-govdata-archiving/ECHO_modules)
-	-   be sure to replace  `url= '``[http://portal.gss.stonybrook.edu/echoepa/?query=](http://portal.gss.stonybrook.edu/echoepa/?query=)``'`  with  `url = '``[https://landoechoepa.lndo.site/?query=](https://landoechoepa.lndo.site/?query=)``'`
+	-   clone EDGI Notebook repos, especially [ECHO_modules](https://github.com/edgi-govdata-archiving/ECHO_modules)
+	-   be sure to replace  `url= '[http://portal.gss.stonybrook.edu/echoepa/?query=](http://portal.gss.stonybrook.edu/echoepa/?query=)'`  with  `url = '[https://landoechoepa.lndo.site/?query=](https://landoechoepa.lndo.site/?query=)'`
 
