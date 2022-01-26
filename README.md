@@ -71,3 +71,5 @@ dependencies that I recall are python3 php>=5.3 and wget
 	-   clone EDGI Notebook repos, especially  [ECHO_modules](https://github.com/edgi-govdata-archiving/ECHO_modules)
 	-   be sure to replace  `url= '``[http://portal.gss.stonybrook.edu/echoepa/?query=](http://portal.gss.stonybrook.edu/echoepa/?query=)``'`  with  `url = '``[https://landoechoepa.lndo.site/?query=](https://landoechoepa.lndo.site/?query=)``'`
 
+-   troubleshoot
+	-   access DB `lando psql -d slim_echoepa -U echoepa`
