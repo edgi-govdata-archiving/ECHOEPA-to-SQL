@@ -1,5 +1,6 @@
 #!/usr/bin/env python3 
 import csv
+import csvkit
 import os 
 import sys
 import subprocess
@@ -14,6 +15,7 @@ import viewsToTable as mview
 from sqlalchemy import create_engine
 os.chdir(os.path.dirname(sys.argv[0]))
 engine,whichDb= db_connect.connect()
+
 def truncate(table):
 	print(table)
 	try:
@@ -22,6 +24,7 @@ def truncate(table):
 		print (sys.exc_info()[0])
 		print (e.__class__.__name__)
 		sys.exit("Exit") 
+
 #used to compare number of rows in download csv to sql count(*)
 def checkSanity(table):
 	file=open("CSV/%s.csv" %table)
@@ -30,37 +33,46 @@ def checkSanity(table):
 	sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
 	engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
 	print("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
+
 #commented out to run maually for now
 #os.system("./wgetGSheet")
 
 with open('files.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
-	uniqueZips=[]
+	uniqueZips={}
 	tables=[]
 	for row in reader:
 		tables.append(row['CSV FILE'])
-		if row['Location'] not in uniqueZips:
-			uniqueZips.append(row['Location'])
-	for location in uniqueZips:
+		if row['Location'] not in uniqueZips.keys():
+			uniqueZips[row['Location']] = row['URL']
+	for location, url in uniqueZips.items():
+		print(location, url)
 		#break
 		if not os.path.isfile('zips/%s' %(location)):
 			modified=""
 			while(modified==""):
-		
-				print("Getting %s" %(location))
-				modified = subprocess.check_output("./wgetEPA %s" %(location), shell=True).decode("utf-8").strip().splitlines()[0]
+				print("Getting %s" %(url))
+				modified = subprocess.check_output("./wgetEPA %s" %(url), shell=True).decode("utf-8").strip().splitlines()[0]
 			print(modified)
 			results = engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
-			if results.rowcount is 0:
-
+			if results.rowcount == 0:
 				results = engine.execute("insert into \"Last-Modified\" (\"modified\", \"zip\") values ('%s', '%s')" %(modified,location))
 			os.system("./unzipEPA %s" %(location))
-		else:
-			
+		else:		
 			print("File %s  already exists" %(location))
 			#break
 			os.system("./unzipEPA %s" %(location))
 	for table in tables:
+		print(table)
+		#test if table already in db...
+		try:
+			test = engine.execute("select * from information_schema.tables where table_name=\'%s\'" %(table))
+			print(test.rowcount)
+		except: # NEEDS A BETTER EXCEPTION
+			print("error/no table")
+			t = subprocess.check_output("./createTable %s" %(table), shell=True).decode("utf-8").strip()
+			#create the table
+			engine.execute(t)
 		#break
 		#some csvs failed to import with nulls
 		os.system("./stripNulls %s" %(table))
@@ -72,11 +84,13 @@ with open('files.csv', newline='') as csvfile:
 	pgm.build(engine)
 	#materialize views
 	mview.build(engine)
-	engine.execute("analyze");		
+	engine.execute("analyze");
+
 for csv in glob.glob("./CSV/*.csv"):
 	os.remove(csv)		
 for zip in glob.glob("./zips/*.zip"):
 	os.remove(zip)
+
 db_connect.change_db()
 #Stony Brook Specific way to update remote currentDBIndex
-os.system("./toggleIndex")
+#os.system("./toggleIndex")
