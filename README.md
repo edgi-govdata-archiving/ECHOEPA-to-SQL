@@ -49,27 +49,48 @@ dependencies that I recall are python3 php>=5.3 and wget
 		-   (probably could just remove the "ALTER" commands too)
 	-   `:q`  to quit vim in the middle of installation
 	-   May get a warning at the end but this is an expected Apache warning
-
--   get EPA data!
+-   Get EPA data!
 	-   `lando ssh --user root`
 	-   `pip install csvkit`
 	-   get the most current list of files for scraping (optional, but you may want to edit this list especially for testing to avoid downloading too much data)
 		-   `./wgetGSheet` (may need permissions here)
 	-   Scrape EPA and get the data
-		-   set permissions
+		-   Set permissions
 			-   `chmod +x scrapeECHOEPA`
 			-   `chmod +x wgetEPA`
 			-   `chmod +x stripNulls`
 			-   `chmod +x unzipEPA`
 			-   `chmod +x createTable`
 			-   etc.
-		-   run `./scrapeECHOEPA`
--   duplicate and rename db parameter files
+		-	Set up spatial data:
+			-	Install postgis the following way, first on DB.
+				-	`lando ssh -s database --user root`
+				-	`apt-get update`
+				-	`apt-get install postgis`
+			-	We then need to run CREATE_EXTENSION postgis in postgres. 
+				-	`psql -d slim_echoepa -U echoepa`
+				-	`CREATE_EXTENSION postgres`
+			-	Then on app server (for downloading and add shapefiles to the DB).
+				-	Same process as above on DB
+		-   Finally, run `./scrapeECHOEPA`
+-   Duplicate and rename db parameter files
 	-   db_a_private.postgres.csv
 	-   db_b_private.postgres.csv
--   test query
+-   Test query
 	-   go to the lando local host in your browser  `landoechoepa.lndo.site`
--   analyze!
+-   Analyze!
 	-   clone EDGI Notebook repos, especially [ECHO_modules](https://github.com/edgi-govdata-archiving/ECHO_modules)
-	-   be sure to replace  `url= '[http://portal.gss.stonybrook.edu/echoepa/?query=](http://portal.gss.stonybrook.edu/echoepa/?query=)'`  with  `url = '[https://landoechoepa.lndo.site/?query=](https://landoechoepa.lndo.site/?query=)'`
+	-   be sure to replace  `url= [http://portal.gss.stonybrook.edu/echoepa/?query=](http://portal.gss.stonybrook.edu/echoepa/?query=)`  with  `url = [https://landoechoepa.lndo.site/?query=](https://landoechoepa.lndo.site/?query=)`
+-	Troubleshoot
+	- 	access DB psql `lando psql -d slim_echoepa -U echoepa`
+	-	access DB app `lando ssh -s database --user root`
 
+
+
+# Irregularities
+Things holding up automatic data copying and requiring alterations
+-	`alter table "NPDES_LIMITS" alter column "LIMIT_FREQ_OF_ANALYSIS_CODE" type varchar(5);`
+-	`alter table "NPDES_EFF_VIOLATIONS" add column "STATISTICAL_BASE_SHORT_DESC" varchar(10);`
+-	alter table "NPDES_EFF_VIOLATIONS" add column STANDARD_UNIT_CODE varchar(2); 
+-	alter table "NPDES_EFF_VIOLATIONS" add column "STANDARD_UNIT_DESC" varchar(13);
+-	alter table "NPDES_EFF_VIOLATIONS" add column "LIMIT_VALUE_STANDARD_UNITS" real;
