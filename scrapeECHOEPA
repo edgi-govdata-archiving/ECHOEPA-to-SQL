@@ -68,12 +68,12 @@ with open('files.csv', newline='') as csvfile:
 			os.system("./unzipEPA %s" %(location)) #Unzip. Currently unzipping to CSV folder
 		else:		
 			print("Zip file %s  already exists, unzipping..." %(location))
-			#os.system("./unzipEPA %s" %(location))
+			os.system("./unzipEPA %s" %(location))
 		
 	#For each spatial table, insert into DB
 	for table in spatialTables:
 		if os.path.isfile('CSV/%s.shp' %(table)):
-			cmd = "shp2pgsql -a -I -s 4326 {0} public.{1}| psql -h database -d slim_echoepa -U echoepa".format('CSV/'+table, table) #Inserts data. Must already be in schema.
+			cmd = "shp2pgsql -d -I -s 4326 {0} public.{1}| psql -h database -d slim_echoepa -U echoepa".format('CSV/'+table, table) #Inserts data. Must already be in schema.
 			print(cmd) #debugging
 			subprocess.call(cmd, shell=True)
 		else:
@@ -91,11 +91,19 @@ with open('files.csv', newline='') as csvfile:
 			results = engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
 			if results.rowcount == 0:
 				results = engine.execute("insert into \"Last-Modified\" (\"modified\", \"zip\") values ('%s', '%s')" %(modified,location))
-			os.system("./unzipEPA %s" %(location)) #Unzip
+			We may not always have zip files that need unzipping, so we just move the downloaded CSV to the CSV folder
+			if ".csv" in url:
+				os.rename("zips/"+location, "CSV/"+location) #move file
+			elif ".zip" in url:
+				os.system("./unzipEPA %s" %(location)) #Unzip
 		else:		
-			print("Zip file %s  already exists, unzipping..." %(location))
+			print("Zip file %s  already exists, unzipping or moving..." %(location))
 			#break
-			#os.system("./unzipEPA %s" %(location))
+			#We may not always have zip files that need unzipping, so we just move the downloaded CSV to the CSV folder
+			if ".csv" in url:
+				os.rename("zips/"+location, "CSV/"+location) #move file
+			elif ".zip" in url:
+				os.system("./unzipEPA %s" %(location)) #comment out for testing
 	
 	#For each table, insert unzipped CSV into DB or create new table in schema and insert
 	for table in tables:
@@ -103,9 +111,8 @@ with open('files.csv', newline='') as csvfile:
 		#test if table already in db...
 		try:
 			test = engine.execute("select 'public.\"%s\"'::regclass" %(table))
-			print(test)
-		except: # NEEDS A BETTER EXCEPTION
-			print("error/no table")
+		except:
+			print("no table yet exists")
 			t = subprocess.check_output("./createTable %s" %(table), shell=True).decode("utf-8").strip()
 			#create the table
 			engine.execute(t)
