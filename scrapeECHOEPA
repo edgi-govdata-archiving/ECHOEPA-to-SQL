@@ -18,9 +18,9 @@ os.chdir(os.path.dirname(sys.argv[0]))
 #Connect to DB
 engine,whichDb= db_connect.connect()
 
-#
+# Truncate
 def truncate(table):
-	print(table)
+	print ("truncating %s"%(table))
 	try:
 		engine.execute('truncate "%s"' %(table))
 	except Exception as e:
@@ -48,6 +48,7 @@ with open('files.csv', newline='') as csvfile:
 	spatialZips={}
 	spatialTables=[]
 
+	"""
 	#For each data source, check how to process it
 	for row in reader:
 		if row['TYPE'] == "Attribute":
@@ -73,11 +74,12 @@ with open('files.csv', newline='') as csvfile:
 	#For each spatial table, insert into DB
 	for table in spatialTables:
 		if os.path.isfile('CSV/%s.shp' %(table)):
-			cmd = "shp2pgsql -d -I -s 4326 {0} public.{1}| psql -h database -d slim_echoepa -U echoepa".format('CSV/'+table, table) #Inserts data. Must already be in schema.
-			print(cmd) #debugging
+			cmd = "shp2pgsql -d -I -s 4326 {0} public.{1}| psql -h HOST -d DB -U USER".format('CSV/'+table, table) #Inserts data. Must already be in schema.
+			#print(cmd) # Debugging
 			subprocess.call(cmd, shell=True)
 		else:
 			print("no spatial path")
+	"""
 
 	#For each unique zip of attribute data, get and unzip it
 	for location, url in uniqueZips.items():
@@ -91,10 +93,10 @@ with open('files.csv', newline='') as csvfile:
 			results = engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
 			if results.rowcount == 0:
 				results = engine.execute("insert into \"Last-Modified\" (\"modified\", \"zip\") values ('%s', '%s')" %(modified,location))
-			We may not always have zip files that need unzipping, so we just move the downloaded CSV to the CSV folder
-			if ".csv" in url:
+			#We may not always have zip files that need unzipping, so we just move the downloaded CSV to the CSV folder
+			if ".csv" in url.lower():
 				os.rename("zips/"+location, "CSV/"+location) #move file
-			elif ".zip" in url:
+			elif ".zip" in url.lower():
 				os.system("./unzipEPA %s" %(location)) #Unzip
 		else:		
 			print("Zip file %s  already exists, unzipping or moving..." %(location))
@@ -108,33 +110,38 @@ with open('files.csv', newline='') as csvfile:
 	#For each table, insert unzipped CSV into DB or create new table in schema and insert
 	for table in tables:
 		print(table)
-		#test if table already in db...
+		#test if table already in db schema...
 		try:
 			test = engine.execute("select 'public.\"%s\"'::regclass" %(table))
 		except:
-			print("no table yet exists")
+			print("no schema yet exists")
 			t = subprocess.check_output("./createTable %s" %(table), shell=True).decode("utf-8").strip()
 			#create the table
 			engine.execute(t)
 		#break
-		os.system("./stripNulls %s" %(table)) #some csvs failed to import with nulls
-		truncate(table)
+		print("strip nulls")
+		os.system("./stripNulls %s" %(table)) #some csvs failed to import with nulls. this also cuts the CSV (head command)
+		truncate(table) # truncate deletes existing rows in a db table
 		print ("truncated %s"%(table))
+		print("import")
 		os.system("./csvImport %s %s" %(table,whichDb)) # import the data
+		print("check csv diffs")
 		checkSanity(table)
-	
+
 	#Create views based off of ECHOEPA tables
+	print("creating views")
 	pgm.build(engine)
-	mview.build(engine) #materialize views
+	print("creating materialized views")
+	mview.build(engine) #materialized views
 	engine.execute("analyze");
 
 #Clear up files
-#for csv in glob.glob("./CSV/*.csv"):
+for csv in glob.glob("./CSV/*.csv"):
 	#os.remove(csv)		
-#for zip in glob.glob("./zips/*.zip"):
-	#os.remove(zip)
+for zip in glob.glob("./zips/*.zip"):
+	os.remove(zip)
 
 #Switch DB
 db_connect.change_db()
 #Stony Brook Specific way to update remote currentDBIndex
-#os.system("./toggleIndex")
+os.system("./toggleIndex")
