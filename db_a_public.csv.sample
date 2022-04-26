@@ -1,0 +1,2 @@
+host,db,user,password
+<host domain>,<db name>,<db user>,<db password>
