@@ -1,5 +1,0 @@
-
-Fatal error: Uncaught Error: Call to undefined function pg_connect() in /app/middleware/index.php:30
-Stack trace:
-#0 {main}
-  thrown in /app/middleware/index.php on line 30
