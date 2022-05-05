@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+import os
 import csv
 currentDBIndex=5
 def connect():

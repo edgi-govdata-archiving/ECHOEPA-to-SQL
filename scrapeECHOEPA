@@ -122,8 +122,8 @@ with open('files.csv', newline='') as csvfile:
 		truncate(table) # truncate deletes existing rows in a table
 		print ("truncated %s"%(table))
 		if not os.system("./csvImport %s %s" %(table,whichDb)):
-			results = engine.execute('drop table "%s"'%table);
-			os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb)):
+			results = engine.execute('drop table "%s"'%table)
+			os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb))
 		print("import")
 		os.system("./csvImport %s %s" %(table,whichDb)) # import the data
 		print("check csv diffs")
