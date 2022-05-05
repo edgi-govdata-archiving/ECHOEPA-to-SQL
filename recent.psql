@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.12 (Ubuntu 11.12-1.pgdg18.04+1)
+-- Dumped from database version 11.14 (Ubuntu 11.14-1.pgdg18.04+1)
 -- Dumped by pg_dump version 13.0
 
 SET statement_timeout = 0;
@@ -1403,48 +1403,51 @@ ALTER TABLE public."DMR_FY2020_MVIEW" OWNER TO echoepa;
 --
 -- Name: NPDES_EFF_VIOLATIONS; Type: TABLE; Schema: public; Owner: echoepa
 --
-
+drop table  public."NPDES_EFF_VIOLATIONS";
 CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" (
-    "NPDES_ID" character varying(20),
-    "VERSION_NMBR" bigint,
-    "ACTIVITY_ID" bigint,
-    "NPDES_VIOLATION_ID" bigint,
-    "PERM_FEATURE_NMBR" text,
-    "PERMIT_ACTIVITY_ID" bigint,
-    "LIMIT_SET_DESIGNATOR" text,
-    "MONITORING_LOCATION_CODE" text,
-    "DMR_FORM_VALUE_ID" double precision,
-    "DMR_VALUE_NMBR" double precision,
-    "DMR_VALUE_ID" double precision,
-    "DMR_PARAMETER_ID" double precision,
-    "NODI_CODE" text,
-    "ADJUSTED_DMR_VALUE_NMBR" double precision,
-    "VIOLATION_TYPE_CODE" text,
-    "VIOLATION_TYPE_DESC" text,
-    "VIOLATION_CODE" text,
-    "VIOLATION_DESC" text,
-    "PARAMETER_CODE" text,
-    "PARAMETER_DESC" text,
-    "MONITORING_PERIOD_END_DATE" text,
-    "NMBR_OF_REPORT" bigint,
-    "EXCEEDENCE_PCT" double precision,
-    "VALUE_QUALIFIER_CODE" text,
-    "UNIT_CODE" text,
-    "VALUE_RECEIVED_DATE" text,
-    "DAYS_LATE" double precision,
-    "ADJUSTED_DMR_STANDARD_UNITS" double precision,
-    "LIMIT_ID" bigint,
-    "DMR_VALUE_STANDARD_UNITS" double precision,
-    "VALUE_TYPE_CODE" text,
-    "RNC_DETECTION_CODE" text,
-    "RNC_DETECTION_DESC" text,
-    "RNC_DETECTION_DATE" text,
-    "RNC_RESOLUTION_CODE" text,
-    "RNC_RESOLUTION_DESC" text,
-    "RNC_RESOLUTION_DATE" text,
-    "STATISTICAL_BASE_CODE" text,
-    "STATISTICAL_BASE_MONTHLY_AVG" text
-    "STATISTICAL_BASE_SHORT_DESC" text`
+"NPDES_ID" character varying(9),
+"VERSION_NMBR" numeric(22),
+"ACTIVITY_ID" numeric(22),
+"NPDES_VIOLATION_ID" numeric(22),
+"PERM_FEATURE_NMBR" character varying(4),
+"PERMIT_ACTIVITY_ID" numeric(22),
+"LIMIT_SET_DESIGNATOR" character varying(2),
+"MONITORING_LOCATION_CODE" character varying(3),
+"DMR_FORM_VALUE_ID" numeric(22),
+"DMR_VALUE_NMBR" numeric(22),
+"DMR_VALUE_ID" numeric(22),
+"DMR_PARAMETER_ID" numeric(22),
+"NODI_CODE" character varying(3),
+"ADJUSTED_DMR_VALUE_NMBR" numeric(22),
+"LIMIT_VALUE_STANDARD_UNITS" numeric(22),
+"VIOLATION_TYPE_CODE" character varying(6),
+"VIOLATION_TYPE_DESC" character varying(100),
+"VIOLATION_CODE" character varying(5),
+"VIOLATION_DESC" character varying(100),
+"PARAMETER_CODE" character varying(5),
+"PARAMETER_DESC" character varying(100),
+"STANDARD_UNIT_CODE" character varying(2),
+"STANDARD_UNIT_DESC" character varying(13),
+"MONITORING_PERIOD_END_DATE" date,
+"NMBR_OF_REPORT" numeric(2),
+"EXCEEDANCE_PCT" numeric(22),
+"VALUE_QUALIFIER_CODE" character varying(3),
+"UNIT_CODE" character varying(2),
+"VALUE_RECEIVED_DATE" date,
+"DAYS_LATE" numeric(22),
+"ADJUSTED_DMR_STANDARD_UNITS" numeric(22),
+"LIMIT_ID" numeric(22),
+"DMR_VALUE_STANDARD_UNITS" numeric(22),
+"VALUE_TYPE_CODE" character varying(3),
+"RNC_DETECTION_CODE" character varying(3),
+"RNC_DETECTION_DESC" character varying(100),
+"RNC_DETECTION_DATE" date,
+"RNC_RESOLUTION_CODE" character varying(3),
+"RNC_RESOLUTION_DESC" character varying(100),
+"RNC_RESOLUTION_DATE" date,
+"STATISTICAL_BASE_CODE" character varying(3),
+"STATISTICAL_BASE_MONTHLY_AVG" character varying(1),
+"STATISTICAL_BASE_SHORT_DESC" character varying(10)
 );
 
 
@@ -1703,33 +1706,32 @@ ALTER TABLE public."ICIS-AIR_STACK_TESTS" OWNER TO echoepa;
 --
 
 CREATE UNLOGGED TABLE public."ICIS_PERMITS" (
-    "ACTIVITY_ID" bigint,
-    "EXTERNAL_PERMIT_NMBR" character varying(12),
-    "VERSION_NMBR" bigint,
-    "FACILITY_TYPE_INDICATOR" text,
-    "PERMIT_TYPE_CODE" text,
-    "MAJOR_MINOR_STATUS_FLAG" text,
-    "PERMIT_STATUS_CODE" text,
-    "TOTAL_DESIGN_FLOW_NMBR" double precision,
-    "ACTUAL_AVERAGE_FLOW_NMBR" double precision,
-    "STATE_WATER_BODY" text,
-    "STATE_WATER_BODY_NAME" text,
-    "PERMIT_NAME" text,
-    "AGENCY_TYPE_CODE" text,
-    "ORIGINAL_ISSUE_DATE" text,
-    "ISSUE_DATE" text,
-    "ISSUING_AGENCY" text,
-    "EFFECTIVE_DATE" text,
-    "EXPIRATION_DATE" text,
-    "RETIREMENT_DATE" text,
-    "TERMINATION_DATE" text,
-    "PERMIT_COMP_STATUS_FLAG" text,
-    "RNC_TRACKING_FLAG" text,
-    "MASTER_EXTERNAL_PERMIT_NMBR" text,
-    "TMDL_INTERFACE_FLAG" text,
-    "EDMR_AUTHORIZATION_FLAG" text,
-    "PRETREATMENT_INDICATOR_CODE" text,
-    "WBD_HUC12" double precision
+"ACTIVITY_ID" numeric(22),
+"EXTERNAL_PERMIT_NMBR" character varying(9),
+"VERSION_NMBR" numeric(22),
+"FACILITY_TYPE_INDICATOR" character varying(10),
+"PERMIT_TYPE_CODE" character varying(3),
+"MAJOR_MINOR_STATUS_FLAG" character varying(1),
+"PERMIT_STATUS_CODE" character varying(3),
+"TOTAL_DESIGN_FLOW_NMBR" numeric(22),
+"ACTUAL_AVERAGE_FLOW_NMBR" numeric(22),
+"STATE_WATER_BODY" character varying(12),
+"STATE_WATER_BODY_NAME" character varying(50),
+"WBD_HUC12" character varying(12),
+"PERMIT_NAME" character varying(120),
+"AGENCY_TYPE_CODE" character varying(3),
+"ORIGINAL_ISSUE_DATE" date,
+"ISSUE_DATE" date,
+"ISSUING_AGENCY" character varying(100),
+"EFFECTIVE_DATE" date,
+"EXPIRATION_DATE" date,
+"RETIREMENT_DATE" date,
+"TERMINATION_DATE" date,
+"PERMIT_COMP_STATUS_FLAG" character varying(1),
+"DMR_NON_RECEIPT_FLAG" character varying(1),
+"RNC_TRACKING_FLAG" character varying(1),
+"MASTER_EXTERNAL_PERMIT_NMBR" character varying(9),
+"TMDL_INTERFACE_FLAG" character varying(1)
 );
 
 
@@ -7171,5 +7173,4 @@ ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public GRANT SELECT ON TABLE
 --
 -- PostgreSQL database dump complete
 --
-
 

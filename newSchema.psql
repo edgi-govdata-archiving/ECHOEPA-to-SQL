@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.12 (Ubuntu 11.12-1.pgdg18.04+1)
--- Dumped by pg_dump version 13.0
+-- Dumped from database version 13.5
+-- Dumped by pg_dump version 13.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -31,6 +31,8 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 
 
 SET default_tablespace = '';
+
+SET default_table_access_method = heap;
 
 --
 -- Name: ECHO_EXPORTER; Type: TABLE; Schema: public; Owner: echoepa
@@ -310,7 +312,7 @@ CREATE UNLOGGED TABLE public."CASE_ENFORCEMENTS" (
     "ENF_OUTCOME_DESC" text,
     "TOTAL_PENALTY_ASSESSED_AMT" double precision,
     "TOTAL_COST_RECOVERY_AMT" double precision,
-    "TOTAL_COMP_ACTION_AMT" double precision,
+    "TOTAL_COM_ACTION_AMT" double precision,
     "HQ_DIVISION" text,
     "BRANCH" text,
     "VOLUNTARY_SELF_DISCLOSURE_FLAG" text,
@@ -371,7 +373,7 @@ CREATE VIEW public."AIR_ENFORCEMENTS_VIEW" AS
     ce."ENF_OUTCOME_DESC",
     ce."TOTAL_PENALTY_ASSESSED_AMT",
     ce."TOTAL_COST_RECOVERY_AMT",
-    ce."TOTAL_COMP_ACTION_AMT",
+    ce."TOTAL_COM_ACTION_AMT",
     ce."HQ_DIVISION",
     ce."BRANCH",
     ce."VOLUNTARY_SELF_DISCLOSURE_FLAG",
@@ -431,7 +433,7 @@ CREATE MATERIALIZED VIEW public."AIR_ENFORCEMENTS_MVIEW" AS
     "AIR_ENFORCEMENTS_VIEW"."ENF_OUTCOME_DESC",
     "AIR_ENFORCEMENTS_VIEW"."TOTAL_PENALTY_ASSESSED_AMT",
     "AIR_ENFORCEMENTS_VIEW"."TOTAL_COST_RECOVERY_AMT",
-    "AIR_ENFORCEMENTS_VIEW"."TOTAL_COMP_ACTION_AMT",
+    "AIR_ENFORCEMENTS_VIEW"."TOTAL_COM_ACTION_AMT",
     "AIR_ENFORCEMENTS_VIEW"."HQ_DIVISION",
     "AIR_ENFORCEMENTS_VIEW"."BRANCH",
     "AIR_ENFORCEMENTS_VIEW"."VOLUNTARY_SELF_DISCLOSURE_FLAG",
@@ -803,7 +805,7 @@ CREATE VIEW public."CASE_ENFORCEMENTS_VIEW" AS
     re."ENF_OUTCOME_DESC",
     re."TOTAL_PENALTY_ASSESSED_AMT",
     re."TOTAL_COST_RECOVERY_AMT",
-    re."TOTAL_COMP_ACTION_AMT",
+    re."TOTAL_COM_ACTION_AMT",
     re."VOLUNTARY_SELF_DISCLOSURE_FLAG",
     re."ENF_SUMMARY_TEXT",
     ee."FAC_NAME",
@@ -850,7 +852,7 @@ CREATE MATERIALIZED VIEW public."CASE_ENFORCEMENTS_MVIEW" AS
     "CASE_ENFORCEMENTS_VIEW"."ENF_OUTCOME_DESC",
     "CASE_ENFORCEMENTS_VIEW"."TOTAL_PENALTY_ASSESSED_AMT",
     "CASE_ENFORCEMENTS_VIEW"."TOTAL_COST_RECOVERY_AMT",
-    "CASE_ENFORCEMENTS_VIEW"."TOTAL_COMP_ACTION_AMT",
+    "CASE_ENFORCEMENTS_VIEW"."TOTAL_COM_ACTION_AMT",
     "CASE_ENFORCEMENTS_VIEW"."VOLUNTARY_SELF_DISCLOSURE_FLAG",
     "CASE_ENFORCEMENTS_VIEW"."ENF_SUMMARY_TEXT",
     "CASE_ENFORCEMENTS_VIEW"."FAC_NAME",
@@ -1274,7 +1276,7 @@ CREATE UNLOGGED TABLE public."NPDES_DMRS_FY2020" (
     "VALUE_RECEIVED_DATE" text,
     "DAYS_LATE" double precision,
     "NODI_CODE" text,
-    "EXCEEDENCE_PCT" double precision,
+    "EXCEEDANCE_PCT" double precision,
     "NPDES_VIOLATION_ID" double precision,
     "VIOLATION_CODE" text,
     "RNC_DETECTION_CODE" text,
@@ -1300,7 +1302,7 @@ CREATE VIEW public."DMR_FY2020_VIEW" AS
     re."DMR_VALUE_NMBR",
     re."DMR_VALUE_QUALIFIER_CODE",
     re."DMR_VALUE_STANDARD_UNITS",
-    re."EXCEEDENCE_PCT",
+    re."EXCEEDANCE_PCT",
     re."LIMIT_BEGIN_DATE",
     re."LIMIT_END_DATE",
     re."LIMIT_UNIT_CODE",
@@ -1358,7 +1360,7 @@ CREATE MATERIALIZED VIEW public."DMR_FY2020_MVIEW" AS
     "DMR_FY2020_VIEW"."DMR_VALUE_NMBR",
     "DMR_FY2020_VIEW"."DMR_VALUE_QUALIFIER_CODE",
     "DMR_FY2020_VIEW"."DMR_VALUE_STANDARD_UNITS",
-    "DMR_FY2020_VIEW"."EXCEEDENCE_PCT",
+    "DMR_FY2020_VIEW"."EXCEEDANCE_PCT",
     "DMR_FY2020_VIEW"."LIMIT_BEGIN_DATE",
     "DMR_FY2020_VIEW"."LIMIT_END_DATE",
     "DMR_FY2020_VIEW"."LIMIT_UNIT_CODE",
@@ -1401,52 +1403,54 @@ CREATE MATERIALIZED VIEW public."DMR_FY2020_MVIEW" AS
 ALTER TABLE public."DMR_FY2020_MVIEW" OWNER TO echoepa;
 
 --
--- Name: NPDES_EFF_VIOLATIONS; Type: TABLE; Schema: public; Owner: echoepa
+-- Name: NPDES_EFF_VIOLATIONS; Type: TABLE; Schema: public; Owner: echoepa 
 --
 
-CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" (
-    "NPDES_ID" character varying(20),
-    "VERSION_NMBR" bigint,
-    "ACTIVITY_ID" bigint,
-    "NPDES_VIOLATION_ID" bigint,
-    "PERM_FEATURE_NMBR" text,
-    "PERMIT_ACTIVITY_ID" bigint,
-    "LIMIT_SET_DESIGNATOR" text,
-    "MONITORING_LOCATION_CODE" text,
-    "DMR_FORM_VALUE_ID" double precision,
-    "DMR_VALUE_NMBR" double precision,
-    "DMR_VALUE_ID" double precision,
-    "DMR_PARAMETER_ID" double precision,
-    "NODI_CODE" text,
-    "ADJUSTED_DMR_VALUE_NMBR" double precision,
-    "VIOLATION_TYPE_CODE" text,
-    "VIOLATION_TYPE_DESC" text,
-    "VIOLATION_CODE" text,
-    "VIOLATION_DESC" text,
-    "PARAMETER_CODE" text,
-    "PARAMETER_DESC" text,
-    "MONITORING_PERIOD_END_DATE" text,
-    "NMBR_OF_REPORT" bigint,
-    "EXCEEDENCE_PCT" double precision,
-    "VALUE_QUALIFIER_CODE" text,
-    "UNIT_CODE" text,
-    "VALUE_RECEIVED_DATE" text,
-    "DAYS_LATE" double precision,
-    "ADJUSTED_DMR_STANDARD_UNITS" double precision,
-    "LIMIT_ID" bigint,
-    "DMR_VALUE_STANDARD_UNITS" double precision,
-    "VALUE_TYPE_CODE" text,
-    "RNC_DETECTION_CODE" text,
-    "RNC_DETECTION_DESC" text,
-    "RNC_DETECTION_DATE" text,
-    "RNC_RESOLUTION_CODE" text,
-    "RNC_RESOLUTION_DESC" text,
-    "RNC_RESOLUTION_DATE" text,
-    "STATISTICAL_BASE_CODE" text,
-    "STATISTICAL_BASE_MONTHLY_AVG" text
-    "STATISTICAL_BASE_SHORT_DESC" text`
+CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" ( 
+    "NPDES_ID" character varying(9),
+    "VERSION_NMBR" numeric(22),
+    "ACTIVITY_ID" numeric(22),
+    "NPDES_VIOLATION_ID" numeric(22),
+    "PERM_FEATURE_NMBR" character varying(22),
+    "PERMIT_ACTIVITY_ID" numeric(22),
+    "LIMIT_SET_DESIGNATOR" character varying(2),
+    "MONITORING_LOCATION_CODE" character varying(3),
+    "DMR_FORM_VALUE_ID" numeric(22),
+    "DMR_VALUE_NMBR" numeric(22),
+    "DMR_VALUE_ID" numeric(22),
+    "DMR_PARAMETER_ID" numeric(22),
+    "NODI_CODE" character varying(3),
+    "ADJUSTED_DMR_VALUE_NMBR" numeric(22),
+    "LIMIT_VALUE_STANDARD_UNITS" numeric(22),
+    "VIOLATION_TYPE_CODE" character varying(6),
+    "VIOLATION_TYPE_DESC" character varying(100),
+    "VIOLATION_CODE" character varying(5),
+    "VIOLATION_DESC" character varying(100),
+    "PARAMETER_CODE" character varying(5),
+    "PARAMETER_DESC" character varying(100),
+    "STANDARD_UNIT_CODE" character varying(2),
+    "STANDARD_UNIT_DESC" character varying(13),
+    "MONITORING_PERIOD_END_DATE" date,
+    "NMBR_OF_REPORT" numeric(2),
+    "EXCEEDANCE_PCT" numeric(22),
+    "VALUE_QUALIFIER_CODE" character varying(3),
+    "UNIT_CODE" character varying(2),
+    "VALUE_RECEIVED_DATE" date,
+    "DAYS_LATE" numeric(22),
+    "ADJUSTED_DMR_STANDARD_UNITS" numeric(22),
+    "LIMIT_ID" numeric(22),
+    "DMR_VALUE_STANDARD_UNITS" numeric(22),
+    "VALUE_TYPE_CODE" character varying(3),
+    "RNC_DETECTION_CODE" character varying(3),
+    "RNC_DETECTION_DESC" character varying(100),
+    "RNC_DETECTION_DATE" date,
+    "RNC_RESOLUTION_CODE" character varying(3),
+    "RNC_RESOLUTION_DESC" character varying(100),
+    "RNC_RESOLUTION_DATE" date,
+    "STATISTICAL_BASE_CODE" character varying(3),
+    "STATISTICAL_BASE_MONTHLY_AVG" character varying(1),
+    "STATISTICAL_BASE_SHORT_DESC" character varying(10)
 );
-
 
 ALTER TABLE public."NPDES_EFF_VIOLATIONS" OWNER TO echoepa;
 
@@ -1465,7 +1469,7 @@ CREATE VIEW public."EFF_VIOLATIONS_VIEW" AS
     re."VIOLATION_DESC",
     re."PARAMETER_DESC",
     re."DMR_VALUE_NMBR",
-    re."EXCEEDENCE_PCT",
+    re."EXCEEDANCE_PCT",
     re."DMR_VALUE_STANDARD_UNITS",
     ee."FAC_NAME",
     ee."FAC_STREET",
@@ -1507,7 +1511,7 @@ CREATE MATERIALIZED VIEW public."EFF_VIOLATIONS_MVIEW" AS
     "EFF_VIOLATIONS_VIEW"."VIOLATION_DESC",
     "EFF_VIOLATIONS_VIEW"."PARAMETER_DESC",
     "EFF_VIOLATIONS_VIEW"."DMR_VALUE_NMBR",
-    "EFF_VIOLATIONS_VIEW"."EXCEEDENCE_PCT",
+    "EFF_VIOLATIONS_VIEW"."EXCEEDANCE_PCT",
     "EFF_VIOLATIONS_VIEW"."DMR_VALUE_STANDARD_UNITS",
     "EFF_VIOLATIONS_VIEW"."FAC_NAME",
     "EFF_VIOLATIONS_VIEW"."FAC_STREET",
@@ -1531,6 +1535,157 @@ CREATE MATERIALIZED VIEW public."EFF_VIOLATIONS_MVIEW" AS
 
 
 ALTER TABLE public."EFF_VIOLATIONS_MVIEW" OWNER TO echoepa;
+
+--
+-- Name: EJSCREEN_2020_USPR; Type: TABLE; Schema: public; Owner: echoepa
+--
+
+CREATE TABLE public."EJSCREEN_2020_USPR" (
+    "OBJECTID" numeric,
+    "ID" numeric,
+    "ACSTOTPOP" numeric,
+    "ACSIPOVBAS" numeric,
+    "ACSEDUCBAS" numeric,
+    "ACSTOTHH" numeric,
+    "ACSTOTHU" numeric,
+    "MINORPOP" numeric,
+    "MINORPCT" numeric,
+    "LOWINCOME" numeric,
+    "LOWINCPCT" numeric,
+    "LESSHS" numeric,
+    "LESSHSPCT" numeric,
+    "LINGISO" numeric,
+    "LINGISOPCT" numeric,
+    "UNDER5" numeric,
+    "UNDER5PCT" numeric,
+    "OVER64" numeric,
+    "OVER64PCT" numeric,
+    "PRE1960" numeric,
+    "PRE1960PCT" numeric,
+    "VULEOPCT" numeric,
+    "VULEO" numeric,
+    "DISPEO" numeric,
+    "DSLPM" numeric,
+    "CANCER" numeric,
+    "RESP" numeric,
+    "PTRAF" numeric,
+    "PWDIS" boolean,
+    "PNPL" numeric,
+    "PRMP" numeric,
+    "PTSDF" numeric,
+    "OZONE" numeric,
+    "PM25" numeric,
+    "D_LDPNT_2" numeric,
+    "D_DSLPM_2" numeric,
+    "D_CANCR_2" numeric,
+    "D_RESP_2" numeric,
+    "D_PTRAF_2" numeric,
+    "D_PWDIS_2" boolean,
+    "D_PNPL_2" numeric,
+    "D_PRMP_2" numeric,
+    "D_PTSDF_2" numeric,
+    "D_OZONE_2" numeric,
+    "D_PM25_2" numeric,
+    "STATE_NAME" character varying,
+    "ST_ABBREV" character varying,
+    "REGION" numeric,
+    "P_MINORPCT" numeric,
+    "P_LWINCPCT" numeric,
+    "P_LESHSPCT" numeric,
+    "P_LNGISPCT" numeric,
+    "P_UNDR5PCT" numeric,
+    "P_OVR64PCT" numeric,
+    "P_LDPNT" numeric,
+    "P_VULEOPCT" numeric,
+    "P_DSLPM" numeric,
+    "P_CANCR" numeric,
+    "P_RESP" numeric,
+    "P_PTRAF" numeric,
+    "P_PWDIS" boolean,
+    "P_PNPL" numeric,
+    "P_PRMP" numeric,
+    "P_PTSDF" numeric,
+    "P_OZONE" numeric,
+    "P_PM25" numeric,
+    "P_LDPNT_D2" numeric,
+    "P_DSLPM_D2" numeric,
+    "P_CANCR_D2" numeric,
+    "P_RESP_D2" numeric,
+    "P_PTRAF_D2" numeric,
+    "P_PWDIS_D2" boolean,
+    "P_PNPL_D2" numeric,
+    "P_PRMP_D2" numeric,
+    "P_PTSDF_D2" numeric,
+    "P_OZONE_D2" numeric,
+    "P_PM25_D2" numeric,
+    "B_MINORPCT" numeric,
+    "B_LWINCPCT" numeric,
+    "B_LESHSPCT" numeric,
+    "B_LNGISPCT" numeric,
+    "B_UNDR5PCT" numeric,
+    "B_OVR64PCT" numeric,
+    "B_LDPNT" numeric,
+    "B_VULEOPCT" numeric,
+    "B_DSLPM" numeric,
+    "B_CANCR" numeric,
+    "B_RESP" numeric,
+    "B_PTRAF" numeric,
+    "B_PWDIS" boolean,
+    "B_PNPL" numeric,
+    "B_PRMP" numeric,
+    "B_PTSDF" numeric,
+    "B_OZONE" numeric,
+    "B_PM25" numeric,
+    "B_LDPNT_D2" numeric,
+    "B_DSLPM_D2" numeric,
+    "B_CANCR_D2" numeric,
+    "B_RESP_D2" numeric,
+    "B_PTRAF_D2" numeric,
+    "B_PWDIS_D2" boolean,
+    "B_PNPL_D2" numeric,
+    "B_PRMP_D2" numeric,
+    "B_PTSDF_D2" numeric,
+    "B_OZONE_D2" numeric,
+    "B_PM25_D2" numeric,
+    "T_MINORPCT" character varying,
+    "T_LWINCPCT" character varying,
+    "T_LNGISPCT" character varying,
+    "T_LESHSPCT" character varying,
+    "T_UNDR5PCT" character varying,
+    "T_OVR64PCT" character varying,
+    "T_VULEOPCT" character varying,
+    "T_LDPNT" character varying,
+    "T_LDPNT_D2" character varying,
+    "T_DSLPM" character varying,
+    "T_DSLPM_D2" character varying,
+    "T_CANCR" character varying,
+    "T_CANCR_D2" character varying,
+    "T_RESP" character varying,
+    "T_RESP_D2" character varying,
+    "T_PTRAF" character varying,
+    "T_PTRAF_D2" character varying,
+    "T_PWDIS" boolean,
+    "T_PWDIS_D2" boolean,
+    "T_PNPL" character varying,
+    "T_PNPL_D2" character varying,
+    "T_PRMP" character varying,
+    "T_PRMP_D2" character varying,
+    "T_PTSDF" character varying,
+    "T_PTSDF_D2" character varying,
+    "T_OZONE" character varying,
+    "T_OZONE_D2" character varying,
+    "T_PM25" character varying,
+    "T_PM25_D2" character varying,
+    "AREALAND" numeric,
+    "AREAWATER" numeric,
+    "NPL_CNT" boolean,
+    "TSDF_CNT" boolean,
+    "Shape_Length" numeric,
+    "Shape_Area" numeric
+);
+
+
+ALTER TABLE public."EJSCREEN_2020_USPR" OWNER TO echoepa;
 
 --
 -- Name: EPA_INFORMAL_ENFORCEMENT_ACTIONS; Type: TABLE; Schema: public; Owner: echoepa
@@ -1777,6 +1932,132 @@ CREATE UNLOGGED TABLE public."NPDES_CS_VIOLATIONS" (
 
 
 ALTER TABLE public."NPDES_CS_VIOLATIONS" OWNER TO echoepa;
+
+--
+-- Name: NPDES_DMRS_FY2021; Type: TABLE; Schema: public; Owner: echoepa
+--
+
+CREATE TABLE public."NPDES_DMRS_FY2021" (
+    "ACTIVITY_ID" numeric,
+    "EXTERNAL_PERMIT_NMBR" character varying,
+    "VERSION_NMBR" numeric,
+    "PERM_FEATURE_ID" numeric,
+    "PERM_FEATURE_NMBR" character varying,
+    "PERM_FEATURE_TYPE_CODE" character varying,
+    "LIMIT_SET_ID" numeric,
+    "LIMIT_SET_DESIGNATOR" character varying,
+    "LIMIT_SET_SCHEDULE_ID" numeric,
+    "LIMIT_ID" numeric,
+    "LIMIT_BEGIN_DATE" date,
+    "LIMIT_END_DATE" date,
+    "NMBR_OF_SUBMISSION" numeric,
+    "NMBR_OF_REPORT" numeric,
+    "PARAMETER_CODE" character varying,
+    "PARAMETER_DESC" character varying,
+    "MONITORING_LOCATION_CODE" character varying,
+    "STAY_TYPE_CODE" boolean,
+    "LIMIT_VALUE_ID" numeric,
+    "LIMIT_VALUE_TYPE_CODE" character varying,
+    "LIMIT_VALUE_NMBR" numeric,
+    "LIMIT_UNIT_CODE" character varying,
+    "LIMIT_UNIT_DESC" character varying,
+    "STANDARD_UNIT_CODE" character varying,
+    "STANDARD_UNIT_DESC" character varying,
+    "LIMIT_VALUE_STANDARD_UNITS" numeric,
+    "STATISTICAL_BASE_CODE" character varying,
+    "STATISTICAL_BASE_TYPE_CODE" character varying,
+    "LIMIT_VALUE_QUALIFIER_CODE" character varying,
+    "OPTIONAL_MONITORING_FLAG" boolean,
+    "LIMIT_SAMPLE_TYPE_CODE" character varying,
+    "LIMIT_FREQ_OF_ANALYSIS_CODE" character varying,
+    "STAY_VALUE_NMBR" boolean,
+    "LIMIT_TYPE_CODE" character varying,
+    "DMR_EVENT_ID" numeric,
+    "MONITORING_PERIOD_END_DATE" date,
+    "DMR_SAMPLE_TYPE_CODE" character varying,
+    "DMR_FREQ_OF_ANALYSIS_CODE" character varying,
+    "REPORTED_EXCURSION_NMBR" boolean,
+    "DMR_FORM_VALUE_ID" numeric,
+    "VALUE_TYPE_CODE" character varying,
+    "DMR_VALUE_ID" numeric,
+    "DMR_VALUE_NMBR" numeric,
+    "DMR_UNIT_CODE" character varying,
+    "DMR_UNIT_DESC" character varying,
+    "DMR_VALUE_STANDARD_UNITS" numeric,
+    "DMR_VALUE_QUALIFIER_CODE" character varying,
+    "VALUE_RECEIVED_DATE" date,
+    "DAYS_LATE" boolean,
+    "NODI_CODE" character varying,
+    "EXCEEDANCE_PCT" boolean,
+    "NPDES_VIOLATION_ID" boolean,
+    "VIOLATION_CODE" boolean,
+    "RNC_DETECTION_CODE" boolean,
+    "RNC_DETECTION_DATE" boolean,
+    "RNC_RESOLUTION_CODE" boolean,
+    "RNC_RESOLUTION_DATE" boolean
+);
+
+
+ALTER TABLE public."NPDES_DMRS_FY2021" OWNER TO echoepa;
+
+--
+-- Name: NPDES_LIMITS; Type: TABLE; Schema: public; Owner: echoepa
+--
+
+CREATE TABLE public."NPDES_LIMITS" (
+    "ACTIVITY_ID" numeric,
+    "EXTERNAL_PERMIT_NMBR" character varying,
+    "VERSION_NMBR" numeric,
+    "PERM_FEATURE_ID" numeric,
+    "PERM_FEATURE_NMBR" numeric,
+    "PERM_FEATURE_TYPE_CODE" character varying,
+    "LIMIT_SET_ID" numeric,
+    "LIMIT_SET_DESIGNATOR" character varying,
+    "LIMIT_SET_SCHEDULE_ID" numeric,
+    "LIMIT_SET_STATUS_FLAG" character varying,
+    "LIMIT_ID" numeric,
+    "LIMIT_BEGIN_DATE" date,
+    "LIMIT_END_DATE" date,
+    "NMBR_OF_SUBMISSION" boolean,
+    "NMBR_OF_REPORT" boolean,
+    "PARAMETER_CODE" numeric,
+    "PARAMETER_DESC" character varying,
+    "MONITORING_LOCATION_CODE" boolean,
+    "STAY_TYPE_CODE" boolean,
+    "LIMIT_VALUE_ID" numeric,
+    "LIMIT_VALUE_TYPE_CODE" character varying,
+    "LIMIT_VALUE_NMBR" numeric,
+    "LIMIT_UNIT_CODE" numeric,
+    "LIMIT_UNIT_DESC" character varying,
+    "STANDARD_UNIT_CODE" numeric,
+    "STANDARD_UNIT_DESC" character varying,
+    "LIMIT_VALUE_STANDARD_UNITS" numeric,
+    "STATISTICAL_BASE_CODE" character varying,
+    "STATISTICAL_BASE_TYPE_CODE" character varying,
+    "LIMIT_VALUE_QUALIFIER_CODE" character varying,
+    "STAY_VALUE_NMBR" boolean,
+    "LIMIT_TYPE_CODE" character varying,
+    "OPTIONAL_MONITORING_FLAG" boolean,
+    "LIMIT_SAMPLE_TYPE_CODE" character varying,
+    "LIMIT_FREQ_OF_ANALYSIS_CODE" character varying(20),
+    "ALL_MONTHS_LIMIT" character varying,
+    "JAN" boolean,
+    "FEB" boolean,
+    "MAR" boolean,
+    "APR" boolean,
+    "MAY" boolean,
+    "JUN" boolean,
+    "JUL" boolean,
+    "AUG" boolean,
+    "SEP" boolean,
+    "OCT" boolean,
+    "NOV" boolean,
+    "DEC" boolean,
+    "LIMIT_SEASON_ID" boolean
+);
+
+
+ALTER TABLE public."NPDES_LIMITS" OWNER TO echoepa;
 
 --
 -- Name: NPDES_PS_VIOLATIONS; Type: TABLE; Schema: public; Owner: echoepa
@@ -6783,6 +7064,13 @@ GRANT SELECT ON TABLE public."EFF_VIOLATIONS_MVIEW" TO echoepa_public;
 
 
 --
+-- Name: TABLE "EJSCREEN_2020_USPR"; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT ON TABLE public."EJSCREEN_2020_USPR" TO echoepa_public;
+
+
+--
 -- Name: TABLE "EPA_INFORMAL_ENFORCEMENT_ACTIONS"; Type: ACL; Schema: public; Owner: echoepa
 --
 
@@ -6843,6 +7131,20 @@ GRANT SELECT ON TABLE public."Last-Modified" TO echoepa_public;
 --
 
 GRANT SELECT ON TABLE public."NPDES_CS_VIOLATIONS" TO echoepa_public;
+
+
+--
+-- Name: TABLE "NPDES_DMRS_FY2021"; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT ON TABLE public."NPDES_DMRS_FY2021" TO echoepa_public;
+
+
+--
+-- Name: TABLE "NPDES_LIMITS"; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT ON TABLE public."NPDES_LIMITS" TO echoepa_public;
 
 
 --
@@ -7091,20 +7393,6 @@ GRANT SELECT ON TABLE public.geometry_columns TO echoepa_public;
 
 
 --
--- Name: TABLE raster_columns; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.raster_columns TO echoepa_public;
-
-
---
--- Name: TABLE raster_overviews; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.raster_overviews TO echoepa_public;
-
-
---
 -- Name: TABLE spatial_ref_sys; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -7164,7 +7452,6 @@ GRANT SELECT ON TABLE public.wbdhu8 TO echoepa_public;
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: echoepa
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public REVOKE ALL ON TABLES  FROM echoepa;
 ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public GRANT SELECT ON TABLES  TO echoepa_public;
 
 

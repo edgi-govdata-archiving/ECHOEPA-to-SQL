@@ -1,3 +1,4 @@
-db*.csv
+db_a_private.postgres.csv
+db_b_private.postgres.csv
 CSV/*
 zips/*

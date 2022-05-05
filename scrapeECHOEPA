@@ -63,7 +63,8 @@ with open('files.csv', newline='') as csvfile:
 		os.system("./stripNulls %s" %(table))
 		truncate(table)
 		print ("truncated %s"%(table))
-		os.system("./csvImport %s %s" %(table,whichDb))
+		if not os.system("./csvImport %s %s" %(table,whichDb)):
+			os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb)):
 		checkSanity(table)
 	#create views based off of ECHOEPA tables
 	pgm.build(engine)

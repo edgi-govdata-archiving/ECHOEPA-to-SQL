@@ -1,0 +1,2140 @@
+  1. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         115744
+	Smallest value:        1
+	Largest value:         3,603,014,937
+	Sum:                   119,771,028,256,427
+	Mean:                  1,034,792,544.377
+	Median:                112,446.5
+	StDev:                 1,450,464,481.907
+	Most common values:    4,012 (1x)
+	                       3,870 (1x)
+	                       3,871 (1x)
+	                       600,030,304 (1x)
+	                       3,971 (1x)
+
+  2. "ACTIVITY_NAME"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         102672
+	Longest value:         100 characters
+	Most common values:    SYNGENTA CROP PROTECTION, LLC (105x)
+	                       PALMERTON ZINC                                               (52x)
+	                       BASF CORPORATION (42x)
+	                       SYNGENTA CROP PROTECTION LLC (34x)
+	                       AQUAFINE CORPORATION (31x)
+
+  3. "STATE_CODE"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1
+	Most common values:    None (115744x)
+
+  4. "REGION_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         13
+	Longest value:         2 characters
+	Most common values:    06 (20007x)
+	                       02 (14934x)
+	                       03 (14514x)
+	                       04 (14409x)
+	                       05 (13639x)
+
+  5. "FISCAL_YEAR"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         52
+	Smallest value:        1,971
+	Largest value:         2,022
+	Sum:                   231,854,333
+	Mean:                  2,003.165
+	Median:                2,004
+	StDev:                 10.075
+	Most common values:    2,006 (6360x)
+	                       2,000 (5705x)
+	                       2,005 (4429x)
+	                       2,004 (4226x)
+	                       2,008 (3874x)
+
+  6. "CASE_NUMBER"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         115744
+	Longest value:         12 characters
+	Most common values:    02-1990-0398 (1x)
+	                       02-1990-0137 (1x)
+	                       02-1990-0138 (1x)
+	                       03-2007-0043 (1x)
+	                       02-1990-0277 (1x)
+
+  7. "CASE_NAME"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         101592
+	Longest value:         100 characters
+	Most common values:    SYNGENTA CROP PROTECTION, LLC (105x)
+	                       PALMERTON ZINC (52x)
+	                       BASF CORPORATION (50x)
+	                       SYNGENTA CROP PROTECTION LLC (34x)
+	                       AQUAFINE CORPORATION (31x)
+
+  8. "ACTIVITY_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         2
+	Longest value:         3 characters
+	Most common values:    AFR (106960x)
+	                       JDC (8784x)
+
+  9. "ACTIVITY_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         2
+	Longest value:         23 characters
+	Most common values:    Administrative - Formal (106960x)
+	                       Judicial (8784x)
+
+ 10. "ACTIVITY_STATUS_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         16
+	Longest value:         3 characters
+	Most common values:    CLS (86237x)
+	                       FOI (23938x)
+	                       AOI (1937x)
+	                       CNC (1486x)
+	                       FOE (1335x)
+
+ 11. "ACTIVITY_STATUS_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         16
+	Longest value:         36 characters
+	Most common values:    Closed (86237x)
+	                       Final Order Issued (23938x)
+	                       Complaint Filed/AO Issued (1937x)
+	                       Concluded (1486x)
+	                       Final Order Entered (1335x)
+
+ 12. "ACTIVITY_STATUS_DATE"
+
+	Type of data:          Date
+	Contains null values:  False
+	Unique values:         11837
+	Smallest value:        1900-01-01
+	Largest value:         2022-03-03
+	Most common values:    2009-07-01 (1464x)
+	                       2006-07-19 (1213x)
+	                       2001-10-01 (1174x)
+	                       2006-04-17 (711x)
+	                       2006-08-07 (362x)
+
+ 13. "LEAD"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         3 characters
+	Most common values:    EPA (115744x)
+
+ 14. "CASE_STATUS_DATE"
+
+	Type of data:          Date
+	Contains null values:  False
+	Unique values:         11837
+	Smallest value:        1900-01-01
+	Largest value:         2022-03-03
+	Most common values:    2009-07-01 (1464x)
+	                       2006-07-19 (1213x)
+	                       2001-10-01 (1174x)
+	                       2006-04-17 (711x)
+	                       2006-08-07 (362x)
+
+ 15. "DOJ_DOCKET_NMBR"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3348
+	Longest value:         50 characters
+	Most common values:    None (112187x)
+	                       90-5-2-1-2186 (10x)
+	                       90-11-2-108/2 (9x)
+	                       NOT ASSIGNED (9x)
+	                       90-5-1-1-4510 (8x)
+
+ 16. "ENF_OUTCOME_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         31
+	Longest value:         3 characters
+	Most common values:    ECP (50027x)
+	                       EUO (18675x)
+	                       ECN (17770x)
+	                       None (13789x)
+	                       ESA (6271x)
+
+ 17. "ENF_OUTCOME_DESC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         31
+	Longest value:         52 characters
+	Most common values:    Final Order With Penalty (50027x)
+	                       Unilateral Administrative Order Without Adjudication (18675x)
+	                       Final Order No Penalty (17770x)
+	                       None (13789x)
+	                       Source Agrees (6271x)
+
+ 18. "TOTAL_PENALTY_ASSESSED_AMT"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3976
+	Smallest value:        0
+	Largest value:         25,000,000
+	Sum:                   1,557,238,648
+	Mean:                  60,444.771
+	Median:                4,000
+	StDev:                 505,276.208
+	Most common values:    None (89981x)
+	                       0 (3355x)
+	                       1,000 (935x)
+	                       5,000 (904x)
+	                       500 (800x)
+
+ 19. "TOTAL_COST_RECOVERY_AMT"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1298
+	Smallest value:        0
+	Largest value:         184,390,000
+	Sum:                   3,449,291,113
+	Mean:                  520,962.258
+	Median:                0
+	StDev:                 4,431,265.323
+	Most common values:    None (109123x)
+	                       0 (4708x)
+	                       1 (55x)
+	                       100,000 (29x)
+	                       50,000 (29x)
+
+ 20. "TOTAL_COMP_ACTION_AMT"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1231
+	Smallest value:        0
+	Largest value:         999,999,999
+	Sum:                   17,326,299,963
+	Mean:                  1,784,560.713
+	Median:                800
+	StDev:                 24,008,721.995
+	Most common values:    None (106035x)
+	                       0 (1544x)
+	                       500 (803x)
+	                       4,000 (508x)
+	                       1,000 (372x)
+
+ 21. "HQ_DIVISION"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         9
+	Longest value:         3 characters
+	Most common values:    None (64303x)
+	                       WAT (19093x)
+	                       TOX (13394x)
+	                       AIR (6990x)
+	                       CER (5576x)
+
+ 22. "BRANCH"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         433
+	Longest value:         5 characters
+	Most common values:    None (65995x)
+	                       6EN-W (4546x)
+	                       WGL (2475x)
+	                       AWTS (2350x)
+	                       WAT (2317x)
+
+ 23. "VOLUNTARY_SELF_DISCLOSURE_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Most common values:    False (113879x)
+	                       None (977x)
+	                       True (888x)
+
+ 24. "MULTIMEDIA_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Most common values:    None (64284x)
+	                       False (50808x)
+	                       True (652x)
+
+ 25. "ENF_SUMMARY_TEXT"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         82616
+	Longest value:         4,000 characters
+	Most common values:    None (16420x)
+	                       The Animal Feeding Operation (AFO) Air Compliance Agreement is EPAs voluntary consent agreement to minimize emissions from certain AFOs and to ensure those operations comply with the Clean Air Act (CAA), the Comprehensive Environmental Response, Compensation and Liability Act (CERCLA), and the Emergency Planning and Community Right-to-Know Act (EPCRA).  Participating AFOs pay a civil penalty based on size and number of farms to resolve potential past and current liability under the CAA, CERCLA, and EPCRA and contribute to a fund that will cover a two-year, nationwide monitoring study of AFO air emissions. (1188x)
+	                       The Animal Feeding Operation (AFO) Air Compliance Agreement is EPAs voluntary consent agreement to minimize emissions from certain AFOs and to ensure those operations comply with the Clean Air Act (CAA), the Comprehensive Environmental Response, Compensation and Liability Act (CERCLA), and the Emergency Planning and Community Right-to-Know Act (EPCRA).  Participating AFOs pay a civil penalty based on size and number of farms to resolve potential past and current liability under the CAA, CERCLA, and EPCRA and contribute to a fund that will cover a two-year, nationwide monitoring study of AFO air emissions.
+ (709x)
+	                       Failed to comply with the regulations of the Risk Management Plan. (308x)
+	                       The Animal Feeding Operation (AFO) Air Compliance Agreement is EPA's voluntary consent agreement to minimize emissions from certain AFOs and to ensure those operations comply with the Clean Air Act (CAA), the Comprehensive Environmental Response, Compensation and Liability Act (CERCLA), and the Emergency Planning and Community Right-to-Know Act (EPCRA).  Participating AFOs pay a civil penalty based on size and number of farms to resolve potential past and current liability under the CAA, CERCLA, and EPCRA and contribute to a fund that will cover a two-year, nationwide monitoring study of AFO air emissions. (296x)
+
+Row count: 115744
+  1. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         114335
+	Smallest value:        1
+	Largest value:         3,603,014,937
+	Sum:                   180,128,526,912,544
+	Mean:                  1,099,927,498.794
+	Median:                137,732.5
+	StDev:                 1,461,736,907.873
+	Most common values:    1,000,005,392 (656x)
+	                       600,012,625 (643x)
+	                       141,135 (433x)
+	                       1,400,010,482 (323x)
+	                       3,400,254,321 (274x)
+
+  2. "CASE_NUMBER"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         114335
+	Longest value:         12 characters
+	Most common values:    HQ-2008-8002 (656x)
+	                       HQ-2007-6000 (643x)
+	                       HQ-2005-8000 (433x)
+	                       HQ-2009-8001 (323x)
+	                       03-2014-0075 (274x)
+
+  3. "REGISTRY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         94327
+	Smallest value:        110,000,307,757
+	Largest value:         110,071,201,804
+	Sum:                   18,017,312,202,857,043
+	Mean:                  110,019,981,209.894
+	Median:                110,010,753,256
+	StDev:                 20,367,146.733
+	Most common values:    110,009,327,022 (7153x)
+	                       110,000,603,749 (639x)
+	                       110,010,681,707 (630x)
+	                       110,000,423,667 (440x)
+	                       110,022,301,338 (362x)
+
+  4. "FACILITY_NAME"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         94695
+	Longest value:         80 characters
+	Most common values:    WAUCONDA SAND & GRAVEL (7153x)
+	                       PALMERTON ZINC SUPERFUND SITE (396x)
+	                       SYNGENTA CROP PROTECTION (310x)
+	                       CONOCO REFINERY (210x)
+	                       PALMERTON ZINC CORPORATION OF AMERICA (171x)
+
+  5. "LOCATION_ADDRESS"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         93975
+	Longest value:         50 characters
+	Most common values:    BONNER & GARLAND RD (7153x)
+	                       None (1864x)
+	                       8TH ST & DELAWARE AVE (396x)
+	                       10746 INNOVATION RD (220x)
+	                       UNKNOWN (217x)
+
+  6. "CITY"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         14194
+	Longest value:         60 characters
+	Most common values:    WAUCONDA (7158x)
+	                       HOUSTON (1812x)
+	                       None (1479x)
+	                       WASHINGTON (1284x)
+	                       PHILADELPHIA (1048x)
+
+  7. "STATE_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         69
+	Longest value:         2 characters
+	Most common values:    TX (12631x)
+	                       IL (12597x)
+	                       PA (9947x)
+	                       NY (9799x)
+	                       LA (5658x)
+
+  8. "ZIP"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         33875
+	Longest value:         12 characters
+	Most common values:    60084 (7159x)
+	                       None (1693x)
+	                       99734 (878x)
+	                       00000 (657x)
+	                       18071 (634x)
+
+  9. "PRIMARY_SIC_CODE"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1035
+	Smallest value:        17
+	Largest value:         9,999
+	Sum:                   418,303,016
+	Mean:                  4,268.093
+	Median:                4,226
+	StDev:                 2,092.22
+	Most common values:    None (65757x)
+	                       5,211 (7185x)
+	                       4,952 (6991x)
+	                       4,941 (5267x)
+	                       1,311 (2953x)
+
+ 10. "PRIMARY_NAICS_CODE"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         932
+	Smallest value:        111,110
+	Largest value:         999,999
+	Sum:                   24,617,598,444
+	Mean:                  409,999.474
+	Median:                327,310
+	StDev:                 212,721.362
+	Most common values:    None (103721x)
+	                       999,999 (3092x)
+	                       324,110 (1860x)
+	                       221,320 (1682x)
+	                       221,112 (1649x)
+
+Row count: 163764
+  1. "PGM_SYS_ACRNM"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         12
+	Longest value:         8 characters
+	Most common values:    RCRAINFO (1266051x)
+	                       NPDES (824185x)
+	                       SFDW (656885x)
+	                       AIR (260725x)
+	                       EIS (192623x)
+
+  2. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         3352237
+	Longest value:         30 characters
+	Most common values:    7011 (3x)
+	                       CEDRI124132 (3x)
+	                       1012511 (2x)
+	                       1013711 (2x)
+	                       CO0000002 (2x)
+
+  3. "REGISTRY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         2611737
+	Smallest value:        110,000,307,668
+	Largest value:         110,071,218,864
+	Sum:                   369,440,046,602,642,039
+	Mean:                  110,039,214,452.427
+	Median:                110,046,387,227
+	StDev:                 26,870,174.871
+	Most common values:    110,013,125,331 (372x)
+	                       110,070,099,629 (248x)
+	                       110,069,585,942 (245x)
+	                       110,009,825,332 (226x)
+	                       110,070,817,114 (198x)
+
+  4. "PRIMARY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         2688273
+	Longest value:         103 characters
+	Most common values:    CON EDISON (17212x)
+	                       UNKNOWN (12253x)
+	                       None (2625x)
+	                       SUNOCO SERVICE STATION (2578x)
+	                       MI DEPT/TRANSPORTATION (2394x)
+
+  5. "LOCATION_ADDRESS"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         2117771
+	Longest value:         100 characters
+	Most common values:    None (476977x)
+	                       UNKNOWN (89811x)
+	                       NOT AVAILABLE (3960x)
+	                       OFF-SHORE PLATFORM (3809x)
+	                       LAT/LONG_USED (2509x)
+
+  6. "SUPPLEMENTAL_LOCATION"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         135735
+	Longest value:         100 characters
+	Most common values:    None (3114503x)
+	                       YENTNA MINING DISTRICT (1051x)
+	                       WILLOW CREEK MINING DISTRICT (865x)
+	                       NASHVILLE (857x)
+	                       1385 PARK CITY DR (738x)
+
+  7. "CITY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         54569
+	Longest value:         58 characters
+	Most common values:    None (442446x)
+	                       UNKNOWN (53302x)
+	                       NEW YORK (28416x)
+	                       BROOKLYN (21768x)
+	                       LOS ANGELES (20921x)
+
+  8. "COUNTY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4031
+	Longest value:         35 characters
+	Most common values:    None (1259071x)
+	                       LOS ANGELES (110042x)
+	                       ORANGE (60581x)
+	                       SAN DIEGO (39782x)
+	                       SANTA CLARA (27306x)
+
+  9. "FIPS_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         6596
+	Longest value:         5 characters
+	Most common values:    None (1012737x)
+	                       06037 (107822x)
+	                       06059 (45476x)
+	                       06073 (39017x)
+	                       06085 (26887x)
+
+ 10. "STATE_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         84
+	Longest value:         2 characters
+	Most common values:    CA (503895x)
+	                       None (428766x)
+	                       NY (175269x)
+	                       TX (165179x)
+	                       FL (164570x)
+
+ 11. "STATE_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         194
+	Longest value:         29 characters
+	Most common values:    None (998105x)
+	                       CALIFORNIA (478262x)
+	                       NEW YORK (140821x)
+	                       FLORIDA (138943x)
+	                       TEXAS (130679x)
+
+ 12. "COUNTRY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         58
+	Longest value:         24 characters
+	Most common values:    UNITED STATES (1493953x)
+	                       None (1130484x)
+	                       USA (481619x)
+	                       US (230340x)
+	                       UNITED STATES OF AMERICA (17774x)
+
+ 13. "POSTAL_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         310947
+	Longest value:         14 characters
+	Most common values:    None (436297x)
+	                       00000 (104321x)
+	                       70000 (14731x)
+	                       UNKNOWN (8949x)
+	                       58000 (4329x)
+
+Row count: 3357349
+  1. "REGISTRY_ID"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         126771
+	Smallest value:        110,000,307,757
+	Largest value:         110,071,218,784
+	Sum:                   21,084,532,471,191,551
+	Mean:                  110,029,601,782.595
+	Median:                110,028,063,404
+	StDev:                 22,086,923.658
+	Most common values:    None (1152x)
+	                       110,010,681,707 (297x)
+	                       110,010,618,705 (228x)
+	                       110,024,518,510 (202x)
+	                       110,060,333,928 (142x)
+
+  2. "PGM_SYS_ACRNM"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         60
+	Longest value:         17 characters
+	Most common values:    ICIS (159598x)
+	                       RCRAINFO (20851x)
+	                       OIL (4971x)
+	                       RMP (3706x)
+	                       TRIS (903x)
+
+  3. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         145720
+	Longest value:         21 characters
+	Most common values:    5416166 (77x)
+	                       1800008165 (55x)
+	                       6396 (55x)
+	                       1400000781 (54x)
+	                       1800008162 (54x)
+
+  4. "FACILITY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         129885
+	Longest value:         80 characters
+	Most common values:    BANGOR ABATEMENT INC (131x)
+	                       RESIDENCE (114x)
+	                       NE-32-22-10 (89x)
+	                       EVERSOURCE SPILL (84x)
+	                       UNITED PARCEL SERVICE (61x)
+
+  5. "EPA_REGION_CODE"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         11
+	Smallest value:        1
+	Largest value:         10
+	Sum:                   1,030,115
+	Mean:                  5.352
+	Median:                5
+	StDev:                 2.826
+	Most common values:    8 (33313x)
+	                       2 (29546x)
+	                       6 (23114x)
+	                       4 (19681x)
+	                       1 (16333x)
+
+  6. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         192167
+	Smallest value:        74,488
+	Largest value:         3,603,014,909
+	Sum:                   369,390,782,575,784
+	Mean:                  1,916,145,942.876
+	Median:                1,800,109,873.5
+	StDev:                 1,446,419,456.071
+	Most common values:    157,224 (12x)
+	                       141,499 (11x)
+	                       171,752 (11x)
+	                       89,899 (9x)
+	                       99,427 (8x)
+
+  7. "ACTIVITY_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         3 characters
+	Most common values:    INS (192778x)
+
+  8. "ACTIVITY_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         21 characters
+	Most common values:    Inspection/Evaluation (192778x)
+
+  9. "COMP_MONITOR_UID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         192167
+	Longest value:         25 characters
+	Most common values:    03000F36592 (12x)
+	                       03000F37031 (11x)
+	                       03000F48766 (11x)
+	                       01000F8043 (9x)
+	                       06000F12710 (8x)
+
+ 10. "COMP_MONITOR_TYPES"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         317
+	Longest value:         195 characters
+	Most common values:    Evaluation (124051x)
+	                       Lead Paint (10133x)
+	                       AHERA (6913x)
+	                       PCB (3891x)
+	                       On Site Visit (3227x)
+
+ 11. "STATUTE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         8
+	Longest value:         6 characters
+	Most common values:    RCRA (49630x)
+	                       TSCA (39082x)
+	                       SDWA (33020x)
+	                       CWA (28646x)
+	                       CAA (20813x)
+
+ 12. "LAW_SECTION_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         108
+	Longest value:         12 characters
+	Most common values:    1421 (28871x)
+	                       3002 (20262x)
+	                       311 (19131x)
+	                       9005 (18187x)
+	                       1018 (10273x)
+
+ 13. "ACTUAL_BEGIN_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         6604
+	Smallest value:        0201-08-01
+	Largest value:         2022-03-04
+	Most common values:    2021-09-28 (206x)
+	                       2008-06-18 (186x)
+	                       2008-06-17 (174x)
+	                       2010-07-13 (166x)
+	                       2007-08-22 (161x)
+
+ 14. "ACTUAL_END_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5984
+	Smallest value:        1986-07-08
+	Largest value:         2022-03-04
+	Most common values:    None (7242x)
+	                       2021-09-28 (203x)
+	                       2008-06-18 (184x)
+	                       2008-06-17 (172x)
+	                       2007-08-22 (167x)
+
+ 15. "AGENCY"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         3 characters
+	Most common values:    EPA (192778x)
+
+ 16. "COMP_MONITOR_AGENCY_TYPES"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         65
+	Longest value:         61 characters
+	Most common values:    U.S. EPA (164429x)
+	                       State (8411x)
+	                       State - Using Federal Credentials (5656x)
+	                       EPA Contractor (4704x)
+	                       Tribal - Using Federal Credentials (3756x)
+
+Row count: 192778
+  1. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         1165111
+	Smallest value:        20,000,000
+	Largest value:         3,603,014,931
+	Sum:                   3,603,960,134,371,188
+	Mean:                  3,093,233,292.254
+	Median:                3,600,986,012
+	StDev:                 916,937,857.475
+	Most common values:    20,003,836 (1x)
+	                       20,007,260 (1x)
+	                       20,014,180 (1x)
+	                       20,000,218 (1x)
+	                       20,000,224 (1x)
+
+  2. "EXTERNAL_PERMIT_NMBR"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         826269
+	Longest value:         9 characters
+	Most common values:    MNG490003 (15x)
+	                       MNG490069 (13x)
+	                       MNG490001 (13x)
+	                       IA0036153 (12x)
+	                       ALA000107 (12x)
+
+  3. "VERSION_NMBR"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         15
+	Smallest value:        0
+	Largest value:         14
+	Sum:                   546,983
+	Mean:                  0.469
+	Median:                0
+	StDev:                 0.887
+	Most common values:    0 (826257x)
+	                       1 (203082x)
+	                       2 (84712x)
+	                       3 (36332x)
+	                       4 (10843x)
+
+  4. "FACILITY_TYPE_INDICATOR"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4
+	Longest value:         8 characters
+	Most common values:    NON-POTW (1053933x)
+	                       POTW (61781x)
+	                       None (42211x)
+	                       FEDERAL (7186x)
+
+  5. "PERMIT_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         8
+	Longest value:         3 characters
+	Most common values:    GPC (888670x)
+	                       NPD (206488x)
+	                       UFT (39812x)
+	                       SIN (12892x)
+	                       APR (10738x)
+
+  6. "MAJOR_MINOR_STATUS_FLAG"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Longest value:         1 characters
+	Most common values:    N (1083782x)
+	                       None (55082x)
+	                       M (26247x)
+
+  7. "PERMIT_STATUS_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         9
+	Longest value:         3 characters
+	Most common values:    TRM (356954x)
+	                       EFF (310594x)
+	                       EXP (255535x)
+	                       ADC (187540x)
+	                       None (39813x)
+
+  8. "TOTAL_DESIGN_FLOW_NMBR"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4348
+	Smallest value:        0
+	Largest value:         64,000,000
+	Sum:                   691,402,321.13
+	Mean:                  5,213.684
+	Median:                0.03
+	StDev:                 330,115.994
+	Most common values:    None (1032498x)
+	                       0 (31893x)
+	                       0 (4946x)
+	                       0.001 (3397x)
+	                       0 (3172x)
+
+  9. "ACTUAL_AVERAGE_FLOW_NMBR"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         4731
+	Smallest value:        0
+	Largest value:         9,999,999
+	Sum:                   20,545,484.631
+	Mean:                  231.658
+	Median:                0.02
+	StDev:                 38,327.841
+	Most common values:    None (1076422x)
+	                       0 (16909x)
+	                       0.001 (4151x)
+	                       0.5 (1859x)
+	                       0.01 (1695x)
+
+ 10. "STATE_WATER_BODY"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         14461
+	Longest value:         12 characters
+	Most common values:    None (857555x)
+	                       1203 (3217x)
+	                       05020003 (2216x)
+	                       05020002 (2216x)
+	                       11110207 (2125x)
+
+ 11. "STATE_WATER_BODY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         112210
+	Longest value:         50 characters
+	Most common values:    None (717678x)
+	                       South Platte River (5541x)
+	                       Lake of the Ozarks (2029x)
+	                       Cumberland-Lower-Sycamore (Cheatham Lake) (1659x)
+	                       8-20-13 MUDD V1.0 (1617x)
+
+ 12. "PERMIT_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         517957
+	Longest value:         119 characters
+	Most common values:    None (40609x)
+	                       Century Communities, LLC (4244x)
+	                       Taylor Morrison of Georgia, LLC (3997x)
+	                       Kerley Family Homes (2226x)
+	                       Atmos Energy (2223x)
+
+ 13. "AGENCY_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         15
+	Longest value:         3 characters
+	Most common values:    ST6 (1060461x)
+	                       EP6 (63810x)
+	                       OTH (30559x)
+	                       CT6 (7266x)
+	                       OT6 (2218x)
+
+ 14. "ORIGINAL_ISSUE_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         14906
+	Smallest value:        0201-03-28
+	Largest value:         2060-01-01
+	Most common values:    2013-09-23 (74153x)
+	                       None (52343x)
+	                       2018-08-01 (48450x)
+	                       2013-09-24 (20488x)
+	                       2007-12-01 (9911x)
+
+ 15. "ISSUE_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         12734
+	Smallest value:        0201-02-04
+	Largest value:         2022-07-31
+	Most common values:    2013-09-23 (68283x)
+	                       2018-08-01 (61834x)
+	                       None (52403x)
+	                       2013-09-24 (14900x)
+	                       2015-07-01 (8014x)
+
+ 16. "ISSUING_AGENCY"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         813
+	Longest value:         79 characters
+	Most common values:    None (745286x)
+	                       Florida Department of Environmental Protection (53758x)
+	                       State (40784x)
+	                       U.S. EPA (33024x)
+	                       STA (28232x)
+
+ 17. "EFFECTIVE_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         12454
+	Smallest value:        1969-01-01
+	Largest value:         2026-05-17
+	Most common values:    None (52403x)
+	                       2015-07-01 (8980x)
+	                       2021-01-01 (7562x)
+	                       2019-04-01 (7380x)
+	                       2016-01-01 (7097x)
+
+ 18. "EXPIRATION_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         12123
+	Smallest value:        1969-12-31
+	Largest value:         3022-06-30
+	Most common values:    2018-07-31 (86543x)
+	                       2023-07-31 (63301x)
+	                       None (52403x)
+	                       2023-03-04 (28571x)
+	                       2022-02-15 (26399x)
+
+ 19. "RETIREMENT_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5537
+	Smallest value:        1996-10-31
+	Largest value:         2022-03-03
+	Most common values:    None (856021x)
+	                       2020-12-31 (6612x)
+	                       2019-06-30 (4184x)
+	                       2018-02-20 (4177x)
+	                       2017-07-31 (3975x)
+
+ 20. "TERMINATION_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         9283
+	Smallest value:        1970-01-01
+	Largest value:         2022-03-04
+	Most common values:    None (808151x)
+	                       2019-04-01 (5494x)
+	                       2017-04-07 (4862x)
+	                       2012-05-31 (3996x)
+	                       2010-12-25 (3377x)
+
+ 21. "PERMIT_COMP_STATUS_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Most common values:    True (716109x)
+	                       None (353604x)
+	                       False (95398x)
+
+ 22. "DMR_NON_RECEIPT_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3
+	Most common values:    True (1061716x)
+	                       None (55064x)
+	                       False (48331x)
+
+ 23. "RNC_TRACKING_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  False
+	Unique values:         1
+	Most common values:    True (1165111x)
+
+ 24. "MASTER_EXTERNAL_PERMIT_NMBR"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         950
+	Longest value:         9 characters
+	Most common values:    None (276437x)
+	                       GAR100003 (116748x)
+	                       FLR100000 (57957x)
+	                       TXR150000 (41417x)
+	                       GAR100001 (23972x)
+
+ 25. "TMDL_INTERFACE_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         2
+	Most common values:    None (1146530x)
+	                       True (18581x)
+
+ 26. "EDMR_AUTHORIZATION_FLAG"
+
+	Type of data:          Boolean
+	Contains null values:  False
+	Unique values:         2
+	Most common values:    False (1088671x)
+	                       True (76440x)
+
+ 27. "PRETREATMENT_INDICATOR_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         1 characters
+	Most common values:    None (1150626x)
+	                       Y (6200x)
+	                       S (3759x)
+	                       C (3629x)
+	                       E (551x)
+
+ 28. "WBD_HUC12"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         38360
+	Smallest value:        10,100,030,301
+	Largest value:         220,300,000,001
+	Sum:                   50,406,041,072,150,839
+	Mean:                  66,595,025,356.123
+	Median:                50,702,010,601
+	StDev:                 46,256,240,220.744
+	Most common values:    None (408207x)
+	                       120,401,040,401 (2081x)
+	                       30,701,030,602 (1732x)
+	                       30,601,060,104 (1550x)
+	                       31,300,020,301 (1466x)
+
+Row count: 1165111
+  1. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         261025
+	Longest value:         19 characters
+	Most common values:    0100000009003E0010 (1x)
+	                       0100000009003E0011 (1x)
+	                       010000000901110001 (1x)
+	                       01000000E000000001 (1x)
+	                       01000000E000000003 (1x)
+
+  2. "REGISTRY_ID"
+
+	Type of data:          Number
+	Contains null values:  True (excluded from calculations)
+	Unique values:         249111
+	Smallest value:        110,000,307,766
+	Largest value:         110,071,218,784
+	Sum:                   28,685,940,529,772,882
+	Mean:                  110,026,275,529.489
+	Median:                110,018,318,756
+	StDev:                 24,264,726.717
+	Most common values:    None (306x)
+	                       110,037,604,152 (150x)
+	                       110,070,604,305 (84x)
+	                       110,025,328,937 (55x)
+	                       110,038,783,484 (54x)
+
+  3. "FACILITY_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         234539
+	Longest value:         80 characters
+	Most common values:    SANDRIDGE EXPLORATION AND PRODUCTION LLC (226x)
+	                       SHELL (166x)
+	                       CEMEX CONSTRUCTION MATERIALS FLORIDA LLC (158x)
+	                       CITGO (146x)
+	                       BP (144x)
+
+  4. "STREET_ADDRESS"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         235302
+	Longest value:         50 characters
+	Most common values:    PORTABLE SOURCE (1281x)
+	                       NO STREET ADDRESS (1197x)
+	                       PORTABLE (716x)
+	                       10500 SADISCO RD (284x)
+	                       RURAL (253x)
+
+  5. "CITY"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         24751
+	Longest value:         60 characters
+	Most common values:    CHICAGO (3549x)
+	                       BALTIMORE (2003x)
+	                       NEW YORK (1984x)
+	                       DENVER                         (1610x)
+	                       BROOKLYN (1521x)
+
+  6. "COUNTY_NAME"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1869
+	Longest value:         24 characters
+	Most common values:    Undetermined (13451x)
+	                       Weld (10786x)
+	                       Cook (8755x)
+	                       Montgomery (3411x)
+	                       Jefferson (2686x)
+
+  7. "STATE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         55
+	Longest value:         2 characters
+	Most common values:    CO (31146x)
+	                       IL (27632x)
+	                       OK (16077x)
+	                       LA (13646x)
+	                       NY (12584x)
+
+  8. "ZIP_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         58687
+	Longest value:         13 characters
+	Most common values:    00000 (5791x)
+	                       99999 (2641x)
+	                       70000     (1889x)
+	                       70000 (1474x)
+	                       000000000 (1114x)
+
+  9. "EPA_REGION"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         10
+	Smallest value:        1
+	Largest value:         10
+	Sum:                   1,341,679
+	Mean:                  5.14
+	Median:                5
+	StDev:                 2.112
+	Most common values:    5 (47708x)
+	                       6 (46739x)
+	                       8 (36316x)
+	                       3 (33950x)
+	                       4 (30530x)
+
+ 10. "SIC_CODES"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3820
+	Longest value:         34 characters
+	Most common values:    None (51240x)
+	                       1311 (31625x)
+	                       7216 (11273x)
+	                       1321 (11216x)
+	                       5541 (10041x)
+
+ 11. "NAICS_CODES"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         3574
+	Longest value:         62 characters
+	Most common values:    999999 (25724x)
+	                       211111 (15381x)
+	                       812320 (12201x)
+	                       211112 211130 (10413x)
+	                       211111 211130 (7997x)
+
+ 12. "FACILITY_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         13
+	Longest value:         3 characters
+	Most common values:    POF (164420x)
+	                       None (42953x)
+	                       NON (38562x)
+	                       COR (4560x)
+	                       CNG (3571x)
+
+ 13. "AIR_POLLUTANT_CLASS_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         3 characters
+	Most common values:    MIN (188578x)
+	                       SMI (36068x)
+	                       MAJ (19428x)
+	                       UNK (6878x)
+	                       None (6679x)
+
+ 14. "AIR_POLLUTANT_CLASS_DESC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         32 characters
+	Most common values:    Minor Emissions (188578x)
+	                       Synthetic Minor Emissions (36068x)
+	                       Major Emissions (19428x)
+	                       Emissions classification unknown (6878x)
+	                       None (6679x)
+
+ 15. "AIR_OPERATING_STATUS_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         3 characters
+	Most common values:    OPR (181131x)
+	                       CLS (69978x)
+	                       TMP (4405x)
+	                       None (3990x)
+	                       PLN (662x)
+
+ 16. "AIR_OPERATING_STATUS_DESC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         18 characters
+	Most common values:    Operating (181131x)
+	                       Permanently Closed (69978x)
+	                       Temporarily Closed (4405x)
+	                       None (3990x)
+	                       Planned Facility (662x)
+
+ 17. "CURRENT_HPV"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         10
+	Longest value:         23 characters
+	Most common values:    No Violation Identified (258143x)
+	                       Violation w/in 1 Year (1629x)
+	                       Addressed-State (370x)
+	                       Unaddressed-State (369x)
+	                       Unaddressed-Local (132x)
+
+ 18. "LOCAL_CONTROL_REGION_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         63
+	Longest value:         3 characters
+	Most common values:    None (249808x)
+	                       PLK (1778x)
+	                       ACH (1422x)
+	                       COA (1012x)
+	                       SCA (785x)
+
+ 19. "LOCAL_CONTROL_REGION_NAME"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         63
+	Longest value:         67 characters
+	Most common values:    None (249808x)
+	                       Polk County (1778x)
+	                       Allegheny County Health Department (1422x)
+	                       City Of Albuquerque (1012x)
+	                       South Coast Air Quality Management District (Grantee) (785x)
+
+Row count: 261025
+  1. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         143319
+	Longest value:         18 characters
+	Most common values:    VA0000005167000026 (1380x)
+	                       OK0000004007100010 (1375x)
+	                       OK0000004001900001 (1335x)
+	                       TX0000004840100011 (1244x)
+	                       OK0000004014300008 (1186x)
+
+  2. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         1602833
+	Smallest value:        77,745
+	Largest value:         3,603,014,929
+	Sum:                   5,557,651,950,882,627
+	Mean:                  3,467,062,064.723
+	Median:                3,401,957,831
+	StDev:                 94,982,775.204
+	Most common values:    3,600,489,588 (5x)
+	                       3,600,489,591 (5x)
+	                       3,600,489,535 (5x)
+	                       3,600,489,539 (5x)
+	                       3,600,489,543 (5x)
+
+  3. "STATE_EPA_FLAG"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         3
+	Longest value:         1 characters
+	Most common values:    S (1410348x)
+	                       L (144186x)
+	                       E (48452x)
+
+  4. "ACTIVITY_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         3 characters
+	Most common values:    INS (1602986x)
+
+  5. "ACTIVITY_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         21 characters
+	Most common values:    Inspection/Evaluation (1602986x)
+
+  6. "COMP_MONITOR_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         10
+	Longest value:         3 characters
+	Most common values:    FOO (568900x)
+	                       PFF (542154x)
+	                       PCE (344092x)
+	                       POR (88554x)
+	                       POM (34678x)
+
+  7. "COMP_MONITOR_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         10
+	Longest value:         40 characters
+	Most common values:    FCE On-Site (568900x)
+	                       PCE Off-Site (542154x)
+	                       PCE On-Site (344092x)
+	                       PCE On-Site Record/Report Review (88554x)
+	                       PCE On-Site Monitoring/Sampling (34678x)
+
+  8. "ACTUAL_END_DATE"
+
+	Type of data:          Date
+	Contains null values:  False
+	Unique values:         15283
+	Smallest value:        0201-01-11
+	Largest value:         2022-03-04
+	Most common values:    2003-09-30 (2961x)
+	                       2005-09-30 (2557x)
+	                       2004-09-30 (2108x)
+	                       2002-09-30 (1989x)
+	                       2008-09-30 (1702x)
+
+  9. "PROGRAM_CODES"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1135
+	Longest value:         86 characters
+	Most common values:    CAASIP (648856x)
+	                       CAATVP (155574x)
+	                       CAANSPS, CAASIP (119956x)
+	                       CAASIP, CAATVP (112331x)
+	                       CAAMACT, CAASIP (65697x)
+
+Row count: 1602986
+  1. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         33902
+	Longest value:         19 characters
+	Most common values:    CASJV00006029S0037 (478x)
+	                       CABAA00006013A0010 (423x)
+	                       CASJV00006029S1547 (336x)
+	                       CABAA00006013B2758 (298x)
+	                       CASJV00006029S1128 (289x)
+
+  2. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         91490
+	Smallest value:        1,673
+	Largest value:         3,603,014,561
+	Sum:                   369,085,314,551,191
+	Mean:                  3,424,972,528.152
+	Median:                3,400,728,277
+	StDev:                 411,979,180.263
+	Most common values:    3,600,354,879 (13689x)
+	                       3,600,242,739 (87x)
+	                       3,601,157,275 (81x)
+	                       3,601,227,859 (81x)
+	                       3,601,755,508 (81x)
+
+  3. "ENF_IDENTIFIER"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         91490
+	Longest value:         25 characters
+	Most common values:    TX000A300485682003235 (13689x)
+	                       05-2015-5063 (87x)
+	                       TX000A843360802005158 (81x)
+	                       TX000A142610082003228 (81x)
+	                       TX000A334585502003272 (81x)
+
+  4. "ACTIVITY_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         2
+	Longest value:         3 characters
+	Most common values:    AFR (102745x)
+	                       JDC (5018x)
+
+  5. "ACTIVITY_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         2
+	Longest value:         23 characters
+	Most common values:    Administrative - Formal (102745x)
+	                       Judicial (5018x)
+
+  6. "STATE_EPA_FLAG"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         3
+	Longest value:         1 characters
+	Most common values:    S (76425x)
+	                       L (17218x)
+	                       E (14120x)
+
+  7. "ENF_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         43
+	Longest value:         7 characters
+	Most common values:    SCAAAO (91183x)
+	                       113D1 (6004x)
+	                       CIV (4988x)
+	                       113A (4538x)
+	                       113DWD (591x)
+
+  8. "ENF_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         43
+	Longest value:         92 characters
+	Most common values:    Administrative Order (91183x)
+	                       CAA 113D1 Action For Penalty (6004x)
+	                       Civil Judicial Action (4988x)
+	                       CAA 113A Admin Compliance Order (Non-Penalty) (4538x)
+	                       CAA 113D Withdrawn (591x)
+
+  9. "SETTLEMENT_ENTERED_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         10926
+	Smallest value:        1972-10-25
+	Largest value:         2022-03-03
+	Most common values:    2001-10-20 (13827x)
+	                       2006-03-07 (180x)
+	                       2005-12-29 (177x)
+	                       2013-08-16 (130x)
+	                       2005-09-27 (116x)
+
+ 10. "PENALTY_AMOUNT"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         9219
+	Smallest value:        0
+	Largest value:         49,500,000
+	Sum:                   3,489,531,575.62
+	Mean:                  32,381.537
+	Median:                2,602
+	StDev:                 331,818.317
+	Most common values:    0 (30889x)
+	                       2,602 (13573x)
+	                       1,000 (2460x)
+	                       5,000 (2111x)
+	                       2,000 (2104x)
+
+Row count: 107763
+  1. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         32205
+	Longest value:         18 characters
+	Most common values:    CASJV00006029S1128 (5249x)
+	                       CASJV00006029S0088 (3484x)
+	                       CASJV00006029S1547 (2942x)
+	                       CASJV00006029S2234 (2652x)
+	                       CASJV00006019C0311 (2446x)
+
+  2. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         510190
+	Smallest value:        109,684
+	Largest value:         3,603,014,856
+	Sum:                   1,781,159,618,924,947
+	Mean:                  3,491,169,209.363
+	Median:                3,402,509,922.5
+	StDev:                 118,413,875.674
+	Most common values:    123,027 (1x)
+	                       600,024,996 (1x)
+	                       600,024,945 (1x)
+	                       600,035,898 (1x)
+	                       600,066,226 (1x)
+
+  3. "COMP_MONITOR_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         3 characters
+	Most common values:    CST (510190x)
+
+  4. "COMP_MONITOR_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         10 characters
+	Most common values:    Stack Test (510190x)
+
+  5. "STATE_EPA_FLAG"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         3
+	Longest value:         1 characters
+	Most common values:    S (385442x)
+	                       L (121286x)
+	                       E (3462x)
+
+  6. "ACTUAL_END_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         12966
+	Smallest value:        0201-07-24
+	Largest value:         2022-03-01
+	Most common values:    2021-06-10 (963x)
+	                       2021-06-08 (944x)
+	                       2020-06-11 (933x)
+	                       2020-10-06 (928x)
+	                       2020-06-09 (719x)
+
+  7. "POLLUTANT_CODES"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         295
+	Longest value:         70 characters
+	Most common values:    None (182072x)
+	                       NITROGEN OXIDES NO2 (61437x)
+	                       Carbon monoxide (54390x)
+	                       TOTAL PARTICULATE MATTER (41337x)
+	                       VOLATILE ORGANIC COMPOUNDS (VOCS) (37302x)
+
+  8. "POLLUTANT_DESCS"
+
+	Type of data:          Boolean
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1
+	Most common values:    None (510190x)
+
+  9. "AIR_STACK_TEST_STATUS_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5
+	Longest value:         3 characters
+	Most common values:    PSS (442347x)
+	                       None (45466x)
+	                       FAI (16557x)
+	                       PEN (5718x)
+	                       INC (102x)
+
+ 10. "AIR_STACK_TEST_STATUS_DESC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5
+	Longest value:         10 characters
+	Most common values:    Pass (442347x)
+	                       None (45466x)
+	                       Fail (16557x)
+	                       Pending (5718x)
+	                       Incomplete (102x)
+
+Row count: 510190
+  1. "PGM_SYS_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         29816
+	Longest value:         18 characters
+	Most common values:    CASJV00006029S0037 (411x)
+	                       CABAA00006013A0010 (371x)
+	                       CASJV00006029S1547 (281x)
+	                       CASJV00006029S0033 (272x)
+	                       CASJV00006029S1128 (264x)
+
+  2. "ACTIVITY_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         79375
+	Smallest value:        3,400,301,985
+	Largest value:         3,603,014,829
+	Sum:                   276,937,917,944,830
+	Mean:                  3,488,981,643.399
+	Median:                3,400,448,900
+	StDev:                 99,900,621.832
+	Most common values:    3,400,309,508 (1x)
+	                       3,400,362,727 (1x)
+	                       3,400,362,730 (1x)
+	                       3,400,362,735 (1x)
+	                       3,400,362,739 (1x)
+
+  3. "AGENCY_TYPE_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         8
+	Longest value:         16 characters
+	Most common values:    State (59821x)
+	                       Local (14742x)
+	                       U.S. EPA (4800x)
+	                       Tribal (7x)
+	                       County (2x)
+
+  4. "STATE_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         55
+	Longest value:         2 characters
+	Most common values:    CA (11612x)
+	                       PA (6855x)
+	                       TX (5821x)
+	                       None (4796x)
+	                       MI (4082x)
+
+  5. "AIR_LCON_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         57
+	Longest value:         3 characters
+	Most common values:    None (64731x)
+	                       SJV (6384x)
+	                       BAA (2106x)
+	                       SCA (1807x)
+	                       PAM (766x)
+
+  6. "COMP_DETERMINATION_UID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         79375
+	Longest value:         25 characters
+	Most common values:    DE000A0000100010009000003 (1x)
+	                       AR000A0000051390003700116 (1x)
+	                       AR000A0000051390003700124 (1x)
+	                       AR000A0000051390003700134 (1x)
+	                       AR000A0000051390003700161 (1x)
+
+  7. "ENF_RESPONSE_POLICY_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         2
+	Longest value:         3 characters
+	Most common values:    HPV (40167x)
+	                       FRV (39208x)
+
+  8. "PROGRAM_CODES"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         243
+	Longest value:         51 characters
+	Most common values:    CAASIP (30442x)
+	                       CAATVP (22745x)
+	                       CAASIP CAATVP (5399x)
+	                       CAAMACT (2997x)
+	                       CAANSPS (2627x)
+
+  9. "PROGRAM_DESCS"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         243
+	Longest value:         338 characters
+	Most common values:    State Implementation Plan for National Primary and Secondary Ambient Air Quality Standards (30442x)
+	                       Title V Permits (22745x)
+	                       State Implementation Plan for National Primary and Secondary Ambient Air Quality Standards Title V Permits (5399x)
+	                       MACT Standards (40 CFR Part 63) (2997x)
+	                       New Source Performance Standards (2627x)
+
+ 10. "POLLUTANT_CODES"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1519
+	Longest value:         181 characters
+	Most common values:    300000329 (30852x)
+	                       None (8732x)
+	                       300000243 (7954x)
+	                       300000322 (3881x)
+	                       300000328 (2678x)
+
+ 11. "POLLUTANT_DESCS"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         1513
+	Longest value:         320 characters
+	Most common values:    FACIL (30852x)
+	                       None (8732x)
+	                       VOLATILE ORGANIC COMPOUNDS (VOCS) (7954x)
+	                       TOTAL PARTICULATE MATTER (3881x)
+	                       ADMIN (2678x)
+
+ 12. "EARLIEST_FRV_DETERM_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         6396
+	Smallest value:        0218-11-05
+	Largest value:         2022-03-04
+	Most common values:    None (38451x)
+	                       2016-06-17 (291x)
+	                       2018-04-19 (179x)
+	                       2000-01-28 (118x)
+	                       2021-07-30 (88x)
+
+ 13. "HPV_DAYZERO_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         9589
+	Smallest value:        0218-11-05
+	Largest value:         2022-05-01
+	Most common values:    None (39241x)
+	                       2000-01-28 (125x)
+	                       1993-10-30 (64x)
+	                       2002-06-17 (62x)
+	                       2001-07-03 (61x)
+
+ 14. "HPV_RESOLVED_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         8140
+	Smallest value:        0217-02-15
+	Largest value:         2022-03-04
+	Most common values:    None (23424x)
+	                       2002-04-26 (159x)
+	                       2002-07-10 (89x)
+	                       2016-05-12 (74x)
+	                       2003-02-21 (69x)
+
+Row count: 79375
+  1. "NPDES_ID"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         8767
+	Longest value:         9 characters
+	Most common values:    OK0028487 (211x)
+	                       LA0039802 (190x)
+	                       LA0033430 (188x)
+	                       LA0070602 (177x)
+	                       LA0006289 (175x)
+
+  2. "NPDES_VIOLATION_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         61193
+	Smallest value:        20,001,350
+	Largest value:         3,664,972,244
+	Sum:                   162,729,333,793,319
+	Mean:                  2,659,280,208.411
+	Median:                3,403,792,981
+	StDev:                 1,221,571,715.712
+	Most common values:    20,002,917 (1x)
+	                       20,003,331 (1x)
+	                       20,002,724 (1x)
+	                       20,002,145 (1x)
+	                       20,001,733 (1x)
+
+  3. "VIOLATION_TYPE_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         1
+	Longest value:         1 characters
+	Most common values:    C (61193x)
+
+  4. "COMP_SCHEDULE_EVENT_ID"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         30364
+	Smallest value:        32,831
+	Largest value:         3,600,076,848
+	Sum:                   153,384,246,054,608
+	Mean:                  2,506,565,228.941
+	Median:                3,200,012,822
+	StDev:                 1,235,439,880.012
+	Most common values:    1,600,001,678 (4x)
+	                       3,400,007,479 (4x)
+	                       1,600,000,236 (4x)
+	                       3,600,029,211 (4x)
+	                       1,600,001,879 (4x)
+
+  5. "COMP_SCHEDULE_NMBR"
+
+	Type of data:          Number
+	Contains null values:  False
+	Unique values:         256
+	Smallest value:        1
+	Largest value:         999
+	Sum:                   749,095
+	Mean:                  12.242
+	Median:                1
+	StDev:                 53.001
+	Most common values:    1 (50869x)
+	                       2 (2670x)
+	                       3 (1485x)
+	                       4 (741x)
+	                       153 (667x)
+
+  6. "VIOLATION_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         4
+	Longest value:         3 characters
+	Most common values:    C20 (24897x)
+	                       C40 (17933x)
+	                       C10 (9900x)
+	                       C30 (8463x)
+
+  7. "VIOLATION_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         4
+	Longest value:         42 characters
+	Most common values:    Schedule Event achieved late but reported (24897x)
+	                       Schedule Event unachieved and not reported (17933x)
+	                       Schedule Event reported late (9900x)
+	                       Schedule Event unachieved but reported (8463x)
+
+  8. "SCHEDULE_EVENT_CODE"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         332
+	Longest value:         5 characters
+	Most common values:    CS010 (9167x)
+	                       CS032 (7227x)
+	                       CS017 (6849x)
+	                       CS031 (5634x)
+	                       CS011 (4356x)
+
+  9. "SCHEDULE_EVENT_DESC"
+
+	Type of data:          Text
+	Contains null values:  False
+	Unique values:         330
+	Longest value:         71 characters
+	Most common values:    Status/Progress Report (9167x)
+	                       Other (See Comments) (7227x)
+	                       Achieve Final Compliance With Emission or Discharge Limits (6849x)
+	                       Achieve Final Compliance With All Obligations Under This order (5634x)
+	                       Plan, Report, or Scope of Work - Category 2 (4356x)
+
+ 10. "SCHEDULE_DATE"
+
+	Type of data:          Date
+	Contains null values:  False
+	Unique values:         7435
+	Smallest value:        1973-09-09
+	Largest value:         2022-02-17
+	Most common values:    2020-09-09 (408x)
+	                       2004-01-31 (301x)
+	                       1988-07-01 (219x)
+	                       2016-12-31 (151x)
+	                       2013-12-31 (143x)
+
+ 11. "ACTUAL_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         8127
+	Smallest value:        0218-04-20
+	Largest value:         2022-02-22
+	Most common values:    None (5095x)
+	                       2020-12-09 (418x)
+	                       2004-04-26 (268x)
+	                       2020-10-01 (171x)
+	                       2020-06-30 (125x)
+
+ 12. "RNC_DETECTION_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         1 characters
+	Most common values:    None (37601x)
+	                       S (12274x)
+	                       N (11312x)
+	                       D (2x)
+	                       W (2x)
+
+ 13. "RNC_DETECTION_DESC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7
+	Longest value:         34 characters
+	Most common values:    None (37601x)
+	                       Schedule Violation (12274x)
+	                       Non-Receipt of DMR/Schedule Report (11312x)
+	                       Manual Other (2x)
+	                       Manual 2E - Deficient Report (2x)
+
+ 14. "RNC_DETECTION_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5954
+	Smallest value:        1973-12-08
+	Largest value:         2022-03-04
+	Most common values:    None (37601x)
+	                       2020-10-10 (206x)
+	                       2004-03-01 (136x)
+	                       1988-09-29 (82x)
+	                       2017-04-01 (49x)
+
+ 15. "RNC_RESOLUTION_CODE"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         11
+	Longest value:         1 characters
+	Most common values:    None (37601x)
+	                       5 (13331x)
+	                       4 (4080x)
+	                       1 (2885x)
+	                       9 (1097x)
+
+ 16. "RNC_RESOLUTION_DESC"
+
+	Type of data:          Text
+	Contains null values:  True (excluded from calculations)
+	Unique values:         11
+	Longest value:         80 characters
+	Most common values:    None (37601x)
+	                       RE - Resolved RP by NPDES Closure of Enf. Action Final Order with Comp. Schedule (13331x)
+	                       RP - In Compliance with Formal Enforcement Action Final Order Requirement (4080x)
+	                       NC - Unresolved RNC (2885x)
+	                       RE - Manual by Back into Compliance/Administratively Resolved (1097x)
+
+ 17. "RNC_RESOLUTION_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         5437
+	Smallest value:        1977-11-18
+	Largest value:         2022-03-04
+	Most common values:    None (37601x)
+	                       2004-04-26 (133x)
+	                       2020-12-23 (104x)
+	                       2020-12-09 (104x)
+	                       1990-08-30 (94x)
+
+ 18. "REPORT_RECEIVED_DATE"
+
+	Type of data:          Date
+	Contains null values:  True (excluded from calculations)
+	Unique values:         7952
+	Smallest value:        1977-02-25
+	Largest value:         2022-02-22
+	Most common values:    None (4847x)
+	                       2020-12-23 (435x)
+	                       2004-04-26 (270x)
+	                       2020-10-01 (165x)
+	                       2020-06-30 (134x)
+
+Row count: 61193
