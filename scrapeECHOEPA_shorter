@@ -1,0 +1,97 @@
+#!/usr/bin/env python3 
+#Imports
+import csv
+import csvkit
+import os 
+import sys
+import subprocess
+from datetime import datetime
+import glob
+import db_connect
+import EXP_PGM as pgm #script for creating views based on raw ECHOEPA data
+import viewsToTable as mview #script which creates materialized views of view 
+from sqlalchemy import create_engine
+
+#Set paths
+os.chdir(os.path.dirname(sys.argv[0]))
+
+#Connect to DB
+engine,whichDb= db_connect.connect()
+
+# Truncate
+def truncate(table):
+	print ("truncating %s"%(table))
+	try:
+		engine.execute('truncate "%s"' %(table))
+	except Exception as e:
+		print (sys.exc_info()[0])
+		print (e.__class__.__name__)
+		sys.exit("Exit") 
+
+#used to compare number of rows in download csv to sql count(*)
+def updateLastModified(table):
+	file=open("CSV/%s.csv" %table)
+	reader=csv.reader(file)
+	csv_count=len(list(reader))-1
+	sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
+	engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
+	print("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
+
+#commented out to run maually for now
+#os.system("./wgetGSheet")
+
+#Open list of files to scrape and add
+with open('files.csv', newline='') as csvfile:
+	reader = csv.DictReader(csvfile)
+	uniqueZips={}
+	for row in reader:
+			table=row['CSV FILE']
+			location=row['Location']
+			url=row['URL']
+			if location not in uniqueZips.keys():
+				uniqueZips[location] = row
+				if not os.path.isfile('zips/%s' %(location)):
+					modified=""
+					while(modified==""):
+						print("Getting %s" %(url))
+						modified = subprocess.check_output("./wgetEPA %s" %(url), shell=True).decode("utf-8").strip().splitlines()[0]
+					results = engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
+					if results.rowcount == 0:
+						results = engine.execute("insert into \"Last-Modified\" (\"modified\", \"zip\") values ('%s', '%s')" %(modified,location))
+			if ".csv" in url.lower():
+				os.rename("zips/"+location, "CSV/"+location) #move file
+			elif ".zip" in url.lower():
+				os.system("./unzipEPA %s" %(location)) #Unzip
+	
+			try:
+				test = engine.execute("select 'public.\"%s\"'::regclass" %(table))
+			except:
+				print("no schema yet exists")
+				t = subprocess.check_output("./createTable %s" %(table), shell=True).decode("utf-8").strip()
+				#create the table
+				engine.execute(t)
+			print("strip nulls")
+			os.system("./stripNulls %s" %(table)) #some csvs failed to import with nulls. this also cuts the CSV (head command)
+			truncate(table) # truncate deletes existing rows in a table
+			print ("truncated %s"%(table))
+			os.system("./csvImport %s %s" %(table,whichDb))
+			#os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb))
+			updateLastModified(table)
+
+	#Create views based off of ECHOEPA tables
+print("creating views")
+pgm.build(engine)
+print("creating materialized views")
+mview.build(engine) #materialized views
+engine.execute("analyze");
+
+#Clear up files
+for csv in glob.glob("./CSV/*.csv"):
+	os.remove(csv)		
+for zip in glob.glob("./zips/*.zip"):
+	os.remove(zip)
+
+#Switch DB
+db_connect.change_db()
+#Stony Brook Specific way to update remote currentDBIndex
+os.system("./toggleIndex")

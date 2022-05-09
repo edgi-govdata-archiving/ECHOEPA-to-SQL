@@ -22,5 +22,5 @@ with open('files.csv', newline='') as csvfile:
 		echo_csv=row['CSV FILE']
 		output = subprocess.check_output(["csvsql","-i", "mysql","-y","20000", "CSV/%s.csv" %(echo_csv)])
 		for column in getDataTypes(output):
-			print('"%s","%s","%s"\n'%(echo_csv,column['columnName'],column['dataType']))
+			print('"%s","%s","%s"'%(echo_csv,column['columnName'],column['dataType']))
 		
