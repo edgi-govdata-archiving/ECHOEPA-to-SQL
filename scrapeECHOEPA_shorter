@@ -74,7 +74,7 @@ with open('files.csv', newline='') as csvfile:
 			os.system("./stripNulls %s" %(table)) #some csvs failed to import with nulls. this also cuts the CSV (head command)
 			truncate(table) # truncate deletes existing rows in a table
 			print ("truncated %s"%(table))
-			process = subprocess.Popen(["./csvImport",sys.argv[1],sys.argv[2]], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			process = subprocess.Popen(["./csvImport",table,whichDb], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 			out, err = process.communicate()
 			#os.system("./csvImport %s %s" %(table,whichDb))
 			if err:
