@@ -1,4 +1,9 @@
 CSV FILE,Location,URL,META_URL,TYPE,Column(s) to index,EEW currently using (1/1/2022),Current Notebooks,How we refer to it,Proposed Notebooks,Proposed Products,Description/Significance,Notes/Questions,EPA/State
+CASE_ENFORCEMENTS,case_downloads.zip,https://echo.epa.gov/files/echodownloads/case_downloads.zip,https://echo.epa.gov/tools/data-downloads/icis-fec-download-summary,Attribute,,Y,None?,,,,,,
+CASE_FACILITIES,case_downloads.zip,https://echo.epa.gov/files/echodownloads/case_downloads.zip,https://echo.epa.gov/tools/data-downloads/icis-fec-download-summary,Attribute,,Y,None,,,,,,
+ECHO_EXPORTER,echo_exporter.zip,https://echo.epa.gov/files/echodownloads/echo_exporter.zip,,Attribute,,Y,All,ECHO_EXPORTER,,,Context and summary info for all facilities,,
+FRS_PROGRAM_LINKS,frs_downloads.zip,https://echo.epa.gov/files/echodownloads/frs_downloads.zip,https://echo.epa.gov/tools/data-downloads/frs-download-summary,Attribute,,Y,None,,,,,,
+ICIS_FEC_EPA_INSPECTIONS,case_downloads.zip,https://echo.epa.gov/files/echodownloads/case_downloads.zip,https://echo.epa.gov/tools/data-downloads/icis-fec-download-summary,Attribute,,Y,None?,,,,Federal level inspections only. ,Difference from other inspections files?,
 ICIS_PERMITS,npdes_downloads.zip,https://echo.epa.gov/files/echodownloads/npdes_downloads.zip,https://echo.epa.gov/tools/data-downloads/icis-npdes-download-summary,Attribute,,N,None,,,,,,
 ICIS-AIR_FACILITIES,ICIS-AIR_downloads.zip,https://echo.epa.gov/files/echodownloads/ICIS-AIR_downloads.zip,https://echo.epa.gov/tools/data-downloads/icis-air-download-summary,Attribute,,Y,None,,,,Just a list of facilities?,,
 ICIS-AIR_FCES_PCES,ICIS-AIR_downloads.zip,https://echo.epa.gov/files/echodownloads/ICIS-AIR_downloads.zip,https://echo.epa.gov/tools/data-downloads/icis-air-download-summary,Attribute,,Y,All,CAA Inspections,,,State/Federal inspections under the CAA,,
