@@ -1,2 +1,2 @@
 #!/bin/bash
-unzip -o zips/$1 -d ./CSV
+unzip -o zips/$1 $2 -d ./CSV
