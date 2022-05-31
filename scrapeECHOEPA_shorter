@@ -37,7 +37,7 @@ def updateLastModified(table):
 	sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
 	engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
 	print("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
-
+	file.close()
 #commented out to run maually for now
 #os.system("./wgetGSheet")
 
