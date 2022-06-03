@@ -30,12 +30,15 @@ def truncate(table):
 		sys.exit("Exit") 
 
 #used to compare number of rows in download csv to sql count(*)
-def updateLastModified(table):
+def updateLastModified(table,zip):
 	file=open("CSV/%s.csv" %table)
 	reader=csv.reader(file)
 	csv_count=len(list(reader))-1
-	sql_count=list(engine.execute('select count(*) from "%s"' %table).fetchone())[0]
-	engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
+	result= engine.execute('select count(*) from "%s"' %table)
+	sql_count=list(result.fetchone())[0]
+	results=engine.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
+	#if results.rowcount == 0:
+        #	results = engine.execute('insert into "Last-Modified" ("name","modified", "zip","csv_count", "sql_count") values (%s,%s,%s,%s,%s)' %(table,modified,zip,csv_count,sql_count))
 	print("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ));
 	file.close()
 #commented out to run maually for now
@@ -47,6 +50,7 @@ with open('files.csv', newline='') as csvfile:
 	uniqueZips={}
 	for row in reader:
 			engine,whichDb= db_connect.connect()
+			conn= engine.connect()
 			table=row['CSV FILE']
 			location=row['Location']
 			url=row['URL']
@@ -57,9 +61,9 @@ with open('files.csv', newline='') as csvfile:
 					while(modified==""):
 						print("Getting %s" %(url))
 						modified = subprocess.check_output("./wgetEPA %s" %(url), shell=True).decode("utf-8").strip().splitlines()[0]
-					results = engine.execute("update \"Last-Modified\" set \"modified\"='%s' where \"zip\" = '%s'" %(modified,location))
-					if results.rowcount == 0:
-						results = engine.execute("insert into \"Last-Modified\" (\"modified\", \"zip\") values ('%s', '%s')" %(modified,location))
+			results = engine.execute('update "Last-Modified" set "modified"=\'%s\' where "zip" = \'%s\' and name=\'%s\'' %(modified,location,table))
+			if results.rowcount == 0:
+				results = engine.execute('insert into "Last-Modified" ("name","modified", "zip") values (\'%s\',\'%s\', \'%s\')' %(table,modified,location))
 			if ".csv" in url.lower():
 				os.rename("zips/"+location, "CSV/"+location) #move file
 			elif ".zip" in url.lower():
@@ -84,7 +88,8 @@ with open('files.csv', newline='') as csvfile:
 			if err:
 				os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb))
 			'''
-			updateLastModified(table)
+			updateLastModified(table,location)
+			conn.close()
 
 	#Create views based off of ECHOEPA tables
 print("creating views")
