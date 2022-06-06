@@ -6,8 +6,8 @@ currentDBIndex=5
 def connect():
     global currentDBIndex
     dbPostfixes=['a','b']
-    #dbType='postgresql+pg8000'
-    dbType='postgresql'
+    dbType='postgresql+pg8000'
+    #dbType='postgresql'
     with open('currentDBIndex') as x: currentDBIndex = x.read()
     currentDBIndex=1-int(currentDBIndex)
     db='db_%s_private.csv' %dbPostfixes[currentDBIndex]
