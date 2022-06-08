@@ -35,6 +35,7 @@ def updateLastModified(table,zip):
         file=open("CSV/%s.csv" %table)
         reader=csv.reader(file)
         csv_count=len(list(reader))-1
+        file.close()
         with engine.connect() as connection:
             result= connection.execute('select count(*) from "%s"' %table)
             sql_count=list(result.fetchone())[0]
@@ -53,8 +54,6 @@ with open('files.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         uniqueZips={}
         for row in reader:
-                        engine,whichDb= db_connect.connect()
-                        conn= engine.connect()
                         table=row['CSV FILE']
                         location=row['Location']
                         url=row['URL']
@@ -97,7 +96,6 @@ with open('files.csv', newline='') as csvfile:
                                 os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb))
                         '''
                         updateLastModified(table,location)
-                        conn.close()
 
         #Create views based off of ECHOEPA tables
 print("creating views")
