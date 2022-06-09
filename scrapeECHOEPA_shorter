@@ -32,16 +32,15 @@ def truncate(table):
 
 #used to compare number of rows in download csv to sql count(*)
 def updateLastModified(table,zip):
-        file=open("CSV/%s.csv" %table)
-        reader=csv.reader(file)
-        csv_count=len(list(reader))-1
-        file.close()
-        with engine.connect() as connection:
-            result= connection.execute('select count(*) from "%s"' %table)
-            sql_count=list(result.fetchone())[0]
-        with engine.connect() as connection:
-            results=connection.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ))
-
+    file=open("CSV/%s.csv" %table)
+    reader=csv.reader(file)
+    csv_count=len(list(reader))-1
+    file.close()
+    with engine.connect() as connection:
+        result= connection.execute('select count(*) from "%s"' %table)
+        sql_count=list(result.fetchone())[0]
+    with engine.connect() as connection:
+        results=connection.execute("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ))
         #if results.rowcount == 0:
         #       results = engine.execute('insert into "Last-Modified" ("name","modified", "zip","csv_count", "sql_count") values (%s,%s,%s,%s,%s)' %(table,modified,zip,csv_count,sql_count))
         print("update \"Last-Modified\" set \"csv_count\"=%s,\"sql_count\"=%s where \"name\"='%s'" %(csv_count,sql_count,table ))
@@ -51,51 +50,52 @@ def updateLastModified(table,zip):
 
 #Open list of files to scrape and add
 with open('files.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        uniqueZips={}
-        for row in reader:
-                        table=row['CSV FILE']
-                        location=row['Location']
-                        url=row['URL']
-                        if location not in uniqueZips.keys():
-                                uniqueZips[location] = row
-                                if not os.path.isfile('zips/%s' %(location)):
-                                        modified=""
-                                        while(modified==""):
-                                                print("Getting %s" %(url))
-                                                modified = subprocess.check_output("./wgetEPA %s" %(url), shell=True).decode("utf-8").strip().splitlines()[0]
-                        with engine.connect() as connection:
-                            results = connection.execute('update "Last-Modified" set "modified"=\'%s\' where "zip" = \'%s\' and name=\'%s\'' %(modified,location,table))
-                        if results.rowcount == 0:
-                            with engine.connect() as connection:
-                                results = connection.execute('insert into "Last-Modified" ("name","modified", "zip") values (\'%s\',\'%s\', \'%s\')' %(table,modified,location))
-                        if ".csv" in url.lower():
+    reader = csv.DictReader(csvfile)
+    uniqueZips={}
+    for row in reader:
+        table=row['CSV FILE']
+        location=row['Location']
+        url=row['URL']
+        if location not in uniqueZips.keys():
+            uniqueZips[location] = {"row":row}
+            if not os.path.isfile('zips/%s' %(location)):
+                modified=""
+                while(modified==""):
+                    print("Getting %s" %(url))
+                    modified = subprocess.check_output("./wgetEPA %s" %(url), shell=True).decode("utf-8").strip().splitlines()[0]
+                    uniqueZips[location]["modified"]=modified 
+                with engine.connect() as connection:
+                    results = connection.execute('update "Last-Modified" set "modified"=\'%s\' where "zip" = \'%s\' and name=\'%s\'' %(uniqueZips[location]["modified"],location,table))
+                if results.rowcount == 0:
+                    with engine.connect() as connection:
+                        results = connection.execute('insert into "Last-Modified" ("name","modified", "zip") values (\'%s\',\'%s\', \'%s\')' %(table,uniqueZips[location]["modified"],location))
+                    if ".csv" in url.lower():
                                 os.rename("zips/"+location, "CSV/"+location) #move file
-                        elif ".zip" in url.lower():
+                    elif ".zip" in url.lower():
                                 os.system("./unzipEPA %s %s.csv" %(location,table)) #Unzip
         
-                        try:
-                            with engine.connect() as connection:
-                                test = connection.execute("select 'public.\"%s\"'::regclass" %(table))
-                        except:
-                            print("no schema yet exists")
-                            t = subprocess.check_output("./createTable %s" %(table), shell=True).decode("utf-8").strip()
+                    try:
+                        with engine.connect() as connection:
+                            test = connection.execute("select 'public.\"%s\"'::regclass" %(table))
+                    except:
+                        print("no schema yet exists")
+                        t = subprocess.check_output("./createTable %s" %(table), shell=True).decode("utf-8").strip()
                                 #create the table
-                            with engine.connect() as connection:
-                                connection.execute(t)
+                        with engine.connect() as connection:
+                            connection.execute(t)
                         #print("strip nulls")
-                        os.system("./stripNulls %s" %(table)) #some csvs failed to import with nulls. this also cuts the CSV (head command)
-                        truncate(table) # truncate deletes existing rows in a table
-                        print ("truncated %s"%(table))
+                    os.system("./stripNulls %s" %(table)) #some csvs failed to import with nulls. this also cuts the CSV (head command)
+                    truncate(table) # truncate deletes existing rows in a table
+                    print ("truncated %s"%(table))
                         #process = subprocess.Popen(["./csvImport",table,whichDb], stdout=subprocess.PIPE, preexec_fn=os.setsid, stderr=subprocess.PIPE)
                         #out, err = process.communicate()
                         #os.killpg(os.getpgid(process.pid), signal.SIGTERM) 
-                        os.system("./csvImport %s %s" %(table,whichDb))
-                        '''
-                        if err:
+                    os.system("./csvImport %s %s" %(table,whichDb))
+                    '''
+                     if err:
                                 os.system("./tools/csvsqlEPACreate_pg %s %s" %(table,whichDb))
-                        '''
-                        updateLastModified(table,location)
+                    '''
+                    updateLastModified(table,location)
 
         #Create views based off of ECHOEPA tables
 print("creating views")
