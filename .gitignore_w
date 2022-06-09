@@ -1,8 +1,0 @@
-<<<<<<< HEAD
-db_a_private.postgres.csv
-db_b_private.postgres.csv
-=======
-*postgres.csv
->>>>>>> 000a8eff103cd4ad728f65862a4d925f871054cb
-CSV/*
-zips/*
