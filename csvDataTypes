@@ -13,7 +13,23 @@ def getDataTypes(sql):
 		if re.match('^CHECK',i):
 		 	continue	
 		m=re.search(r'`([^`]*)` (.*), $',i)
-		types.append({"columnName":m.group(1),"dataType":m.group(2)})
+		# Process the results a bit
+		d = m.group(2)
+		dtype = length = None
+		## remove any not null
+		if "NOT NULL" in d:
+			d = d.strip("NOT NULL")
+		# get length out of ()
+		if "(" in d and ")" in d:
+			head, sep, tail = d.partition("(")
+			dtype = head
+			length = tail
+			if ")" in length:
+				length = length.strip(")")
+		else:
+			dtype = d
+		print(m.group(1), dtype, length)
+		types.append({"columnName":m.group(1),"dataType":dtype, "length": length}) #m.group(2)
 	return types
 
 with open('files.csv', newline='') as csvfile:
@@ -22,5 +38,10 @@ with open('files.csv', newline='') as csvfile:
 		echo_csv=row['CSV FILE']
 		output = subprocess.check_output(["csvsql","-i", "mysql","-y","20000", "CSV/%s.csv" %(echo_csv)])
 		for column in getDataTypes(output):
-			print('"%s","%s","%s"'%(echo_csv,column['columnName'],column['dataType']))
-		
+			f = open('output.csv', 'a', newline='')
+			writer = csv.writer(f)
+			writer.writerow([echo_csv,column['columnName'],column['dataType'], column['length']])
+			f.close()
+			#print('"%s","%s","%s"'%(echo_csv,column['columnName'],column['dataType']))
+
+
