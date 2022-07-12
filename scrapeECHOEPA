@@ -11,6 +11,7 @@ import glob
 import db_connect
 import EXP_PGM as pgm #script for creating views based on raw ECHOEPA data
 import viewsToTable as mview #script which creates materialized views of view 
+import re
 from sqlalchemy import create_engine
 
 #Set paths
@@ -34,7 +35,7 @@ def truncate(table):
 def updateLastModified(table,zip):
         file=open("CSV/%s.csv" %table)
         reader=csv.reader(file)
-        csv_count=len(list(reader))-1
+        csv_count=sum(1 for line in reader) - 1 
         file.close()
         with engine.connect() as connection:
             result= connection.execute('select count(*) from "%s"' %table)
@@ -69,7 +70,7 @@ with open('files.csv', newline='') as csvfile:
                         if results.rowcount == 0:
                             with engine.connect() as connection:
                                 results = connection.execute('insert into "Last-Modified" ("name","modified", "zip") values (\'%s\',\'%s\', \'%s\')' %(table,modified,location))
-                        if ".csv" in url.lower():
+                        if re.match("csv$",url.lower()):
                                 os.rename("zips/"+location, "CSV/"+location) #move file
                         elif ".zip" in url.lower():
                                 os.system("./unzipEPA %s %s.csv" %(location,table)) #Unzip
@@ -113,4 +114,4 @@ for zip in glob.glob("./zips/*.zip"):
 #Switch DB
 db_connect.change_db()
 #Stony Brook Specific way to update remote currentDBIndex
-#os.system("./toggleIndex")
+os.system("./toggleIndex")

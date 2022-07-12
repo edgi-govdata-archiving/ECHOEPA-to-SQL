@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.5
--- Dumped by pg_dump version 13.5
+-- Dumped from database version 11.16 (Ubuntu 11.16-1.pgdg18.04+1)
+-- Dumped by pg_dump version 13.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -31,8 +31,6 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 
 
 SET default_tablespace = '';
-
-SET default_table_access_method = heap;
 
 --
 -- Name: ECHO_EXPORTER; Type: TABLE; Schema: public; Owner: echoepa
@@ -1403,25 +1401,25 @@ CREATE MATERIALIZED VIEW public."DMR_FY2020_MVIEW" AS
 ALTER TABLE public."DMR_FY2020_MVIEW" OWNER TO echoepa;
 
 --
--- Name: NPDES_EFF_VIOLATIONS; Type: TABLE; Schema: public; Owner: echoepa 
+-- Name: NPDES_EFF_VIOLATIONS; Type: TABLE; Schema: public; Owner: echoepa
 --
 
-CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" ( 
+CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" (
     "NPDES_ID" character varying(9),
-    "VERSION_NMBR" numeric(22),
-    "ACTIVITY_ID" numeric(22),
-    "NPDES_VIOLATION_ID" numeric(22),
+    "VERSION_NMBR" numeric(22,0),
+    "ACTIVITY_ID" numeric(22,0),
+    "NPDES_VIOLATION_ID" numeric(22,0),
     "PERM_FEATURE_NMBR" character varying(22),
-    "PERMIT_ACTIVITY_ID" numeric(22),
+    "PERMIT_ACTIVITY_ID" numeric(22,0),
     "LIMIT_SET_DESIGNATOR" character varying(2),
     "MONITORING_LOCATION_CODE" character varying(3),
-    "DMR_FORM_VALUE_ID" numeric(22),
-    "DMR_VALUE_NMBR" numeric(22),
-    "DMR_VALUE_ID" numeric(22),
-    "DMR_PARAMETER_ID" numeric(22),
+    "DMR_FORM_VALUE_ID" numeric(22,0),
+    "DMR_VALUE_NMBR" numeric(22,0),
+    "DMR_VALUE_ID" numeric(22,0),
+    "DMR_PARAMETER_ID" numeric(22,0),
     "NODI_CODE" character varying(3),
-    "ADJUSTED_DMR_VALUE_NMBR" numeric(22),
-    "LIMIT_VALUE_STANDARD_UNITS" numeric(22),
+    "ADJUSTED_DMR_VALUE_NMBR" numeric(22,0),
+    "LIMIT_VALUE_STANDARD_UNITS" numeric(22,0),
     "VIOLATION_TYPE_CODE" character varying(6),
     "VIOLATION_TYPE_DESC" character varying(100),
     "VIOLATION_CODE" character varying(5),
@@ -1431,15 +1429,15 @@ CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" (
     "STANDARD_UNIT_CODE" character varying(2),
     "STANDARD_UNIT_DESC" character varying(13),
     "MONITORING_PERIOD_END_DATE" date,
-    "NMBR_OF_REPORT" numeric(2),
-    "EXCEEDANCE_PCT" numeric(22),
+    "NMBR_OF_REPORT" numeric(2,0),
+    "EXCEEDANCE_PCT" numeric(22,0),
     "VALUE_QUALIFIER_CODE" character varying(3),
     "UNIT_CODE" character varying(2),
     "VALUE_RECEIVED_DATE" date,
-    "DAYS_LATE" numeric(22),
-    "ADJUSTED_DMR_STANDARD_UNITS" numeric(22),
-    "LIMIT_ID" numeric(22),
-    "DMR_VALUE_STANDARD_UNITS" numeric(22),
+    "DAYS_LATE" numeric(22,0),
+    "ADJUSTED_DMR_STANDARD_UNITS" numeric(22,0),
+    "LIMIT_ID" numeric(22,0),
+    "DMR_VALUE_STANDARD_UNITS" numeric(22,0),
     "VALUE_TYPE_CODE" character varying(3),
     "RNC_DETECTION_CODE" character varying(3),
     "RNC_DETECTION_DESC" character varying(100),
@@ -1451,6 +1449,7 @@ CREATE UNLOGGED TABLE public."NPDES_EFF_VIOLATIONS" (
     "STATISTICAL_BASE_MONTHLY_AVG" character varying(1),
     "STATISTICAL_BASE_SHORT_DESC" character varying(10)
 );
+
 
 ALTER TABLE public."NPDES_EFF_VIOLATIONS" OWNER TO echoepa;
 
@@ -1688,6 +1687,171 @@ CREATE TABLE public."EJSCREEN_2020_USPR" (
 ALTER TABLE public."EJSCREEN_2020_USPR" OWNER TO echoepa;
 
 --
+-- Name: EJSCREEN_2021_USPR; Type: TABLE; Schema: public; Owner: echoepa
+--
+
+CREATE UNLOGGED TABLE public."EJSCREEN_2021_USPR" (
+    "OBJECTID" numeric,
+    "ID" numeric,
+    "ACSTOTPOP" numeric,
+    "ACSIPOVBAS" numeric,
+    "ACSEDUCBAS" numeric,
+    "ACSTOTHH" numeric,
+    "ACSTOTHU" numeric,
+    "ACSUNEMPBAS" numeric,
+    "MINORPOP" numeric,
+    "MINORPCT" numeric,
+    "LOWINCOME" numeric,
+    "LOWINCPCT" numeric,
+    "LESSHS" numeric,
+    "LESSHSPCT" numeric,
+    "LINGISO" numeric,
+    "LINGISOPCT" numeric,
+    "UNDER5" numeric,
+    "UNDER5PCT" numeric,
+    "OVER64" numeric,
+    "OVER64PCT" numeric,
+    "PRE1960" numeric,
+    "PRE1960PCT" numeric,
+    "UNEMPLOYED" numeric,
+    "UNEMPPCT" numeric,
+    "VULEOPCT" numeric,
+    "VULEO" numeric,
+    "DISPEO" numeric,
+    "DSLPM" numeric,
+    "CANCER" numeric,
+    "RESP" numeric,
+    "PTRAF" numeric,
+    "PWDIS" numeric,
+    "PNPL" numeric,
+    "PRMP" numeric,
+    "PTSDF" numeric,
+    "OZONE" numeric,
+    "PM25" numeric,
+    "UST" numeric,
+    "D_LDPNT_2" numeric,
+    "D_DSLPM_2" numeric,
+    "D_CANCR_2" numeric,
+    "D_RESP_2" numeric,
+    "D_PTRAF_2" numeric,
+    "D_PWDIS_2" numeric,
+    "D_PNPL_2" numeric,
+    "D_PRMP_2" numeric,
+    "D_PTSDF_2" numeric,
+    "D_OZONE_2" numeric,
+    "D_PM25_2" numeric,
+    "D_UST_2" numeric,
+    "STATE_NAME" character varying,
+    "ST_ABBREV" character varying,
+    "REGION" numeric,
+    "P_MINORPCT" numeric,
+    "P_LWINCPCT" numeric,
+    "P_LESHSPCT" numeric,
+    "P_LNGISPCT" numeric,
+    "P_UNDR5PCT" numeric,
+    "P_OVR64PCT" numeric,
+    "P_LDPNT" numeric,
+    "P_UNEMPPCT" numeric,
+    "P_VULEOPCT" numeric,
+    "P_DSLPM" numeric,
+    "P_CANCR" numeric,
+    "P_RESP" numeric,
+    "P_PTRAF" numeric,
+    "P_PWDIS" numeric,
+    "P_PNPL" numeric,
+    "P_PRMP" numeric,
+    "P_PTSDF" numeric,
+    "P_OZONE" numeric,
+    "P_PM25" numeric,
+    "P_UST" numeric,
+    "P_LDPNT_D2" numeric,
+    "P_DSLPM_D2" numeric,
+    "P_CANCR_D2" numeric,
+    "P_RESP_D2" numeric,
+    "P_PTRAF_D2" numeric,
+    "P_PWDIS_D2" numeric,
+    "P_PNPL_D2" numeric,
+    "P_PRMP_D2" numeric,
+    "P_PTSDF_D2" numeric,
+    "P_OZONE_D2" numeric,
+    "P_PM25_D2" numeric,
+    "P_UST_D2" numeric,
+    "B_MINORPCT" numeric,
+    "B_LWINCPCT" numeric,
+    "B_LESHSPCT" numeric,
+    "B_LNGISPCT" numeric,
+    "B_UNDR5PCT" numeric,
+    "B_OVR64PCT" numeric,
+    "B_LDPNT" numeric,
+    "B_UNEMPPCT" numeric,
+    "B_VULEOPCT" numeric,
+    "B_DSLPM" numeric,
+    "B_CANCR" numeric,
+    "B_RESP" numeric,
+    "B_PTRAF" numeric,
+    "B_PWDIS" numeric,
+    "B_PNPL" numeric,
+    "B_PRMP" numeric,
+    "B_PTSDF" numeric,
+    "B_OZONE" numeric,
+    "B_PM25" numeric,
+    "B_UST" numeric,
+    "B_LDPNT_D2" numeric,
+    "B_DSLPM_D2" numeric,
+    "B_CANCR_D2" numeric,
+    "B_RESP_D2" numeric,
+    "B_PTRAF_D2" numeric,
+    "B_PWDIS_D2" numeric,
+    "B_PNPL_D2" numeric,
+    "B_PRMP_D2" numeric,
+    "B_PTSDF_D2" numeric,
+    "B_OZONE_D2" numeric,
+    "B_PM25_D2" numeric,
+    "B_UST_D2" numeric,
+    "T_MINORPCT" character varying,
+    "T_LWINCPCT" character varying,
+    "T_LESHSPCT" character varying,
+    "T_LNGISPCT" character varying,
+    "T_UNDR5PCT" character varying,
+    "T_OVR64PCT" character varying,
+    "T_UNEMPPCT" character varying,
+    "T_VULEOPCT" character varying,
+    "T_LDPNT" character varying,
+    "T_LDPNT_D2" character varying,
+    "T_DSLPM" character varying,
+    "T_DSLPM_D2" character varying,
+    "T_CANCR" character varying,
+    "T_CANCR_D2" character varying,
+    "T_RESP" character varying,
+    "T_RESP_D2" character varying,
+    "T_PTRAF" character varying,
+    "T_PTRAF_D2" character varying,
+    "T_PWDIS" character varying,
+    "T_PWDIS_D2" character varying,
+    "T_PNPL" character varying,
+    "T_PNPL_D2" character varying,
+    "T_PRMP" character varying,
+    "T_PRMP_D2" character varying,
+    "T_PTSDF" character varying,
+    "T_PTSDF_D2" character varying,
+    "T_OZONE" character varying,
+    "T_OZONE_D2" character varying,
+    "T_PM25" character varying,
+    "T_PM25_D2" character varying,
+    "T_UST" character varying,
+    "T_UST_D2" character varying,
+    "AREALAND" numeric,
+    "AREAWATER" numeric,
+    "NPL_CNT" numeric,
+    "TSDF_CNT" numeric,
+    "Shape_Length" numeric,
+    "Shape_Area" numeric
+);
+
+
+ALTER TABLE public."EJSCREEN_2021_USPR" OWNER TO echoepa;
+
+--
 -- Name: EPA_INFORMAL_ENFORCEMENT_ACTIONS; Type: TABLE; Schema: public; Owner: echoepa
 --
 
@@ -1857,35 +2021,35 @@ ALTER TABLE public."ICIS-AIR_STACK_TESTS" OWNER TO echoepa;
 -- Name: ICIS_PERMITS; Type: TABLE; Schema: public; Owner: echoepa
 --
 
-CREATE UNLOGGED TABLE public."ICIS_PERMITS" (
-    "ACTIVITY_ID" bigint,
-    "EXTERNAL_PERMIT_NMBR" character varying(12),
-    "VERSION_NMBR" bigint,
-    "FACILITY_TYPE_INDICATOR" text,
-    "PERMIT_TYPE_CODE" text,
-    "MAJOR_MINOR_STATUS_FLAG" text,
-    "PERMIT_STATUS_CODE" text,
-    "TOTAL_DESIGN_FLOW_NMBR" double precision,
-    "ACTUAL_AVERAGE_FLOW_NMBR" double precision,
-    "STATE_WATER_BODY" text,
-    "STATE_WATER_BODY_NAME" text,
-    "PERMIT_NAME" text,
-    "AGENCY_TYPE_CODE" text,
-    "ORIGINAL_ISSUE_DATE" text,
-    "ISSUE_DATE" text,
-    "ISSUING_AGENCY" text,
-    "EFFECTIVE_DATE" text,
-    "EXPIRATION_DATE" text,
-    "RETIREMENT_DATE" text,
-    "TERMINATION_DATE" text,
-    "PERMIT_COMP_STATUS_FLAG" text,
-    "DMR_NON_RECEIPT_FLAG" text,
-    "RNC_TRACKING_FLAG" text,
-    "MASTER_EXTERNAL_PERMIT_NMBR" text,
-    "TMDL_INTERFACE_FLAG" text,
-    "EDMR_AUTHORIZATION_FLAG" text,
-    "PRETREATMENT_INDICATOR_CODE" text,
-    "WBD_HUC12" double precision
+CREATE TABLE public."ICIS_PERMITS" (
+    "ACTIVITY_ID" numeric NOT NULL,
+    "EXTERNAL_PERMIT_NMBR" character varying NOT NULL,
+    "VERSION_NMBR" numeric NOT NULL,
+    "FACILITY_TYPE_INDICATOR" character varying,
+    "PERMIT_TYPE_CODE" character varying NOT NULL,
+    "MAJOR_MINOR_STATUS_FLAG" character varying,
+    "PERMIT_STATUS_CODE" character varying,
+    "TOTAL_DESIGN_FLOW_NMBR" numeric,
+    "ACTUAL_AVERAGE_FLOW_NMBR" numeric,
+    "STATE_WATER_BODY" character varying,
+    "STATE_WATER_BODY_NAME" character varying,
+    "PERMIT_NAME" character varying,
+    "AGENCY_TYPE_CODE" character varying NOT NULL,
+    "ORIGINAL_ISSUE_DATE" date,
+    "ISSUE_DATE" date,
+    "ISSUING_AGENCY" character varying,
+    "EFFECTIVE_DATE" date,
+    "EXPIRATION_DATE" date,
+    "RETIREMENT_DATE" date,
+    "TERMINATION_DATE" date,
+    "PERMIT_COMP_STATUS_FLAG" boolean,
+    "DMR_NON_RECEIPT_FLAG" boolean,
+    "RNC_TRACKING_FLAG" boolean NOT NULL,
+    "MASTER_EXTERNAL_PERMIT_NMBR" character varying,
+    "TMDL_INTERFACE_FLAG" boolean,
+    "EDMR_AUTHORIZATION_FLAG" boolean NOT NULL,
+    "PRETREATMENT_INDICATOR_CODE" character varying,
+    "WBD_HUC12" numeric
 );
 
 
@@ -2019,7 +2183,7 @@ CREATE TABLE public."NPDES_LIMITS" (
     "LIMIT_ID" numeric,
     "LIMIT_BEGIN_DATE" date,
     "LIMIT_END_DATE" date,
-    "NMBR_OF_SUBMISSION" boolean,
+    "NMBR_OF_SUBMISSION" integer,
     "NMBR_OF_REPORT" boolean,
     "PARAMETER_CODE" numeric,
     "PARAMETER_DESC" character varying,
@@ -2028,7 +2192,7 @@ CREATE TABLE public."NPDES_LIMITS" (
     "LIMIT_VALUE_ID" numeric,
     "LIMIT_VALUE_TYPE_CODE" character varying,
     "LIMIT_VALUE_NMBR" numeric,
-    "LIMIT_UNIT_CODE" numeric,
+    "LIMIT_UNIT_CODE" text,
     "LIMIT_UNIT_DESC" character varying,
     "STANDARD_UNIT_CODE" numeric,
     "STANDARD_UNIT_DESC" character varying,
@@ -3137,93 +3301,10 @@ CREATE MATERIALIZED VIEW public."WATER_QUARTERLY_VIOLATIONS_MVIEW" AS
 ALTER TABLE public."WATER_QUARTERLY_VIOLATIONS_MVIEW" OWNER TO echoepa;
 
 --
--- Name: eco_level3; Type: TABLE; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_cd116; Type: TABLE; Schema: public; Owner: echoepa
 --
 
-CREATE TABLE public.eco_level3 (
-    gid integer NOT NULL,
-    na_l3code character varying(20),
-    na_l3name character varying(100),
-    na_l2code character varying(20),
-    na_l2name character varying(100),
-    na_l1code character varying(20),
-    na_l1name character varying(100),
-    na_l3key character varying(125),
-    na_l2key character varying(125),
-    na_l1key character varying(125),
-    shape_leng numeric,
-    shape_area numeric,
-    geom public.geometry(MultiPolygon,4326)
-);
-
-
-ALTER TABLE public.eco_level3 OWNER TO echoepa;
-
---
--- Name: eco_level3_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
---
-
-CREATE SEQUENCE public.eco_level3_gid_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.eco_level3_gid_seq OWNER TO echoepa;
-
---
--- Name: eco_level3_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
---
-
-ALTER SEQUENCE public.eco_level3_gid_seq OWNED BY public.eco_level3.gid;
-
-
---
--- Name: epa_regions; Type: TABLE; Schema: public; Owner: echoepa
---
-
-CREATE TABLE public.epa_regions (
-    gid integer NOT NULL,
-    objectid smallint,
-    eparegion character varying(9),
-    shape_leng numeric,
-    shape_area numeric,
-    geom public.geometry(MultiPolygon,4326)
-);
-
-
-ALTER TABLE public.epa_regions OWNER TO echoepa;
-
---
--- Name: epa_regions_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
---
-
-CREATE SEQUENCE public.epa_regions_gid_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.epa_regions_gid_seq OWNER TO echoepa;
-
---
--- Name: epa_regions_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
---
-
-ALTER SEQUENCE public.epa_regions_gid_seq OWNED BY public.epa_regions.gid;
-
-
---
--- Name: tl_2019_us_cd116; Type: TABLE; Schema: public; Owner: echoepa
---
-
-CREATE TABLE public.tl_2019_us_cd116 (
+CREATE TABLE public.tl_2020_us_cd116 (
     gid integer NOT NULL,
     statefp character varying(2),
     cd116fp character varying(2),
@@ -3237,17 +3318,17 @@ CREATE TABLE public.tl_2019_us_cd116 (
     awater double precision,
     intptlat character varying(11),
     intptlon character varying(12),
-    geom public.geometry(MultiPolygon,4326)
+    wkb_geometry public.geometry(MultiPolygon,4269)
 );
 
 
-ALTER TABLE public.tl_2019_us_cd116 OWNER TO echoepa;
+ALTER TABLE public.tl_2020_us_cd116 OWNER TO echoepa;
 
 --
--- Name: tl_2019_us_cd116_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_cd116_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE SEQUENCE public.tl_2019_us_cd116_gid_seq
+CREATE SEQUENCE public.tl_2020_us_cd116_gid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3256,20 +3337,20 @@ CREATE SEQUENCE public.tl_2019_us_cd116_gid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tl_2019_us_cd116_gid_seq OWNER TO echoepa;
+ALTER TABLE public.tl_2020_us_cd116_gid_seq OWNER TO echoepa;
 
 --
--- Name: tl_2019_us_cd116_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_cd116_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.tl_2019_us_cd116_gid_seq OWNED BY public.tl_2019_us_cd116.gid;
+ALTER SEQUENCE public.tl_2020_us_cd116_gid_seq OWNED BY public.tl_2020_us_cd116.gid;
 
 
 --
--- Name: tl_2019_us_county; Type: TABLE; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_county; Type: TABLE; Schema: public; Owner: echoepa
 --
 
-CREATE TABLE public.tl_2019_us_county (
+CREATE TABLE public.tl_2020_us_county (
     gid integer NOT NULL,
     statefp character varying(2),
     countyfp character varying(3),
@@ -3288,17 +3369,17 @@ CREATE TABLE public.tl_2019_us_county (
     awater double precision,
     intptlat character varying(11),
     intptlon character varying(12),
-    geom public.geometry(MultiPolygon,4326)
+    wkb_geometry public.geometry(MultiPolygon,4269)
 );
 
 
-ALTER TABLE public.tl_2019_us_county OWNER TO echoepa;
+ALTER TABLE public.tl_2020_us_county OWNER TO echoepa;
 
 --
--- Name: tl_2019_us_county_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_county_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE SEQUENCE public.tl_2019_us_county_gid_seq
+CREATE SEQUENCE public.tl_2020_us_county_gid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3307,46 +3388,41 @@ CREATE SEQUENCE public.tl_2019_us_county_gid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tl_2019_us_county_gid_seq OWNER TO echoepa;
+ALTER TABLE public.tl_2020_us_county_gid_seq OWNER TO echoepa;
 
 --
--- Name: tl_2019_us_county_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_county_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.tl_2019_us_county_gid_seq OWNED BY public.tl_2019_us_county.gid;
+ALTER SEQUENCE public.tl_2020_us_county_gid_seq OWNED BY public.tl_2020_us_county.gid;
 
 
 --
--- Name: tl_2019_us_state; Type: TABLE; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_zcta520; Type: TABLE; Schema: public; Owner: echoepa
 --
 
-CREATE TABLE public.tl_2019_us_state (
+CREATE TABLE public.tl_2020_us_zcta520 (
     gid integer NOT NULL,
-    region character varying(2),
-    division character varying(2),
-    statefp character varying(2),
-    statens character varying(8),
-    geoid character varying(2),
-    stusps character varying(2),
-    name character varying(100),
-    lsad character varying(2),
-    mtfcc character varying(5),
-    funcstat character varying(1),
-    aland double precision,
-    awater double precision,
-    intptlat character varying(11),
-    intptlon character varying(12),
-    geom public.geometry(MultiPolygon,4326)
+    zcta5ce20 character varying(5),
+    geoid20 character varying(5),
+    classfp20 character varying(2),
+    mtfcc20 character varying(5),
+    funcstat20 character varying(1),
+    aland20 double precision,
+    awater20 double precision,
+    intptlat20 character varying(11),
+    intptlon20 character varying(12),
+    wkb_geometry public.geometry(MultiPolygon,4269)
 );
 
 
-ALTER TABLE public.tl_2019_us_state OWNER TO echoepa;
+ALTER TABLE public.tl_2020_us_zcta520 OWNER TO echoepa;
 
 --
--- Name: tl_2019_us_state_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_zcta520_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE SEQUENCE public.tl_2019_us_state_gid_seq
+CREATE SEQUENCE public.tl_2020_us_zcta520_gid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3355,56 +3431,13 @@ CREATE SEQUENCE public.tl_2019_us_state_gid_seq
     CACHE 1;
 
 
-ALTER TABLE public.tl_2019_us_state_gid_seq OWNER TO echoepa;
+ALTER TABLE public.tl_2020_us_zcta520_gid_seq OWNER TO echoepa;
 
 --
--- Name: tl_2019_us_state_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_zcta520_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.tl_2019_us_state_gid_seq OWNED BY public.tl_2019_us_state.gid;
-
-
---
--- Name: tl_2019_us_zcta510; Type: TABLE; Schema: public; Owner: echoepa
---
-
-CREATE TABLE public.tl_2019_us_zcta510 (
-    gid integer NOT NULL,
-    zcta5ce10 character varying(5),
-    geoid10 character varying(5),
-    classfp10 character varying(2),
-    mtfcc10 character varying(5),
-    funcstat10 character varying(1),
-    aland10 double precision,
-    awater10 double precision,
-    intptlat10 character varying(11),
-    intptlon10 character varying(12),
-    geom public.geometry(MultiPolygon,4326)
-);
-
-
-ALTER TABLE public.tl_2019_us_zcta510 OWNER TO echoepa;
-
---
--- Name: tl_2019_us_zcta510_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
---
-
-CREATE SEQUENCE public.tl_2019_us_zcta510_gid_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.tl_2019_us_zcta510_gid_seq OWNER TO echoepa;
-
---
--- Name: tl_2019_us_zcta510_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
---
-
-ALTER SEQUENCE public.tl_2019_us_zcta510_gid_seq OWNED BY public.tl_2019_us_zcta510.gid;
+ALTER SEQUENCE public.tl_2020_us_zcta520_gid_seq OWNED BY public.tl_2020_us_zcta520.gid;
 
 
 --
@@ -3412,33 +3445,35 @@ ALTER SEQUENCE public.tl_2019_us_zcta510_gid_seq OWNED BY public.tl_2019_us_zcta
 --
 
 CREATE TABLE public.wbdhu10 (
-    gid integer NOT NULL,
+    objectid integer NOT NULL,
     tnmid character varying(40),
-    metasource character varying(40),
-    sourcedata character varying(100),
-    sourceorig character varying(130),
-    sourcefeat character varying(40),
-    loaddate date,
-    areasqkm numeric,
-    areaacres numeric,
-    referenceg character varying(50),
-    name character varying(120),
+    metasourceid character varying(40),
+    sourcedatadesc character varying(100),
+    sourceoriginator character varying(130),
+    sourcefeatureid character varying(40),
+    loaddate timestamp with time zone,
+    referencegnis_ids character varying(50),
+    areaacres double precision,
+    areasqkm double precision,
     states character varying(50),
     huc10 character varying(10),
+    name character varying(120),
     hutype character varying(1),
     humod character varying(30),
-    globalid character varying(38),
-    geom public.geometry(MultiPolygon,4326)
+    globalid character varying NOT NULL,
+    shape_length double precision,
+    shape_area double precision,
+    wkb_geometry public.geometry(MultiPolygon,4269)
 );
 
 
 ALTER TABLE public.wbdhu10 OWNER TO echoepa;
 
 --
--- Name: wbdhu10_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+-- Name: wbdhu10_objectid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE SEQUENCE public.wbdhu10_gid_seq
+CREATE SEQUENCE public.wbdhu10_objectid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3447,13 +3482,13 @@ CREATE SEQUENCE public.wbdhu10_gid_seq
     CACHE 1;
 
 
-ALTER TABLE public.wbdhu10_gid_seq OWNER TO echoepa;
+ALTER TABLE public.wbdhu10_objectid_seq OWNER TO echoepa;
 
 --
--- Name: wbdhu10_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: wbdhu10_objectid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.wbdhu10_gid_seq OWNED BY public.wbdhu10.gid;
+ALTER SEQUENCE public.wbdhu10_objectid_seq OWNED BY public.wbdhu10.objectid;
 
 
 --
@@ -3461,34 +3496,38 @@ ALTER SEQUENCE public.wbdhu10_gid_seq OWNED BY public.wbdhu10.gid;
 --
 
 CREATE TABLE public.wbdhu12 (
-    gid integer NOT NULL,
+    objectid integer NOT NULL,
     tnmid character varying(40),
-    metasource character varying(40),
-    sourcedata character varying(100),
-    sourceorig character varying(130),
-    sourcefeat character varying(40),
-    loaddate date,
-    areasqkm numeric,
-    areaacres numeric,
-    referenceg character varying(50),
-    name character varying(120),
+    metasourceid character varying(40),
+    sourcedatadesc character varying(100),
+    sourceoriginator character varying(130),
+    sourcefeatureid character varying(40),
+    loaddate timestamp with time zone,
+    referencegnis_ids character varying(50),
+    areaacres double precision,
+    areasqkm double precision,
     states character varying(50),
     huc12 character varying(12),
+    name character varying(120),
     hutype character varying(1),
     humod character varying(30),
     tohuc character varying(16),
-    globalid character varying(38),
-    geom public.geometry(MultiPolygon,4326)
+    noncontributingareaacres double precision,
+    noncontributingareasqkm double precision,
+    globalid character varying NOT NULL,
+    shape_length double precision,
+    shape_area double precision,
+    wkb_geometry public.geometry(MultiPolygon,4269)
 );
 
 
 ALTER TABLE public.wbdhu12 OWNER TO echoepa;
 
 --
--- Name: wbdhu12_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+-- Name: wbdhu12_objectid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE SEQUENCE public.wbdhu12_gid_seq
+CREATE SEQUENCE public.wbdhu12_objectid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3497,13 +3536,13 @@ CREATE SEQUENCE public.wbdhu12_gid_seq
     CACHE 1;
 
 
-ALTER TABLE public.wbdhu12_gid_seq OWNER TO echoepa;
+ALTER TABLE public.wbdhu12_objectid_seq OWNER TO echoepa;
 
 --
--- Name: wbdhu12_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: wbdhu12_objectid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.wbdhu12_gid_seq OWNED BY public.wbdhu12.gid;
+ALTER SEQUENCE public.wbdhu12_objectid_seq OWNED BY public.wbdhu12.objectid;
 
 
 --
@@ -3511,33 +3550,33 @@ ALTER SEQUENCE public.wbdhu12_gid_seq OWNED BY public.wbdhu12.gid;
 --
 
 CREATE TABLE public.wbdhu8 (
-    gid integer NOT NULL,
+    objectid integer NOT NULL,
     tnmid character varying(40),
-    metasource character varying(40),
-    sourcedata character varying(100),
-    sourceorig character varying(130),
-    sourcefeat character varying(40),
-    loaddate date,
-    areasqkm numeric,
-    areaacres numeric,
-    referenceg character varying(50),
-    name character varying(120),
+    metasourceid character varying(40),
+    sourcedatadesc character varying(100),
+    sourceoriginator character varying(130),
+    sourcefeatureid character varying(40),
+    loaddate timestamp with time zone,
+    referencegnis_ids character varying(50),
+    areaacres double precision,
+    areasqkm double precision,
     states character varying(50),
     huc8 character varying(8),
-    globalid character varying(38),
-    shape_leng numeric,
-    shape_area numeric,
-    geom public.geometry(MultiPolygon,4326)
+    name character varying(120),
+    globalid character varying NOT NULL,
+    shape_length double precision,
+    shape_area double precision,
+    wkb_geometry public.geometry(MultiPolygon,4269)
 );
 
 
 ALTER TABLE public.wbdhu8 OWNER TO echoepa;
 
 --
--- Name: wbdhu8_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+-- Name: wbdhu8_objectid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE SEQUENCE public.wbdhu8_gid_seq
+CREATE SEQUENCE public.wbdhu8_objectid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3546,124 +3585,79 @@ CREATE SEQUENCE public.wbdhu8_gid_seq
     CACHE 1;
 
 
-ALTER TABLE public.wbdhu8_gid_seq OWNER TO echoepa;
+ALTER TABLE public.wbdhu8_objectid_seq OWNER TO echoepa;
 
 --
--- Name: wbdhu8_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: wbdhu8_objectid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.wbdhu8_gid_seq OWNED BY public.wbdhu8.gid;
-
-
---
--- Name: eco_level3 gid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.eco_level3 ALTER COLUMN gid SET DEFAULT nextval('public.eco_level3_gid_seq'::regclass);
+ALTER SEQUENCE public.wbdhu8_objectid_seq OWNED BY public.wbdhu8.objectid;
 
 
 --
--- Name: epa_regions gid; Type: DEFAULT; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_cd116 gid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.epa_regions ALTER COLUMN gid SET DEFAULT nextval('public.epa_regions_gid_seq'::regclass);
-
-
---
--- Name: tl_2019_us_cd116 gid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.tl_2019_us_cd116 ALTER COLUMN gid SET DEFAULT nextval('public.tl_2019_us_cd116_gid_seq'::regclass);
+ALTER TABLE ONLY public.tl_2020_us_cd116 ALTER COLUMN gid SET DEFAULT nextval('public.tl_2020_us_cd116_gid_seq'::regclass);
 
 
 --
--- Name: tl_2019_us_county gid; Type: DEFAULT; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_county gid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.tl_2019_us_county ALTER COLUMN gid SET DEFAULT nextval('public.tl_2019_us_county_gid_seq'::regclass);
-
-
---
--- Name: tl_2019_us_state gid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.tl_2019_us_state ALTER COLUMN gid SET DEFAULT nextval('public.tl_2019_us_state_gid_seq'::regclass);
+ALTER TABLE ONLY public.tl_2020_us_county ALTER COLUMN gid SET DEFAULT nextval('public.tl_2020_us_county_gid_seq'::regclass);
 
 
 --
--- Name: tl_2019_us_zcta510 gid; Type: DEFAULT; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_zcta520 gid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.tl_2019_us_zcta510 ALTER COLUMN gid SET DEFAULT nextval('public.tl_2019_us_zcta510_gid_seq'::regclass);
-
-
---
--- Name: wbdhu10 gid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.wbdhu10 ALTER COLUMN gid SET DEFAULT nextval('public.wbdhu10_gid_seq'::regclass);
+ALTER TABLE ONLY public.tl_2020_us_zcta520 ALTER COLUMN gid SET DEFAULT nextval('public.tl_2020_us_zcta520_gid_seq'::regclass);
 
 
 --
--- Name: wbdhu12 gid; Type: DEFAULT; Schema: public; Owner: echoepa
+-- Name: wbdhu10 objectid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.wbdhu12 ALTER COLUMN gid SET DEFAULT nextval('public.wbdhu12_gid_seq'::regclass);
-
-
---
--- Name: wbdhu8 gid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.wbdhu8 ALTER COLUMN gid SET DEFAULT nextval('public.wbdhu8_gid_seq'::regclass);
+ALTER TABLE ONLY public.wbdhu10 ALTER COLUMN objectid SET DEFAULT nextval('public.wbdhu10_objectid_seq'::regclass);
 
 
 --
--- Name: eco_level3 eco_level3_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
+-- Name: wbdhu12 objectid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.eco_level3
-    ADD CONSTRAINT eco_level3_pkey PRIMARY KEY (gid);
-
-
---
--- Name: epa_regions epa_regions_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.epa_regions
-    ADD CONSTRAINT epa_regions_pkey PRIMARY KEY (gid);
+ALTER TABLE ONLY public.wbdhu12 ALTER COLUMN objectid SET DEFAULT nextval('public.wbdhu12_objectid_seq'::regclass);
 
 
 --
--- Name: tl_2019_us_cd116 tl_2019_us_cd116_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
+-- Name: wbdhu8 objectid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.tl_2019_us_cd116
-    ADD CONSTRAINT tl_2019_us_cd116_pkey PRIMARY KEY (gid);
-
-
---
--- Name: tl_2019_us_county tl_2019_us_county_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.tl_2019_us_county
-    ADD CONSTRAINT tl_2019_us_county_pkey PRIMARY KEY (gid);
+ALTER TABLE ONLY public.wbdhu8 ALTER COLUMN objectid SET DEFAULT nextval('public.wbdhu8_objectid_seq'::regclass);
 
 
 --
--- Name: tl_2019_us_state tl_2019_us_state_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_cd116 tl_2020_us_cd116_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.tl_2019_us_state
-    ADD CONSTRAINT tl_2019_us_state_pkey PRIMARY KEY (gid);
+ALTER TABLE ONLY public.tl_2020_us_cd116
+    ADD CONSTRAINT tl_2020_us_cd116_pkey PRIMARY KEY (gid);
 
 
 --
--- Name: tl_2019_us_zcta510 tl_2019_us_zcta510_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_county tl_2020_us_county_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
 --
 
-ALTER TABLE ONLY public.tl_2019_us_zcta510
-    ADD CONSTRAINT tl_2019_us_zcta510_pkey PRIMARY KEY (gid);
+ALTER TABLE ONLY public.tl_2020_us_county
+    ADD CONSTRAINT tl_2020_us_county_pkey PRIMARY KEY (gid);
+
+
+--
+-- Name: tl_2020_us_zcta520 tl_2020_us_zcta520_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
+--
+
+ALTER TABLE ONLY public.tl_2020_us_zcta520
+    ADD CONSTRAINT tl_2020_us_zcta520_pkey PRIMARY KEY (gid);
 
 
 --
@@ -3671,7 +3665,7 @@ ALTER TABLE ONLY public.tl_2019_us_zcta510
 --
 
 ALTER TABLE ONLY public.wbdhu10
-    ADD CONSTRAINT wbdhu10_pkey PRIMARY KEY (gid);
+    ADD CONSTRAINT wbdhu10_pkey PRIMARY KEY (objectid);
 
 
 --
@@ -3679,7 +3673,7 @@ ALTER TABLE ONLY public.wbdhu10
 --
 
 ALTER TABLE ONLY public.wbdhu12
-    ADD CONSTRAINT wbdhu12_pkey PRIMARY KEY (gid);
+    ADD CONSTRAINT wbdhu12_pkey PRIMARY KEY (objectid);
 
 
 --
@@ -3687,7 +3681,7 @@ ALTER TABLE ONLY public.wbdhu12
 --
 
 ALTER TABLE ONLY public.wbdhu8
-    ADD CONSTRAINT wbdhu8_pkey PRIMARY KEY (gid);
+    ADD CONSTRAINT wbdhu8_pkey PRIMARY KEY (objectid);
 
 
 --
@@ -6554,31 +6548,10 @@ CREATE INDEX act00000 ON public."ICIS-AIR_FCES_PCES" USING btree ("ACTIVITY_ID")
 
 
 --
--- Name: activity00000; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX activity00000 ON public."ICIS_PERMITS" USING btree ("ACTIVITY_ID");
-
-
---
 -- Name: case_number0000000000; Type: INDEX; Schema: public; Owner: echoepa
 --
 
 CREATE INDEX case_number0000000000 ON public."CASE_FACILITIES" USING btree ("CASE_NUMBER");
-
-
---
--- Name: eco_level3_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX eco_level3_geom_idx ON public.eco_level3 USING gist (geom);
-
-
---
--- Name: epa_regions_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX epa_regions_geom_idx ON public.epa_regions USING gist (geom);
 
 
 --
@@ -6659,13 +6632,6 @@ CREATE INDEX npdes0000600000 ON public."NPDES_SE_VIOLATIONS" USING btree ("NPDES
 
 
 --
--- Name: permit00000; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX permit00000 ON public."ICIS_PERMITS" USING btree ("EXTERNAL_PERMIT_NMBR");
-
-
---
 -- Name: pgm0000000000; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -6743,52 +6709,45 @@ CREATE INDEX registry0000200000 ON public."NPDES_INSPECTIONS" USING btree ("REGI
 
 
 --
--- Name: tl_2019_us_cd116_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_cd116_wkb_geometry_idx; Type: INDEX; Schema: public; Owner: echoepa
 --
 
-CREATE INDEX tl_2019_us_cd116_geom_idx ON public.tl_2019_us_cd116 USING gist (geom);
-
-
---
--- Name: tl_2019_us_county_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX tl_2019_us_county_geom_idx ON public.tl_2019_us_county USING gist (geom);
+CREATE INDEX tl_2020_us_cd116_wkb_geometry_idx ON public.tl_2020_us_cd116 USING gist (wkb_geometry);
 
 
 --
--- Name: tl_2019_us_state_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_county_wkb_geometry_idx; Type: INDEX; Schema: public; Owner: echoepa
 --
 
-CREATE INDEX tl_2019_us_state_geom_idx ON public.tl_2019_us_state USING gist (geom);
-
-
---
--- Name: tl_2019_us_zcta510_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX tl_2019_us_zcta510_geom_idx ON public.tl_2019_us_zcta510 USING gist (geom);
+CREATE INDEX tl_2020_us_county_wkb_geometry_idx ON public.tl_2020_us_county USING gist (wkb_geometry);
 
 
 --
--- Name: wbdhu10_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
+-- Name: tl_2020_us_zcta520_wkb_geometry_idx; Type: INDEX; Schema: public; Owner: echoepa
 --
 
-CREATE INDEX wbdhu10_geom_idx ON public.wbdhu10 USING gist (geom);
-
-
---
--- Name: wbdhu12_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX wbdhu12_geom_idx ON public.wbdhu12 USING gist (geom);
+CREATE INDEX tl_2020_us_zcta520_wkb_geometry_idx ON public.tl_2020_us_zcta520 USING gist (wkb_geometry);
 
 
 --
--- Name: wbdhu8_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
+-- Name: wbdhu10_wkb_geometry_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
 --
 
-CREATE INDEX wbdhu8_geom_idx ON public.wbdhu8 USING gist (geom);
+CREATE INDEX wbdhu10_wkb_geometry_geom_idx ON public.wbdhu10 USING gist (wkb_geometry);
+
+
+--
+-- Name: wbdhu12_wkb_geometry_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX wbdhu12_wkb_geometry_geom_idx ON public.wbdhu12 USING gist (wkb_geometry);
+
+
+--
+-- Name: wbdhu8_wkb_geometry_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX wbdhu8_wkb_geometry_geom_idx ON public.wbdhu8 USING gist (wkb_geometry);
 
 
 --
@@ -6799,10 +6758,10 @@ CREATE INDEX zip0000000000 ON public."ICIS-AIR_FACILITIES" USING btree ("ZIP_COD
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: echoepa
 --
 
-GRANT ALL ON SCHEMA public TO echoepa;
+GRANT USAGE ON SCHEMA public TO echoepa_public;
 
 
 --
@@ -7069,6 +7028,13 @@ GRANT SELECT ON TABLE public."EFF_VIOLATIONS_MVIEW" TO echoepa_public;
 --
 
 GRANT SELECT ON TABLE public."EJSCREEN_2020_USPR" TO echoepa_public;
+
+
+--
+-- Name: TABLE "EJSCREEN_2021_USPR"; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT ON TABLE public."EJSCREEN_2021_USPR" TO echoepa_public;
 
 
 --
@@ -7366,66 +7332,24 @@ GRANT SELECT ON TABLE public."WATER_QUARTERLY_VIOLATIONS_MVIEW" TO echoepa_publi
 
 
 --
--- Name: TABLE eco_level3; Type: ACL; Schema: public; Owner: echoepa
+-- Name: TABLE tl_2020_us_cd116; Type: ACL; Schema: public; Owner: echoepa
 --
 
-GRANT SELECT ON TABLE public.eco_level3 TO echoepa_public;
-
-
---
--- Name: TABLE epa_regions; Type: ACL; Schema: public; Owner: echoepa
---
-
-GRANT SELECT ON TABLE public.epa_regions TO echoepa_public;
+GRANT SELECT ON TABLE public.tl_2020_us_cd116 TO echoepa_public;
 
 
 --
--- Name: TABLE geography_columns; Type: ACL; Schema: public; Owner: postgres
+-- Name: TABLE tl_2020_us_county; Type: ACL; Schema: public; Owner: echoepa
 --
 
-GRANT SELECT ON TABLE public.geography_columns TO echoepa_public;
-
-
---
--- Name: TABLE geometry_columns; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT SELECT ON TABLE public.geometry_columns TO echoepa_public;
+GRANT SELECT ON TABLE public.tl_2020_us_county TO echoepa_public;
 
 
 --
--- Name: TABLE spatial_ref_sys; Type: ACL; Schema: public; Owner: postgres
+-- Name: TABLE tl_2020_us_zcta520; Type: ACL; Schema: public; Owner: echoepa
 --
 
-GRANT SELECT ON TABLE public.spatial_ref_sys TO echoepa_public;
-
-
---
--- Name: TABLE tl_2019_us_cd116; Type: ACL; Schema: public; Owner: echoepa
---
-
-GRANT SELECT ON TABLE public.tl_2019_us_cd116 TO echoepa_public;
-
-
---
--- Name: TABLE tl_2019_us_county; Type: ACL; Schema: public; Owner: echoepa
---
-
-GRANT SELECT ON TABLE public.tl_2019_us_county TO echoepa_public;
-
-
---
--- Name: TABLE tl_2019_us_state; Type: ACL; Schema: public; Owner: echoepa
---
-
-GRANT SELECT ON TABLE public.tl_2019_us_state TO echoepa_public;
-
-
---
--- Name: TABLE tl_2019_us_zcta510; Type: ACL; Schema: public; Owner: echoepa
---
-
-GRANT SELECT ON TABLE public.tl_2019_us_zcta510 TO echoepa_public;
+GRANT SELECT ON TABLE public.tl_2020_us_zcta520 TO echoepa_public;
 
 
 --
@@ -7453,6 +7377,7 @@ GRANT SELECT ON TABLE public.wbdhu8 TO echoepa_public;
 -- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: echoepa
 --
 
+ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public REVOKE ALL ON TABLES  FROM echoepa;
 ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public GRANT SELECT ON TABLES  TO echoepa_public;
 
 
