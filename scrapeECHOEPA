@@ -65,16 +65,15 @@ with open('files.csv', newline='') as csvfile:
                                         while(modified==""):
                                                 print("Getting %s" %(url))
                                                 modified = subprocess.check_output("./wgetEPA %s" %(url), shell=True).decode("utf-8").strip().splitlines()[0]
-                        with engine.connect() as connection:
-                            results = connection.execute('update "Last-Modified" set "modified"=\'%s\' where "zip" = \'%s\' and name=\'%s\'' %(modified,location,table))
-                        if results.rowcount == 0:
-                            with engine.connect() as connection:
-                                results = connection.execute('insert into "Last-Modified" ("name","modified", "zip") values (\'%s\',\'%s\', \'%s\')' %(table,modified,location))
+                                        with engine.connect() as connection:
+                                            results = connection.execute('update "Last-Modified" set "modified"=\'%s\' where "zip" = \'%s\' and name=\'%s\'' %(modified,location,table))
+                                        if results.rowcount == 0:
+                                            with engine.connect() as connection:
+                                                results = connection.execute('insert into "Last-Modified" ("name","modified", "zip") values (\'%s\',\'%s\', \'%s\')' %(table,modified,location))
                         if re.match("csv$",url.lower()):
                                 os.rename("zips/"+location, "CSV/"+location) #move file
                         elif ".zip" in url.lower():
                                 os.system("./unzipEPA %s %s.csv" %(location,table)) #Unzip
-        
                         try:
                             with engine.connect() as connection:
                                 test = connection.execute("select 'public.\"%s\"'::regclass" %(table))

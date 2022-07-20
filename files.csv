@@ -1,2 +1,2 @@
 CSV FILE,Location,URL,META_URL,TYPE,Column(s) to index,EEW currently using (1/1/2022),Current Notebooks,How we refer to it,Proposed Notebooks,Proposed Products,Description/Significance,Notes/Questions,EPA/State
-EJSCREEN_2021_USPR,EJSCREEN_2021_USPR.csv.zip,https://gaftp.epa.gov/EJSCREEN/2021/EJSCREEN_2021_USPR.csv.zip,https://drive.google.com/file/d/1sPELwZXSKIzlerYK-fklIiyDVKJ4EyVm/view?usp=sharing,,,,,,,,,,
+NPDES_LIMITS,npdes_limits.zip,https://echo.epa.gov/files/echodownloads/npdes_limits.zip,https://echo.epa.gov/tools/data-downloads/icis-npdes-limit-summary,Attribute,EXTERNAL_PERMIT_NMBR,N,TBD: Watershed,,,,,,
