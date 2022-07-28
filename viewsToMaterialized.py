@@ -45,7 +45,7 @@ def build(conn):
     ]
     
     for view in views:
-        print("creating table %s" %(view))
+        print("creating materialized view %s_MVIEW" %(view))
         conn.execute('DROP MATERIALIZED VIEW IF EXISTS "%s_MVIEW"'% view)
         conn.execute('create MATERIALIZED VIEW "%s_MVIEW" as select * from  "%s_VIEW"' % (view,view))
         for index in indexes:

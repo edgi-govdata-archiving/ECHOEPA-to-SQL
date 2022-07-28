@@ -2188,7 +2188,7 @@ CREATE TABLE public."NPDES_LIMITS" (
     "PARAMETER_CODE" character varying NOT NULL,
     "PARAMETER_DESC" character varying NOT NULL,
     "MONITORING_LOCATION_CODE" character varying NOT NULL,
-    "STAY_TYPE_CODE" character varying,
+    "STAY_TYPE_CODE" boolean,
     "LIMIT_VALUE_ID" numeric NOT NULL,
     "LIMIT_VALUE_TYPE_CODE" character varying NOT NULL,
     "LIMIT_VALUE_NMBR" numeric,
@@ -2200,12 +2200,12 @@ CREATE TABLE public."NPDES_LIMITS" (
     "STATISTICAL_BASE_CODE" character varying NOT NULL,
     "STATISTICAL_BASE_TYPE_CODE" character varying NOT NULL,
     "LIMIT_VALUE_QUALIFIER_CODE" character varying,
-    "STAY_VALUE_NMBR" numeric,
+    "STAY_VALUE_NMBR" boolean,
     "LIMIT_TYPE_CODE" character varying NOT NULL,
     "OPTIONAL_MONITORING_FLAG" boolean NOT NULL,
     "LIMIT_SAMPLE_TYPE_CODE" character varying,
     "LIMIT_FREQ_OF_ANALYSIS_CODE" character varying,
-    "ALL_MONTHS_LIMIT" character varying,
+    "ALL_MONTHS_LIMIT" character varying NOT NULL,
     "JAN" boolean NOT NULL,
     "FEB" boolean NOT NULL,
     "MAR" boolean NOT NULL,
@@ -3301,6 +3301,96 @@ CREATE MATERIALIZED VIEW public."WATER_QUARTERLY_VIOLATIONS_MVIEW" AS
 ALTER TABLE public."WATER_QUARTERLY_VIOLATIONS_MVIEW" OWNER TO echoepa;
 
 --
+-- Name: eco_level3_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.eco_level3_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.eco_level3_gid_seq OWNER TO echoepa;
+
+--
+-- Name: epa_regions_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.epa_regions_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.epa_regions_gid_seq OWNER TO echoepa;
+
+--
+-- Name: tl_2019_us_cd116_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.tl_2019_us_cd116_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tl_2019_us_cd116_gid_seq OWNER TO echoepa;
+
+--
+-- Name: tl_2019_us_county_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.tl_2019_us_county_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tl_2019_us_county_gid_seq OWNER TO echoepa;
+
+--
+-- Name: tl_2019_us_state_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.tl_2019_us_state_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tl_2019_us_state_gid_seq OWNER TO echoepa;
+
+--
+-- Name: tl_2019_us_zcta510_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.tl_2019_us_zcta510_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tl_2019_us_zcta510_gid_seq OWNER TO echoepa;
+
+--
 -- Name: tl_2020_us_cd116; Type: TABLE; Schema: public; Owner: echoepa
 --
 
@@ -3398,6 +3488,54 @@ ALTER SEQUENCE public.tl_2020_us_county_gid_seq OWNED BY public.tl_2020_us_count
 
 
 --
+-- Name: tl_2020_us_state; Type: TABLE; Schema: public; Owner: echoepa
+--
+
+CREATE TABLE public.tl_2020_us_state (
+    gid integer NOT NULL,
+    region character varying(2),
+    division character varying(2),
+    statefp character varying(2),
+    statens character varying(8),
+    geoid character varying(2),
+    stusps character varying(2),
+    name character varying(100),
+    lsad character varying(2),
+    mtfcc character varying(5),
+    funcstat character varying(1),
+    aland double precision,
+    awater double precision,
+    intptlat character varying(11),
+    intptlon character varying(12),
+    wkb_geometry public.geometry(MultiPolygon,4269)
+);
+
+
+ALTER TABLE public.tl_2020_us_state OWNER TO echoepa;
+
+--
+-- Name: tl_2020_us_state_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.tl_2020_us_state_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tl_2020_us_state_gid_seq OWNER TO echoepa;
+
+--
+-- Name: tl_2020_us_state_gid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+--
+
+ALTER SEQUENCE public.tl_2020_us_state_gid_seq OWNED BY public.tl_2020_us_state.gid;
+
+
+--
 -- Name: tl_2020_us_zcta520; Type: TABLE; Schema: public; Owner: echoepa
 --
 
@@ -3441,39 +3579,10 @@ ALTER SEQUENCE public.tl_2020_us_zcta520_gid_seq OWNED BY public.tl_2020_us_zcta
 
 
 --
--- Name: wbdhu10; Type: TABLE; Schema: public; Owner: echoepa
+-- Name: wbdhu10_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-CREATE TABLE public.wbdhu10 (
-    objectid integer NOT NULL,
-    tnmid character varying(40),
-    metasourceid character varying(40),
-    sourcedatadesc character varying(100),
-    sourceoriginator character varying(130),
-    sourcefeatureid character varying(40),
-    loaddate timestamp with time zone,
-    referencegnis_ids character varying(50),
-    areaacres double precision,
-    areasqkm double precision,
-    states character varying(50),
-    huc10 character varying(10),
-    name character varying(120),
-    hutype character varying(1),
-    humod character varying(30),
-    globalid character varying NOT NULL,
-    shape_length double precision,
-    shape_area double precision,
-    wkb_geometry public.geometry(MultiPolygon,4269)
-);
-
-
-ALTER TABLE public.wbdhu10 OWNER TO echoepa;
-
---
--- Name: wbdhu10_objectid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
---
-
-CREATE SEQUENCE public.wbdhu10_objectid_seq
+CREATE SEQUENCE public.wbdhu10_gid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3482,52 +3591,13 @@ CREATE SEQUENCE public.wbdhu10_objectid_seq
     CACHE 1;
 
 
-ALTER TABLE public.wbdhu10_objectid_seq OWNER TO echoepa;
+ALTER TABLE public.wbdhu10_gid_seq OWNER TO echoepa;
 
 --
--- Name: wbdhu10_objectid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
+-- Name: wbdhu12_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
 --
 
-ALTER SEQUENCE public.wbdhu10_objectid_seq OWNED BY public.wbdhu10.objectid;
-
-
---
--- Name: wbdhu12; Type: TABLE; Schema: public; Owner: echoepa
---
-
-CREATE TABLE public.wbdhu12 (
-    objectid integer NOT NULL,
-    tnmid character varying(40),
-    metasourceid character varying(40),
-    sourcedatadesc character varying(100),
-    sourceoriginator character varying(130),
-    sourcefeatureid character varying(40),
-    loaddate timestamp with time zone,
-    referencegnis_ids character varying(50),
-    areaacres double precision,
-    areasqkm double precision,
-    states character varying(50),
-    huc12 character varying(12),
-    name character varying(120),
-    hutype character varying(1),
-    humod character varying(30),
-    tohuc character varying(16),
-    noncontributingareaacres double precision,
-    noncontributingareasqkm double precision,
-    globalid character varying NOT NULL,
-    shape_length double precision,
-    shape_area double precision,
-    wkb_geometry public.geometry(MultiPolygon,4269)
-);
-
-
-ALTER TABLE public.wbdhu12 OWNER TO echoepa;
-
---
--- Name: wbdhu12_objectid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
---
-
-CREATE SEQUENCE public.wbdhu12_objectid_seq
+CREATE SEQUENCE public.wbdhu12_gid_seq
     AS integer
     START WITH 1
     INCREMENT BY 1
@@ -3536,14 +3606,7 @@ CREATE SEQUENCE public.wbdhu12_objectid_seq
     CACHE 1;
 
 
-ALTER TABLE public.wbdhu12_objectid_seq OWNER TO echoepa;
-
---
--- Name: wbdhu12_objectid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: echoepa
---
-
-ALTER SEQUENCE public.wbdhu12_objectid_seq OWNED BY public.wbdhu12.objectid;
-
+ALTER TABLE public.wbdhu12_gid_seq OWNER TO echoepa;
 
 --
 -- Name: wbdhu8; Type: TABLE; Schema: public; Owner: echoepa
@@ -3571,6 +3634,21 @@ CREATE TABLE public.wbdhu8 (
 
 
 ALTER TABLE public.wbdhu8 OWNER TO echoepa;
+
+--
+-- Name: wbdhu8_gid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
+--
+
+CREATE SEQUENCE public.wbdhu8_gid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.wbdhu8_gid_seq OWNER TO echoepa;
 
 --
 -- Name: wbdhu8_objectid_seq; Type: SEQUENCE; Schema: public; Owner: echoepa
@@ -3609,24 +3687,17 @@ ALTER TABLE ONLY public.tl_2020_us_county ALTER COLUMN gid SET DEFAULT nextval('
 
 
 --
+-- Name: tl_2020_us_state gid; Type: DEFAULT; Schema: public; Owner: echoepa
+--
+
+ALTER TABLE ONLY public.tl_2020_us_state ALTER COLUMN gid SET DEFAULT nextval('public.tl_2020_us_state_gid_seq'::regclass);
+
+
+--
 -- Name: tl_2020_us_zcta520 gid; Type: DEFAULT; Schema: public; Owner: echoepa
 --
 
 ALTER TABLE ONLY public.tl_2020_us_zcta520 ALTER COLUMN gid SET DEFAULT nextval('public.tl_2020_us_zcta520_gid_seq'::regclass);
-
-
---
--- Name: wbdhu10 objectid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.wbdhu10 ALTER COLUMN objectid SET DEFAULT nextval('public.wbdhu10_objectid_seq'::regclass);
-
-
---
--- Name: wbdhu12 objectid; Type: DEFAULT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.wbdhu12 ALTER COLUMN objectid SET DEFAULT nextval('public.wbdhu12_objectid_seq'::regclass);
 
 
 --
@@ -3653,27 +3724,19 @@ ALTER TABLE ONLY public.tl_2020_us_county
 
 
 --
+-- Name: tl_2020_us_state tl_2020_us_state_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
+--
+
+ALTER TABLE ONLY public.tl_2020_us_state
+    ADD CONSTRAINT tl_2020_us_state_pkey PRIMARY KEY (gid);
+
+
+--
 -- Name: tl_2020_us_zcta520 tl_2020_us_zcta520_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
 --
 
 ALTER TABLE ONLY public.tl_2020_us_zcta520
     ADD CONSTRAINT tl_2020_us_zcta520_pkey PRIMARY KEY (gid);
-
-
---
--- Name: wbdhu10 wbdhu10_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.wbdhu10
-    ADD CONSTRAINT wbdhu10_pkey PRIMARY KEY (objectid);
-
-
---
--- Name: wbdhu12 wbdhu12_pkey; Type: CONSTRAINT; Schema: public; Owner: echoepa
---
-
-ALTER TABLE ONLY public.wbdhu12
-    ADD CONSTRAINT wbdhu12_pkey PRIMARY KEY (objectid);
 
 
 --
@@ -3773,6 +3836,13 @@ CREATE INDEX "FAC_CITY_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_WATER_E
 --
 
 CREATE INDEX "FAC_CITY_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_CITY");
+
+
+--
+-- Name: FAC_CITY_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_CITY_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_CITY");
 
 
 --
@@ -3941,6 +4011,13 @@ CREATE INDEX "FAC_COUNTY_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_WATER
 --
 
 CREATE INDEX "FAC_COUNTY_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_COUNTY");
+
+
+--
+-- Name: FAC_COUNTY_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_COUNTY_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_COUNTY");
 
 
 --
@@ -4182,6 +4259,13 @@ CREATE INDEX "FAC_DERIVED_CD113_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_
 
 
 --
+-- Name: FAC_DERIVED_CD113_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_DERIVED_CD113_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_DERIVED_CD113");
+
+
+--
 -- Name: FAC_DERIVED_CD113_DMR_FY2020; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -4333,6 +4417,13 @@ CREATE INDEX "FAC_DERIVED_HUC_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_
 --
 
 CREATE INDEX "FAC_DERIVED_HUC_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_DERIVED_HUC");
+
+
+--
+-- Name: FAC_DERIVED_HUC_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_DERIVED_HUC_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_DERIVED_HUC");
 
 
 --
@@ -4504,6 +4595,13 @@ CREATE INDEX "FAC_DERIVED_WBD_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_IN
 
 
 --
+-- Name: FAC_DERIVED_WBD_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_DERIVED_WBD_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_DERIVED_WBD");
+
+
+--
 -- Name: FAC_DERIVED_WBD_DMR_FY2020; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -4662,6 +4760,13 @@ CREATE INDEX "FAC_EPA_REGION_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_W
 --
 
 CREATE INDEX "FAC_EPA_REGION_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_EPA_REGION");
+
+
+--
+-- Name: FAC_EPA_REGION_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_EPA_REGION_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_EPA_REGION");
 
 
 --
@@ -4868,6 +4973,13 @@ CREATE INDEX "FAC_LAT_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTION
 
 
 --
+-- Name: FAC_LAT_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_LAT_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_LAT");
+
+
+--
 -- Name: FAC_LAT_DMR_FY2020; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -5019,6 +5131,13 @@ CREATE INDEX "FAC_LONG_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_WATER_E
 --
 
 CREATE INDEX "FAC_LONG_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_LONG");
+
+
+--
+-- Name: FAC_LONG_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_LONG_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_LONG");
 
 
 --
@@ -5201,6 +5320,13 @@ CREATE INDEX "FAC_NAICS_CODES_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_
 --
 
 CREATE INDEX "FAC_NAICS_CODES_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_NAICS_CODES");
+
+
+--
+-- Name: FAC_NAICS_CODES_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_NAICS_CODES_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_NAICS_CODES");
 
 
 --
@@ -5526,6 +5652,13 @@ CREATE INDEX "FAC_PERCENT_MINORITY_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WAT
 
 
 --
+-- Name: FAC_PERCENT_MINORITY_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_PERCENT_MINORITY_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_PERCENT_MINORITY");
+
+
+--
 -- Name: FAC_PERCENT_MINORITY_DMR_FY2020; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -5677,6 +5810,13 @@ CREATE INDEX "FAC_POP_DEN_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_WATE
 --
 
 CREATE INDEX "FAC_POP_DEN_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_POP_DEN");
+
+
+--
+-- Name: FAC_POP_DEN_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_POP_DEN_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_POP_DEN");
 
 
 --
@@ -5855,6 +5995,13 @@ CREATE INDEX "FAC_SIC_CODES_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSP
 
 
 --
+-- Name: FAC_SIC_CODES_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_SIC_CODES_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_SIC_CODES");
+
+
+--
 -- Name: FAC_SIC_CODES_DMR_FY2020; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -6013,6 +6160,13 @@ CREATE INDEX "FAC_STATE_CLEAN_WATER_ENFORCEMENT_ACTIONS" ON public."CLEAN_WATER_
 --
 
 CREATE INDEX "FAC_STATE_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTIONS_MVIEW" USING btree ("FAC_STATE");
+
+
+--
+-- Name: FAC_STATE_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_STATE_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_STATE");
 
 
 --
@@ -6345,6 +6499,13 @@ CREATE INDEX "FAC_ZIP_CLEAN_WATER_INSPECTIONS" ON public."CLEAN_WATER_INSPECTION
 
 
 --
+-- Name: FAC_ZIP_COMBINED_AIR_EMISSIONS; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX "FAC_ZIP_COMBINED_AIR_EMISSIONS" ON public."COMBINED_AIR_EMISSIONS_MVIEW" USING btree ("FAC_ZIP");
+
+
+--
 -- Name: FAC_ZIP_DMR_FY2020; Type: INDEX; Schema: public; Owner: echoepa
 --
 
@@ -6625,24 +6786,17 @@ CREATE INDEX tl_2020_us_county_wkb_geometry_idx ON public.tl_2020_us_county USIN
 
 
 --
+-- Name: tl_2020_us_state_wkb_geometry_idx; Type: INDEX; Schema: public; Owner: echoepa
+--
+
+CREATE INDEX tl_2020_us_state_wkb_geometry_idx ON public.tl_2020_us_state USING gist (wkb_geometry);
+
+
+--
 -- Name: tl_2020_us_zcta520_wkb_geometry_idx; Type: INDEX; Schema: public; Owner: echoepa
 --
 
 CREATE INDEX tl_2020_us_zcta520_wkb_geometry_idx ON public.tl_2020_us_zcta520 USING gist (wkb_geometry);
-
-
---
--- Name: wbdhu10_wkb_geometry_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX wbdhu10_wkb_geometry_geom_idx ON public.wbdhu10 USING gist (wkb_geometry);
-
-
---
--- Name: wbdhu12_wkb_geometry_geom_idx; Type: INDEX; Schema: public; Owner: echoepa
---
-
-CREATE INDEX wbdhu12_wkb_geometry_geom_idx ON public.wbdhu12 USING gist (wkb_geometry);
 
 
 --
@@ -7234,6 +7388,83 @@ GRANT SELECT ON TABLE public."WATER_QUARTERLY_VIOLATIONS_MVIEW" TO echoepa_publi
 
 
 --
+-- Name: SEQUENCE eco_level3_gid_seq; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT,USAGE ON SEQUENCE public.eco_level3_gid_seq TO echoepa_public;
+
+
+--
+-- Name: SEQUENCE epa_regions_gid_seq; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT,USAGE ON SEQUENCE public.epa_regions_gid_seq TO echoepa_public;
+
+
+--
+-- Name: TABLE geography_columns; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT ON TABLE public.geography_columns TO echoepa_public;
+
+
+--
+-- Name: TABLE geometry_columns; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT ON TABLE public.geometry_columns TO echoepa_public;
+
+
+--
+-- Name: TABLE raster_columns; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT ON TABLE public.raster_columns TO echoepa_public;
+
+
+--
+-- Name: TABLE raster_overviews; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT ON TABLE public.raster_overviews TO echoepa_public;
+
+
+--
+-- Name: TABLE spatial_ref_sys; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT SELECT ON TABLE public.spatial_ref_sys TO echoepa_public;
+
+
+--
+-- Name: SEQUENCE tl_2019_us_cd116_gid_seq; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT,USAGE ON SEQUENCE public.tl_2019_us_cd116_gid_seq TO echoepa_public;
+
+
+--
+-- Name: SEQUENCE tl_2019_us_county_gid_seq; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT,USAGE ON SEQUENCE public.tl_2019_us_county_gid_seq TO echoepa_public;
+
+
+--
+-- Name: SEQUENCE tl_2019_us_state_gid_seq; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT,USAGE ON SEQUENCE public.tl_2019_us_state_gid_seq TO echoepa_public;
+
+
+--
+-- Name: SEQUENCE tl_2019_us_zcta510_gid_seq; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT,USAGE ON SEQUENCE public.tl_2019_us_zcta510_gid_seq TO echoepa_public;
+
+
+--
 -- Name: TABLE tl_2020_us_cd116; Type: ACL; Schema: public; Owner: echoepa
 --
 
@@ -7248,6 +7479,13 @@ GRANT SELECT ON TABLE public.tl_2020_us_county TO echoepa_public;
 
 
 --
+-- Name: TABLE tl_2020_us_state; Type: ACL; Schema: public; Owner: echoepa
+--
+
+GRANT SELECT ON TABLE public.tl_2020_us_state TO echoepa_public;
+
+
+--
 -- Name: TABLE tl_2020_us_zcta520; Type: ACL; Schema: public; Owner: echoepa
 --
 
@@ -7255,17 +7493,17 @@ GRANT SELECT ON TABLE public.tl_2020_us_zcta520 TO echoepa_public;
 
 
 --
--- Name: TABLE wbdhu10; Type: ACL; Schema: public; Owner: echoepa
+-- Name: SEQUENCE wbdhu10_gid_seq; Type: ACL; Schema: public; Owner: echoepa
 --
 
-GRANT SELECT ON TABLE public.wbdhu10 TO echoepa_public;
+GRANT SELECT,USAGE ON SEQUENCE public.wbdhu10_gid_seq TO echoepa_public;
 
 
 --
--- Name: TABLE wbdhu12; Type: ACL; Schema: public; Owner: echoepa
+-- Name: SEQUENCE wbdhu12_gid_seq; Type: ACL; Schema: public; Owner: echoepa
 --
 
-GRANT SELECT ON TABLE public.wbdhu12 TO echoepa_public;
+GRANT SELECT,USAGE ON SEQUENCE public.wbdhu12_gid_seq TO echoepa_public;
 
 
 --
@@ -7276,11 +7514,10 @@ GRANT SELECT ON TABLE public.wbdhu8 TO echoepa_public;
 
 
 --
--- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: echoepa
+-- Name: SEQUENCE wbdhu8_gid_seq; Type: ACL; Schema: public; Owner: echoepa
 --
 
-ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public REVOKE ALL ON TABLES  FROM echoepa;
-ALTER DEFAULT PRIVILEGES FOR ROLE echoepa IN SCHEMA public GRANT SELECT ON TABLES  TO echoepa_public;
+GRANT SELECT,USAGE ON SEQUENCE public.wbdhu8_gid_seq TO echoepa_public;
 
 
 --

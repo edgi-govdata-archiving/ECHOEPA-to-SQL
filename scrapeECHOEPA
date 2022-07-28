@@ -10,7 +10,7 @@ from datetime import datetime
 import glob
 import db_connect
 import EXP_PGM as pgm #script for creating views based on raw ECHOEPA data
-import viewsToTable as mview #script which creates materialized views of view 
+import viewsToMaterialized as mview #script which creates materialized views of view 
 import re
 from sqlalchemy import create_engine
 
@@ -102,6 +102,7 @@ print("creating views")
 pgm.build(engine)
 print("creating materialized views")
 mview.build(engine) #materialized views
+print("running sql analyze")
 engine.execute("analyze");
 
 #Clear up files
