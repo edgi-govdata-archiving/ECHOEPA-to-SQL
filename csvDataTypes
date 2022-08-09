@@ -4,15 +4,17 @@ import subprocess
 import sqlparse
 import json
 import re
-sample=b'CREATE TABLE `CASE_ENFORCEMENTS` (\n\t`ACTIVITY_ID` DECIMAL(38, 0) NOT NULL, \n\t`ACTIVITY_NAME` VARCHAR(100) NOT NULL, \n\t`STATE_CODE` BOOL, \n\t`REGION_CODE` VARCHAR(2) NOT NULL, \n\t`FISCAL_YEAR` DECIMAL(38, 0) NOT NULL, \n\t`CASE_NUMBER` VARCHAR(12) NOT NULL, \n\t`CASE_NAME` VARCHAR(100) NOT NULL, \n\t`ACTIVITY_TYPE_CODE` VARCHAR(3) NOT NULL, \n\t`ACTIVITY_TYPE_DESC` VARCHAR(23) NOT NULL, \n\t`ACTIVITY_STATUS_CODE` VARCHAR(3) NOT NULL, \n\t`ACTIVITY_STATUS_DESC` VARCHAR(36) NOT NULL, \n\t`ACTIVITY_STATUS_DATE` DATE NOT NULL, \n\t`LEAD` VARCHAR(3) NOT NULL, \n\t`CASE_STATUS_DATE` DATE NOT NULL, \n\t`DOJ_DOCKET_NMBR` VARCHAR(50), \n\t`ENF_OUTCOME_CODE` VARCHAR(3), \n\t`ENF_OUTCOME_DESC` VARCHAR(52), \n\t`TOTAL_PENALTY_ASSESSED_AMT` DECIMAL(38, 0), \n\t`TOTAL_COST_RECOVERY_AMT` DECIMAL(38, 0), \n\t`TOTAL_COMP_ACTION_AMT` DECIMAL(38, 0), \n\t`HQ_DIVISION` VARCHAR(3), \n\t`BRANCH` VARCHAR(5), \n\t`VOLUNTARY_SELF_DISCLOSURE_FLAG` BOOL, \n\t`MULTIMEDIA_FLAG` BOOL, \n\t`ENF_SUMMARY_TEXT` VARCHAR(4000), \n\tCHECK (`STATE_CODE` IN (0, 1)), \n\tCHECK (`VOLUNTARY_SELF_DISCLOSURE_FLAG` IN (0, 1)), \n\tCHECK (`MULTIMEDIA_FLAG` IN (0, 1))\n);\n'
+#sample=b'CREATE TABLE `CASE_ENFORCEMENTS` (\n\t`ACTIVITY_ID` DECIMAL(38, 0) NOT NULL, \n\t`ACTIVITY_NAME` VARCHAR(100) NOT NULL, \n\t`STATE_CODE` BOOL, \n\t`REGION_CODE` VARCHAR(2) NOT NULL, \n\t`FISCAL_YEAR` DECIMAL(38, 0) NOT NULL, \n\t`CASE_NUMBER` VARCHAR(12) NOT NULL, \n\t`CASE_NAME` VARCHAR(100) NOT NULL, \n\t`ACTIVITY_TYPE_CODE` VARCHAR(3) NOT NULL, \n\t`ACTIVITY_TYPE_DESC` VARCHAR(23) NOT NULL, \n\t`ACTIVITY_STATUS_CODE` VARCHAR(3) NOT NULL, \n\t`ACTIVITY_STATUS_DESC` VARCHAR(36) NOT NULL, \n\t`ACTIVITY_STATUS_DATE` DATE NOT NULL, \n\t`LEAD` VARCHAR(3) NOT NULL, \n\t`CASE_STATUS_DATE` DATE NOT NULL, \n\t`DOJ_DOCKET_NMBR` VARCHAR(50), \n\t`ENF_OUTCOME_CODE` VARCHAR(3), \n\t`ENF_OUTCOME_DESC` VARCHAR(52), \n\t`TOTAL_PENALTY_ASSESSED_AMT` DECIMAL(38, 0), \n\t`TOTAL_COST_RECOVERY_AMT` DECIMAL(38, 0), \n\t`TOTAL_COMP_ACTION_AMT` DECIMAL(38, 0), \n\t`HQ_DIVISION` VARCHAR(3), \n\t`BRANCH` VARCHAR(5), \n\t`VOLUNTARY_SELF_DISCLOSURE_FLAG` BOOL, \n\t`MULTIMEDIA_FLAG` BOOL, \n\t`ENF_SUMMARY_TEXT` VARCHAR(4000), \n\tCHECK (`STATE_CODE` IN (0, 1)), \n\tCHECK (`VOLUNTARY_SELF_DISCLOSURE_FLAG` IN (0, 1)), \n\tCHECK (`MULTIMEDIA_FLAG` IN (0, 1))\n);\n'
 
 def getDataTypes(sql):
 	types=[]
 	sqlParsed = str(sqlparse.parse(sql)[0]).split("\n\t");
-	for i in sqlParsed[1:-1]:
+	for i in sqlParsed[1:]:
 		if re.match('^CHECK',i):
-		 	continue	
-		m=re.search(r'`([^`]*)` (.*), $',i)
+		 	continue
+		if "\n);" in i: # Last field contains \n so we need to replace these characters to match the regular expression pattern we're looking for 
+			i = i.replace("\n);", ", ")
+		m=re.search(r'`([^`]*)` (.*), $',i) 
 		# Process the results a bit
 		d = m.group(2)
 		dtype = length = None
@@ -38,7 +40,7 @@ with open('files.csv', newline='') as csvfile:
 		echo_csv=row['CSV FILE']
 		output = subprocess.check_output(["csvsql","-i", "mysql","-y","20000", "CSV/%s.csv" %(echo_csv)])
 		for column in getDataTypes(output):
-			f = open('output.csv', 'a', newline='')
+			f = open('output080422.csv', 'w', newline='')
 			writer = csv.writer(f)
 			writer.writerow([echo_csv,column['columnName'],column['dataType'], column['length']])
 			f.close()
