@@ -1,0 +1,2 @@
+#!/bin/bash
+echo This message goes to stderr  | perl -ne 'print STDERR' 

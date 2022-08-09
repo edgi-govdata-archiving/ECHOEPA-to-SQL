@@ -1,0 +1,10 @@
+#!/usr/bin/env python3 
+#Imports
+import subprocess
+from subprocess import Popen
+process = subprocess.Popen(["./Stderr","d"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+process.wait()
+err = process.stderr.read().decode()
+print(err)
+if process.returncode != 0:
+    print("error is %s" %err)
